@@ -21,9 +21,9 @@ experience.
 
 ## Need to do
 
-- [ ] Syntax extension suggestions, source suggestion
+- [x] Syntax extension suggestions
+- [ ] source suggestion
 - [ ] Code snipets.
-- [ ] Divide extension for creators and users.
-- Napsat v cetvrtek a urcit den schuzce.
+- [ ] Divide extension for creators and users. (?)
 
 ## 10.11.2023 (?)
