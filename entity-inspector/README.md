@@ -10,7 +10,7 @@ Users can use Entity-Inspector to quickly find definitions and uses of objects, 
 
 ```bash
 $ git clone git@github.com:MarkSeliverstov/MFF-YearProject.git    # clone the repository
-$ cd MFF-YearProject/entity-inspector                             # go to the extension folder
+$ cd MFF-BACHELOR-WORK/entity-inspector                           # go to the extension folder
 $ npm install                                                     # install npm packages
 $ npm run build                                                   # create vsix package in current folder
 ```
@@ -20,11 +20,6 @@ After that, you can install the extension in VS Code by opening the command pale
 Then you can use it like a normal extension from the marketplace.
 
 - In the `examples folder`, you can find examples of code that can be analyzed by the extension.
-
-### Video
-
-
-https://github.com/MarkSeliverstov/MFF-YearProject/assets/96746739/e7f02bf9-b11b-4446-a077-191516437d49
 
 **Enjoy!**
 

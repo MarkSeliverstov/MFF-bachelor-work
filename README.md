@@ -1,5 +1,14 @@
 # bachelor work repository
 
+## How to install extension
+
+```bash
+$ git clone git@github.com:MarkSeliverstov/MFF-YearProject.git    # clone the repository
+$ cd MFF-BACHELOR-WORK/entity-inspector                           # go to the extension folder
+$ npm install                                                     # install npm packages
+$ npm run build                                                   # create vsix package in current folder
+```
+
 ## Propojení softwarových artefaktů 
 (EN. Linking software artifacts)
 
