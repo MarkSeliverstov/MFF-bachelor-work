@@ -1,0 +1,105 @@
+{
+  "name": "entity-inspector",
+  "displayName": "Entity Inspector",
+  "repository": "https://github.com/MarkSeliverstov/MFF-bachelor-work",
+  "description": "It allows analyzing code structure and extracting information about objects and entities used in the project. The plugin can scan source code for classes, functions, variables, modules, packages, and other.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "id": "general",
+        "title": "Markers definitions",
+        "properties": {
+          "entity-inspector.prefixName": {
+            "order": 0,
+            "type": "string",
+            "default": "@lc-"
+          },
+          "entity-inspector.identifierMarker": {
+            "order": 1,
+            "type": "string",
+            "default": "identifier"
+          },
+          "entity-inspector.nameMarker": {
+            "order": 2,
+            "type": "string",
+            "default": "name"
+          },
+          "entity-inspector.typeMarker": {
+            "order": 3,
+            "type": "string",
+            "default": "type"
+          },
+          "entity-inspector.entityMarker": {
+            "order": 4,
+            "type": "string",
+            "default": "entity"
+          },
+          "entity-inspector.propertyMarker": {
+            "order": 5,
+            "type": "string",
+            "default": "property"
+          },
+          "entity-inspector.methodMarker": {
+            "order": 6,
+            "type": "string",
+            "default": "method"
+          },
+          "entity-inspector.descriptionMarker": {
+            "order": 7,
+            "type": "string",
+            "default": "description"
+          },
+          "entity-inspector.sourceMarker": {
+            "order": 8,
+            "type": "string",
+            "default": "source"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "entity-inspector.exportModel",
+        "title": "EI: Export Model"
+      },
+      {
+        "command": "entity-inspector.runParser",
+        "title": "EI: Run parser"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "build": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.77.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.47.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
+    "vsce": "^2.15.0"
+  }
+}

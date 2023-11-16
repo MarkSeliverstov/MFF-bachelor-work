@@ -1,0 +1,550 @@
+{
+  "filesAnnotations": [
+    {
+      "relativeFilePath": "instatnce-model.ts",
+      "annotations": [
+        {
+          "name": "identifier",
+          "value": ":Identifiable",
+          "startPos": 0,
+          "endPos": 31,
+          "lineNumber": 1
+        },
+        {
+          "name": "name",
+          "value": "Identifiable",
+          "startPos": 32,
+          "endPos": 56,
+          "lineNumber": 2
+        },
+        {
+          "name": "description",
+          "value": "export",
+          "startPos": 57,
+          "endPos": 126,
+          "lineNumber": 3
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 162,
+          "endPos": 177,
+          "lineNumber": 5
+        },
+        {
+          "name": "name",
+          "value": "identifier",
+          "startPos": 182,
+          "endPos": 204,
+          "lineNumber": 6
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 238,
+          "endPos": 251,
+          "lineNumber": 10
+        },
+        {
+          "name": "identifier",
+          "value": ":Property",
+          "startPos": 252,
+          "endPos": 279,
+          "lineNumber": 11
+        },
+        {
+          "name": "name",
+          "value": "Property",
+          "startPos": 280,
+          "endPos": 300,
+          "lineNumber": 12
+        },
+        {
+          "name": "description",
+          "value": "Property.",
+          "startPos": 301,
+          "endPos": 329,
+          "lineNumber": 13
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 361,
+          "endPos": 376,
+          "lineNumber": 15
+        },
+        {
+          "name": "name",
+          "value": "name",
+          "startPos": 381,
+          "endPos": 397,
+          "lineNumber": 16
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 420,
+          "endPos": 435,
+          "lineNumber": 18
+        },
+        {
+          "name": "name",
+          "value": "description",
+          "startPos": 440,
+          "endPos": 463,
+          "lineNumber": 19
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 492,
+          "endPos": 505,
+          "lineNumber": 23
+        },
+        {
+          "name": "identifier",
+          "value": ":Method",
+          "startPos": 506,
+          "endPos": 531,
+          "lineNumber": 24
+        },
+        {
+          "name": "name",
+          "value": "Method",
+          "startPos": 532,
+          "endPos": 550,
+          "lineNumber": 25
+        },
+        {
+          "name": "description",
+          "value": "Method.",
+          "startPos": 551,
+          "endPos": 577,
+          "lineNumber": 26
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 610,
+          "endPos": 623,
+          "lineNumber": 29
+        },
+        {
+          "name": "identifier",
+          "value": ":EntityInstance",
+          "startPos": 624,
+          "endPos": 657,
+          "lineNumber": 30
+        },
+        {
+          "name": "name",
+          "value": "EntityInstance",
+          "startPos": 658,
+          "endPos": 684,
+          "lineNumber": 31
+        },
+        {
+          "name": "description",
+          "value": "Instance",
+          "startPos": 685,
+          "endPos": 743,
+          "lineNumber": 32
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 781,
+          "endPos": 796,
+          "lineNumber": 34
+        },
+        {
+          "name": "name",
+          "value": "source",
+          "startPos": 801,
+          "endPos": 819,
+          "lineNumber": 35
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 843,
+          "endPos": 858,
+          "lineNumber": 37
+        },
+        {
+          "name": "name",
+          "value": "name",
+          "startPos": 863,
+          "endPos": 879,
+          "lineNumber": 38
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 902,
+          "endPos": 917,
+          "lineNumber": 40
+        },
+        {
+          "name": "name",
+          "value": "description",
+          "startPos": 922,
+          "endPos": 945,
+          "lineNumber": 41
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 975,
+          "endPos": 990,
+          "lineNumber": 43
+        },
+        {
+          "name": "name",
+          "value": "properties",
+          "startPos": 995,
+          "endPos": 1017,
+          "lineNumber": 44
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 1049,
+          "endPos": 1064,
+          "lineNumber": 46
+        },
+        {
+          "name": "name",
+          "value": "properties",
+          "startPos": 1069,
+          "endPos": 1091,
+          "lineNumber": 47
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 1118,
+          "endPos": 1133,
+          "lineNumber": 49
+        },
+        {
+          "name": "name",
+          "value": "extends",
+          "startPos": 1138,
+          "endPos": 1157,
+          "lineNumber": 50
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 1183,
+          "endPos": 1196,
+          "lineNumber": 54
+        },
+        {
+          "name": "identifier",
+          "value": ":Entity",
+          "startPos": 1197,
+          "endPos": 1222,
+          "lineNumber": 55
+        },
+        {
+          "name": "name",
+          "value": "Entity",
+          "startPos": 1223,
+          "endPos": 1241,
+          "lineNumber": 56
+        },
+        {
+          "name": "extends",
+          "value": ":Identifiable",
+          "startPos": 1242,
+          "endPos": 1270,
+          "lineNumber": 57
+        },
+        {
+          "name": "description",
+          "value": "Identifiable",
+          "startPos": 1271,
+          "endPos": 1339,
+          "lineNumber": 58
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 1390,
+          "endPos": 1405,
+          "lineNumber": 60
+        },
+        {
+          "name": "name",
+          "value": "instances",
+          "startPos": 1410,
+          "endPos": 1431,
+          "lineNumber": 61
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 1467,
+          "endPos": 1480,
+          "lineNumber": 65
+        },
+        {
+          "name": "identifier",
+          "value": ":InstanceModel",
+          "startPos": 1481,
+          "endPos": 1513,
+          "lineNumber": 66
+        },
+        {
+          "name": "name",
+          "value": "InstanceModel",
+          "startPos": 1514,
+          "endPos": 1539,
+          "lineNumber": 67
+        },
+        {
+          "name": "description",
+          "value": "Collection",
+          "startPos": 1540,
+          "endPos": 1583,
+          "lineNumber": 68
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 1620,
+          "endPos": 1635,
+          "lineNumber": 70
+        },
+        {
+          "name": "name",
+          "value": "entities",
+          "startPos": 1640,
+          "endPos": 1660,
+          "lineNumber": 71
+        }
+      ]
+    },
+    {
+      "relativeFilePath": "index.ts",
+      "annotations": []
+    },
+    {
+      "relativeFilePath": "annotation-model.ts",
+      "annotations": [
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 0,
+          "endPos": 13,
+          "lineNumber": 1
+        },
+        {
+          "name": "identifier",
+          "value": ":Annotation",
+          "startPos": 14,
+          "endPos": 43,
+          "lineNumber": 2
+        },
+        {
+          "name": "name",
+          "value": "Annotation",
+          "startPos": 44,
+          "endPos": 66,
+          "lineNumber": 3
+        },
+        {
+          "name": "description",
+          "value": "Base",
+          "startPos": 67,
+          "endPos": 117,
+          "lineNumber": 4
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 152,
+          "endPos": 167,
+          "lineNumber": 6
+        },
+        {
+          "name": "name",
+          "value": "name",
+          "startPos": 172,
+          "endPos": 188,
+          "lineNumber": 7
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 211,
+          "endPos": 226,
+          "lineNumber": 9
+        },
+        {
+          "name": "name",
+          "value": "value",
+          "startPos": 231,
+          "endPos": 248,
+          "lineNumber": 10
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 279,
+          "endPos": 294,
+          "lineNumber": 12
+        },
+        {
+          "name": "name",
+          "value": "annotationStartPos",
+          "startPos": 299,
+          "endPos": 329,
+          "lineNumber": 13
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 356,
+          "endPos": 371,
+          "lineNumber": 15
+        },
+        {
+          "name": "name",
+          "value": "annotationEndPos",
+          "startPos": 376,
+          "endPos": 404,
+          "lineNumber": 16
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 429,
+          "endPos": 444,
+          "lineNumber": 18
+        },
+        {
+          "name": "name",
+          "value": "annotationLine",
+          "startPos": 449,
+          "endPos": 479,
+          "lineNumber": 19
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 508,
+          "endPos": 521,
+          "lineNumber": 24
+        },
+        {
+          "name": "identifier",
+          "value": ":SourceFileAnotations",
+          "startPos": 522,
+          "endPos": 561,
+          "lineNumber": 25
+        },
+        {
+          "name": "name",
+          "value": "SourceFileAnotations",
+          "startPos": 562,
+          "endPos": 594,
+          "lineNumber": 26
+        },
+        {
+          "name": "description",
+          "value": "Represent",
+          "startPos": 595,
+          "endPos": 647,
+          "lineNumber": 27
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 692,
+          "endPos": 707,
+          "lineNumber": 29
+        },
+        {
+          "name": "name",
+          "value": "relativeFilePath",
+          "startPos": 712,
+          "endPos": 740,
+          "lineNumber": 30
+        },
+        {
+          "name": "description",
+          "value": "Relative",
+          "startPos": 745,
+          "endPos": 790,
+          "lineNumber": 31
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 825,
+          "endPos": 840,
+          "lineNumber": 33
+        },
+        {
+          "name": "name",
+          "value": "annotations",
+          "startPos": 845,
+          "endPos": 868,
+          "lineNumber": 34
+        },
+        {
+          "name": "description",
+          "value": "Annotations",
+          "startPos": 873,
+          "endPos": 924,
+          "lineNumber": 35
+        },
+        {
+          "name": "entity",
+          "value": null,
+          "startPos": 960,
+          "endPos": 973,
+          "lineNumber": 40
+        },
+        {
+          "name": "identifier",
+          "value": ":AnotationModel",
+          "startPos": 974,
+          "endPos": 1007,
+          "lineNumber": 41
+        },
+        {
+          "name": "name",
+          "value": "AnotationModel",
+          "startPos": 1008,
+          "endPos": 1034,
+          "lineNumber": 42
+        },
+        {
+          "name": "description",
+          "value": "Anotation",
+          "startPos": 1035,
+          "endPos": 1070,
+          "lineNumber": 43
+        },
+        {
+          "name": "property",
+          "value": null,
+          "startPos": 1109,
+          "endPos": 1124,
+          "lineNumber": 45
+        },
+        {
+          "name": "name",
+          "value": "filesAnotations",
+          "startPos": 1129,
+          "endPos": 1156,
+          "lineNumber": 46
+        }
+      ]
+    }
+  ]
+}
