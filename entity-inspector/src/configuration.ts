@@ -4,7 +4,7 @@ import path = require('path');
 import { TextDecoder } from 'util';
 
 const EXTENSION_NAME = "entity-inspector";
-const USER_CONFIG = vscode.workspace.getConfiguration(EXTENSION_NAME);
+const USER_CONFIG = () => vscode.workspace.getConfiguration(EXTENSION_NAME);
 
 /**
  * Configurates EI extension commands.
@@ -18,15 +18,15 @@ export class Commands{
  * User configuration of annotation prefixes.
  */
 export class AnnotationMarkers{
-    static readonly prefix = () => USER_CONFIG.get("prefixName", "@lc-");
-    static readonly id = () => USER_CONFIG.get("identifierMarker", "identifier");
-    static readonly alias = () => USER_CONFIG.get("nameMarker", "name");
-    static readonly type = () => USER_CONFIG.get("typeMarker", "type");
-    static readonly entity = () => USER_CONFIG.get("entityMarker", "entity");
-    static readonly property = () => USER_CONFIG.get("propertyMarker", "property");
-    static readonly method = () => USER_CONFIG.get("methodMarker", "method");
-    static readonly description = () => USER_CONFIG.get("descriptionMarker", "description");
-    static readonly source = () => USER_CONFIG.get("sourceMarker", "source");
+    static readonly prefix = () => USER_CONFIG().get("prefixName", "@lc-");
+    static readonly id = () => USER_CONFIG().get("identifierMarker", "identifier");
+    static readonly alias = () => USER_CONFIG().get("nameMarker", "name");
+    static readonly type = () => USER_CONFIG().get("typeMarker", "type");
+    static readonly entity = () => USER_CONFIG().get("entityMarker", "entity");
+    static readonly property = () => USER_CONFIG().get("propertyMarker", "property");
+    static readonly method = () => USER_CONFIG().get("methodMarker", "method");
+    static readonly description = () => USER_CONFIG().get("descriptionMarker", "description");
+    static readonly source = () => USER_CONFIG().get("sourceMarker", "source");
 
     static readonly getAllPrefixValues = () => {
         return [
@@ -41,6 +41,11 @@ export class AnnotationMarkers{
         ];
     };
 }
+
+/**
+ * Model source user definition.
+ */
+export const sourceDefinition = () => USER_CONFIG().get("sourceDefinition", "");
 
 /**
  * Awesome parser helps to determine the format of languages using the installed extensions.
