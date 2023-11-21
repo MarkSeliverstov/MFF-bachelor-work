@@ -21,9 +21,8 @@ experience.
 
 ## Need to do
 
-- [x] Syntax extension suggestions
-- [ ] source suggestion
-- [ ] Code snipets.
-- [ ] Divide extension for creators and users. (?)
+- [x] Syntax extension suggestions (When typing "@ei-")
+- [x] source suggestion (When typing "@ei-source ")
+- [x] Code snipets. (When typing "@ei-entity")
 
-## 10.11.2023 (?)
+## 23.11.2023 (?)
