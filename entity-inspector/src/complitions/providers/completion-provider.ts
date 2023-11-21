@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { AnnotationMarkers } from "../configuration";
+import { AnnotationMarkers } from "../../configuration";
 
 /**
  * Providers completions user defined markers by prefix.
@@ -11,10 +11,8 @@ export class MarkerProvider implements vscode.CompletionItemProvider {
         const completionItems: vscode.CompletionItem[] = [];
 		if (line.match(AnnotationMarkers.prefix())) {
             AnnotationMarkers.getAllPrefixValues().forEach(prefixVal => {
-                completionItems.push(
-                    new vscode.CompletionItem(prefixVal),
-                    );
-                }); 
+                completionItems.push(new vscode.CompletionItem(prefixVal));
+            }); 
         }
 		return completionItems;
     }

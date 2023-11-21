@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import { AnnotationMarkers, sourceDefinition } from "../configuration";
+import { AnnotationMarkers, sourceDefinition } from "../../configuration";
 
 /**
- * Provides inline completions suggestions.
+ * Provides inline completions suggestions about user defined model source.
  */
 export class SuggestionProvider implements vscode.InlineCompletionItemProvider {
     provideInlineCompletionItems(document: vscode.TextDocument, position: vscode.Position): 
@@ -27,14 +27,6 @@ export class SuggestionProvider implements vscode.InlineCompletionItemProvider {
                 )
             );
         }
-
-
-        // if (textBeforeCursor.endsWith('mySugg')) {
-        //     suggestionItems.push(
-        //         new vscode.InlineCompletionItem('estion\nThis is the first of sugg.\nyou can change it option + ] or [', new vscode.Range(position, position.translate(0, 10))),
-        //         new vscode.InlineCompletionItem('estion 2\nThis is the second of sugg', new vscode.Range(position, position.translate(0, 10))),
-        //     );
-        // }
         return suggestionItems;
     }
 }
