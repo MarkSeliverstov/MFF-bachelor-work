@@ -85,6 +85,26 @@ class CommentsConfiguration{
         }
     }
 
+    public async initAllLanguages() {
+        // Iterate over all language IDs in the languageConfigFiles map
+        for (const [languageId, filePath] of this.languageConfigFiles) {
+            try {
+                // Read the file for the current language
+                const rawContent = await vscode.workspace.fs.readFile(vscode.Uri.file(filePath));
+                const content = new TextDecoder().decode(rawContent);
+    
+                // Use json5 or similar, because the config can contain comments
+                const config = JSON.parse(content);
+    
+                // Store the comment configuration for the language
+                this.commentConfig.set(languageId, config.comments);
+            } catch (error) {
+                // In case of an error, set the comment configuration for this language to undefined
+                this.commentConfig.set(languageId, undefined);
+            }
+        }
+    }
+
     /**
      * Adapter getet the configuration information for the specified language by file extension
      */
@@ -93,7 +113,7 @@ class CommentsConfiguration{
     {
         const languageId = this.languageExtensionToLanguageId.get(extension);
         if (languageId !== undefined){
-            return await this.getCommentConfiguration(languageId);
+            return await this.getCommentConfigurationByLangId(languageId);
         }
         return undefined;
     }
@@ -101,34 +121,14 @@ class CommentsConfiguration{
     /**
      * Gets the configuration information for the specified language
      */
-    public async getCommentConfiguration(languageId: string)
-        : Promise<CommentConfig | undefined> 
+    public getCommentConfigurationByLangId(languageId: string)
+        : CommentConfig | undefined 
     {
 
         // check if the language config has already been loaded
         if (this.commentConfig.has(languageId)) {
             return this.commentConfig.get(languageId);
-        }
-
-        // if no config exists for this language, back out and leave the language unsupported
-        if (!this.languageConfigFiles.has(languageId)) {
-            return undefined;
-        }
-
-        try {
-            // Get the filepath from the map
-            const filePath = this.languageConfigFiles.get(languageId) as string;
-            const rawContent = await vscode.workspace.fs.readFile(vscode.Uri.file(filePath));
-            const content = new TextDecoder().decode(rawContent);
-
-            // use json5, because the config can contains comments
-            const config = JSON.parse(content);
-
-            this.commentConfig.set(languageId, config.comments);
-
-            return config.comments;
-        } catch (error) {
-            this.commentConfig.set(languageId, undefined);
+        } else {
             return undefined;
         }
     }
@@ -136,3 +136,4 @@ class CommentsConfiguration{
 
 export const commentsConfiguration = new CommentsConfiguration();
 commentsConfiguration.updateLanguagesDefinitions();
+commentsConfiguration.initAllLanguages();
