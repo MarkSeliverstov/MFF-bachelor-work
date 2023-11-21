@@ -28,10 +28,11 @@ Then you can use it like a normal extension from the marketplace.
 ### 0.0.1
 
 - The extension can **hint to the user** about existing artifacts with IntelliSense `ctrl+space` when your cursor is in the `@lc-`
-    - like this:
-    ```
-    # @lc-class: Car | @ei-method: drive | @ei-property: speed
-    # @lc-description: This class represents a car object.
-    ```
+    ![Alt text](assets/hints.png)
+- Extension can inline-suggest snippets for `@lc-enity` / `@lc-property` / `@lc-method`.
+    ![Alt text](assets/inline-snippets.png)
+- Extension can inline-suggest user defined source as `@lc-source ...` if exists.
+    ![Alt text](assets/inline-source.png)
+    ![Alt text](assets/setings-source.png)
 - Also you can add your definition of markers (`@lc-`, `entity`, `property`, ...).
-
+    ![Alt text](assets/settings-example.png)
