@@ -25,4 +25,8 @@ experience.
 - [x] source suggestion (When typing "@ei-source ")
 - [x] Code snipets. (When typing "@ei-entity")
 
-## 23.11.2023 (?)
+## 23.11.2023
+
+- [ ] Implement HTTP server for created ei-model
+
+## 8.12.2023 (?)
