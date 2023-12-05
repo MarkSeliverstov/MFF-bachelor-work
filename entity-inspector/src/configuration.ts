@@ -137,3 +137,5 @@ class CommentsConfiguration{
 export const commentsConfiguration = new CommentsConfiguration();
 commentsConfiguration.updateLanguagesDefinitions();
 commentsConfiguration.initAllLanguages();
+
+export const serverURL = "http://localhost:8000";

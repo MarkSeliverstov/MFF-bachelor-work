@@ -71,14 +71,14 @@
         "id": "general",
         "title": "User definitions",
         "properties": {
-            "entity-inspector.sourceDefinition": {
-                "order": 0,
-                "type": "string",
-                "default": "",
-                "description": "Source Definition"
-              }
+          "entity-inspector.sourceDefinition": {
+            "order": 0,
+            "type": "string",
+            "default": "",
+            "description": "Source Definition"
+          }
         }
-    }
+      }
     ],
     "commands": [
       {
@@ -104,6 +104,7 @@
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/node-fetch": "^2.6.9",
     "@types/vscode": "^1.77.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -113,5 +114,8 @@
     "mocha": "^10.2.0",
     "typescript": "^4.9.5",
     "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
