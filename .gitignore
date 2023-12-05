@@ -1,7 +1,16 @@
-.DS_Store
+# Node.js
 */node_modules/
 */.vscode/
-bachelor-thesis-drafts
-examples
 *.vsix
 out
+
+# Python
+__pycache__
+.venv
+
+# macOs
+.DS_Store
+
+# User
+bachelor-thesis-drafts
+examples
