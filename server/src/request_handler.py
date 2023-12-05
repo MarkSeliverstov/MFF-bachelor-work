@@ -14,22 +14,22 @@ class EntityInspectorHTTPRequestHandler(BaseHTTPRequestHandler):
         # Some validation logic
         return True if model else False
 
-    def _send_json_response(self, data: dict, status:int = 200) -> None:
-        self.send_response(status)
+    def _send_model(self, model: dict) -> None:
+        self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        response = bytes(json.dumps(data), "utf-8")
+        response = bytes(json.dumps(model), "utf-8")
         self.wfile.write(response)
 
-    def do_GET(self) -> None:
+
+    def _get_model(self):
         try:
             model = db.get_model()
-            response_data = {"status": "success", "message": model}
-            self._send_json_response(response_data)
+            self._send_model(model)
         except DataBaseException as exc:
-            self._send_json_response({"status": "error", "message": str(exc)}, status=404)
+            self.send_error(404, str(exc))
 
-    def do_POST(self) -> None:
+    def _save_model(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
 
@@ -38,10 +38,21 @@ class EntityInspectorHTTPRequestHandler(BaseHTTPRequestHandler):
             if not self._validate_model(data):
                 raise ValueError
         except (json.JSONDecodeError, ValueError):
-            error_data = {"status": "error", "message": "Invalid JSON"}
-            self._send_json_response(error_data, status=400)
+            self.send_error(400, "Invalid JSON")
             return
 
         db.save_model(data)
-        response_data = {"status": "success", "message": "Data received and saved"}
-        self._send_json_response(response_data)
+        self.send_response(200, "Data received and saved")
+        self.wfile.write()
+
+    def do_GET(self) -> None:
+        if self.path == '/model':
+            self._get_model()
+        else:
+            self.send_error(404, "API Not Found")
+
+    def do_POST(self) -> None:
+        if self.path == '/model':
+            self._save_model()
+        else:
+            self.send_error(404, "API Not Found")

@@ -21,6 +21,8 @@ class Database:
                 raise DataBaseException("Invalid model in the Database.")
 
     @staticmethod
-    def save_model(_MODEL_FILENAME, model: dict) -> None:
-        with open(_MODEL_FILENAME, 'w') as f:
+    def save_model(model: dict) -> None:
+        with open(_MODEL_FILE_PATH, 'w') as f:
+            print("Saving model")
             json.dump(model, f, indent=4)
+            print("Model saved")
