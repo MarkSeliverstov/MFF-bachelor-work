@@ -14,18 +14,18 @@ class EntityInspectorHTTPRequestHandler(BaseHTTPRequestHandler):
         # Some validation logic
         return True if model else False
 
-    def _send_model(self, model: dict) -> None:
-        self.send_response(200)
+    def _send_response(self, data: bytes, status: int = 200) -> None:
+        self.send_response(status)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        response = bytes(json.dumps(model), "utf-8")
-        self.wfile.write(response)
+        self.wfile.write(data)
 
 
     def _get_model(self):
         try:
             model = db.get_model()
-            self._send_model(model)
+            response = bytes(json.dumps(model), "utf-8")
+            self._send_response(response)
         except DataBaseException as exc:
             self.send_error(404, str(exc))
 
@@ -42,8 +42,8 @@ class EntityInspectorHTTPRequestHandler(BaseHTTPRequestHandler):
             return
 
         db.save_model(data)
-        self.send_response(200, "Data received and saved")
-        self.wfile.write()
+        response = bytes("received post request:<br>{}".format(data), "utf-8")
+        self._send_response(response)
 
     def do_GET(self) -> None:
         if self.path == '/model':
