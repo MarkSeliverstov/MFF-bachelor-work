@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { serverURL } from '../configuration';
+import { AnnotationModel } from '../model';
 
 const modelURL = `${serverURL}/model`;
 
@@ -21,7 +22,7 @@ export function getModel() {
 }
 
 
-export function saveModel(model: string) {
+export function saveModel(model: AnnotationModel) {
     fetch(modelURL, {
         method: 'POST',
         headers: {
