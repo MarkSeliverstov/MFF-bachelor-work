@@ -27,6 +27,6 @@ experience.
 
 ## 23.11.2023
 
-- [ ] Implement HTTP server for created ei-model
+- [x] Implement HTTP server for created ei-model
 
 ## 8.12.2023 (?)
