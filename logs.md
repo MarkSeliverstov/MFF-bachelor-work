@@ -29,4 +29,12 @@ experience.
 
 - [x] Implement HTTP server for created ei-model
 
-## 8.12.2023 (?)
+## 8.12.2023
+
+- [ ] Flask
+- [ ] Post annotations on-save to the server
+- [?] Annotations Converter on the server (FAKE now)
+- [ ] Authorizace with tocken
+- [ ] Intellisece for all model entities (Request and generate)
+
+## 22.12.2023 (?)
