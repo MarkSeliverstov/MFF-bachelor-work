@@ -1,16 +1,6 @@
-# bachelor work repository
+# Bachelor work repository
 
-## How to install extension
-
-```bash
-$ git clone git@github.com:MarkSeliverstov/MFF-YearProject.git    # clone the repository
-$ cd MFF-BACHELOR-WORK/entity-inspector                           # go to the extension folder
-$ npm install                                                     # install npm packages
-$ npm run build                                                   # create vsix package in current folder
-```
-
-## Propojení softwarových artefaktů 
-(EN. Linking software artifacts)
+### Propojení softwarových artefaktů 
 
 Rostoucí velikost a složitost softwarových systémů vytváří potřebu snadné navigace a detekce souvisejících částí.
 Dohledání využití komponenty, či deklarace funkce, je dnes již běžně dostupnou funkcionalitou.
@@ -23,3 +13,50 @@ Zcela zásadní pro adopci tohoto přístupu, je však podpora ze strany softwar
 V rámci práce student navrhne a implementuje proof-of-concept řešení, které budou demonstrovat využití výše popsaného přístupu.
 Součástí řešení bude rozšíření pro Visual Studio Code, které usnadní vývojáři tvorbu anotací.
 Uživatel bude dále s pomocí řešení schopen anotovat datové entity a následně vizualizovat jejich vztahy napříč softwarovým systémem.
+
+
+<details close>
+<summary>English version</summary>
+
+> ### Linking software artifacts
+> 
+> The increasing size and complexity of software systems creates the need for easy navigation and detection of related parts.
+> Finding the use of a component or a function declaration is now a commonly available functionality.
+> However, this functionality can be extended by linking at the data semantic level.
+> The new linking would allow linking data models, specifications, source code in different languages, documentation, as well as other artifacts > of the software system.
+> The basic idea is to use annotations placed in comments to indicate significant parts of the artifacts.
+> Annotations can, for example, describe selected data entities and their properties.
+> This information could then be used, for example, for code analysis, domain model construction, or assisting programmers.
+> However, support from software tools is essential for the adoption of this approach.
+> As part of the thesis, the student will design and implement proof-of-concept solutions that demonstrate the use of the approach described > above.
+> The solution will include an extension for Visual Studio Code to facilitate the developer's annotation.
+> Furthermore, the user will be able to annotate data entities with the solution and then visualize their relationships across the software > system.
+
+</details>
+
+
+## Entity Inspector VScode extension
+
+### Extension installation
+
+```bash
+$ cd ./entity-inspector                     # go to the extension folder
+$ npm install                               # install npm packages
+$ npm run build                             # create vsix package in current folder
+```
+
+## Flask sever for Entity Extension
+
+### Instalation
+
+```bash
+$ python3 -m venv .venv                     # create virtual env.
+$ ./.venv/bin/activate                      # activaste virtual env.
+$ python3 install -r requirements.txt       # install dependencies
+```
+
+### Usage
+
+```bash
+$ python3 run.py                            # runs on `http://127.0.0.1:5000`
+```
