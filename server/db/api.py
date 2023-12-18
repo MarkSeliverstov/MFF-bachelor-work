@@ -6,6 +6,9 @@ _MODEL_FILE_PATH = os.path.dirname(__file__) + "/model.json"
 class DataBaseException(Exception):
     ...
 
+class InvalidModel(DataBaseException):
+    ...
+
 class Database:
     """Database for saving Entity Model."""    
 
@@ -18,7 +21,7 @@ class Database:
             try:
                 return json.loads(data)
             except json.JSONDecodeError:
-                raise DataBaseException("Invalid model in the Database.")
+                raise InvalidModel("Invalid model in the Database.")
 
     @staticmethod
     def save_model(model: dict) -> None:
