@@ -31,10 +31,10 @@ experience.
 
 ## 8.12.2023
 
-- [ ] Flask
+- [x] Flask
 - [ ] Post annotations on-save to the server
-- [?] Annotations Converter on the server (FAKE now)
-- [ ] Authorizace with tocken
 - [ ] Intellisece for all model entities (Request and generate)
+- [ ] Authorizace with token
+- [?] Annotations Converter on the server (FAKE now)
 
 ## 22.12.2023 (?)
