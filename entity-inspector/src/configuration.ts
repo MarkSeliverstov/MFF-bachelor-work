@@ -7,6 +7,11 @@ const EXTENSION_NAME = "entity-inspector";
 const USER_CONFIG = () => vscode.workspace.getConfiguration(EXTENSION_NAME);
 
 /**
+ * Model source user definition.
+ */
+export const sourceDefinitionURL = () => USER_CONFIG().get("sourceDefinitionURL", "");
+
+/**
  * Configurates EI extension commands.
  */
 export class Commands{
@@ -42,10 +47,6 @@ export class AnnotationMarkers{
     };
 }
 
-/**
- * Model source user definition.
- */
-export const sourceDefinition = () => USER_CONFIG().get("sourceDefinition", "");
 
 /**
  * Awesome parser helps to determine the format of languages using the installed extensions.
@@ -137,5 +138,3 @@ class CommentsConfiguration{
 export const commentsConfiguration = new CommentsConfiguration();
 commentsConfiguration.updateLanguagesDefinitions();
 commentsConfiguration.initAllLanguages();
-
-export const serverURL = "http://localhost:5000";

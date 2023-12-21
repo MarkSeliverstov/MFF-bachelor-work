@@ -1,11 +1,9 @@
 import fetch from 'node-fetch';
-import { serverURL } from '../configuration';
+import { sourceDefinitionURL } from '../configuration';
 import { AnnotationModel } from '../model';
 
-const modelURL = `${serverURL}/model`;
-
 export function getModel() {
-    fetch(modelURL, { 
+    fetch(sourceDefinitionURL(), { 
         method: 'GET'
     }).then(res => {
         if (!res.ok) {
@@ -23,7 +21,7 @@ export function getModel() {
 
 
 export function saveModel(model: AnnotationModel) {
-    fetch(modelURL, {
+    fetch(sourceDefinitionURL(), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

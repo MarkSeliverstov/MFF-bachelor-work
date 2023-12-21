@@ -75,7 +75,7 @@
             "order": 0,
             "type": "string",
             "default": "",
-            "description": "Source Definition"
+            "description": "Source Definition URL"
           }
         }
       }
