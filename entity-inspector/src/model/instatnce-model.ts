@@ -4,7 +4,7 @@
 export interface Identifiable{
     // @lc-property
     // @lc-name identifier
-    identifier: string | null
+    identifier: string
 }
 
 // @lc-entity

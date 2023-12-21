@@ -9,7 +9,7 @@ const USER_CONFIG = () => vscode.workspace.getConfiguration(EXTENSION_NAME);
 /**
  * Model source user definition.
  */
-export const sourceDefinitionURL = () => USER_CONFIG().get("sourceDefinitionURL", "");
+export const sourceDefinitionURL = () => USER_CONFIG().get("sourceDefinition", "");
 
 /**
  * Configurates EI extension commands.

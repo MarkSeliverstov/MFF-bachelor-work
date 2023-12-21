@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { AnnotationMarkers, sourceDefinition } from "../../configuration";
+import { AnnotationMarkers, sourceDefinitionURL } from "../../configuration";
 
 /**
  * Provides inline completions suggestions about user defined model source.
@@ -15,14 +15,14 @@ export class SuggestionProvider implements vscode.InlineCompletionItemProvider {
         const suggestionItems: vscode.InlineCompletionItem[] = [];
         if (
             textBeforeCursor.match(AnnotationMarkers.prefix() + AnnotationMarkers.source() + " ") 
-            && sourceDefinition() !== ""
-            && !textBeforeCursor.match(sourceDefinition())
+            && sourceDefinitionURL() !== ""
+            && !textBeforeCursor.match(sourceDefinitionURL())
         ) {
             suggestionItems.push(
                 new vscode.InlineCompletionItem(
-                    sourceDefinition(), 
+                    sourceDefinitionURL(), 
                     new vscode.Range(
-                        position, position.translate(0, sourceDefinition().length)
+                        position, position.translate(0, sourceDefinitionURL().length)
                     )
                 )
             );
