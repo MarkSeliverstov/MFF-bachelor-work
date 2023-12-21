@@ -32,9 +32,9 @@ experience.
 ## 8.12.2023
 
 - [x] Flask
-- [ ] Post annotations on-save to the server
-- [ ] Intellisece for all model entities (Request and generate)
-- [ ] Authorizace with token
+- [x] Post annotations on-save to the server
+- [x] Intellisece for all model entities (Request and generate)
+- [x] Authorizace with token
 - [?] Annotations Converter on the server (FAKE now)
 
 ## 22.12.2023 (?)
