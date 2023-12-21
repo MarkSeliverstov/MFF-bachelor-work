@@ -19,14 +19,26 @@ export async function getModel(): Promise<InstanceModel | null> {
     }
 }
 
+interface RequestEntity{
+    authorizedKey: string;
+    model: InstanceModel
+}
+
+const good_key = "123456789";
+const wrong_key = "1234567890";
+
 
 export function saveModel(model: InstanceModel) {
+    const reqEntity: RequestEntity = {
+        authorizedKey: good_key,
+        model: model
+    };
     fetch(sourceDefinitionURL(), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(model)
+        body: JSON.stringify(reqEntity) 
     }).then( res => {
         if (!res.ok) {
             throw new Error(`Server responded with status: ${res.status}`);
