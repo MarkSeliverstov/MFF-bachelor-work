@@ -15,14 +15,17 @@ export async function activate(context: vscode.ExtensionContext) {
     const model:  AnnotationModel = {
         filesAnnotations: [fa]
     };
-	console.log(getModel());
-    saveModel(model);
-	console.log(getModel());
-
+    
 	// Handle extensions being added or removed
     vscode.extensions.onDidChange(() => {
         commentsConfiguration.updateLanguagesDefinitions();
     }, null, context.subscriptions);
+    
+    vscode.workspace.onDidSaveTextDocument((doc: vscode.TextDocument) => {
+        // Change model
+        saveModel(model);
+        console.log(getModel());
+    });
 
 	initComplitions(context);
 }
