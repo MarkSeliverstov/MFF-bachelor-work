@@ -37,4 +37,28 @@ experience.
 - [x] Authorizace with token
 - [?] Annotations Converter on the server (FAKE now)
 
-## 22.12.2023 (?)
+## 26.1.2024
+
+- [ ] Rozsireni: napovidani na tom serveru
+- [ ] Zobrazeni modelu pomoci diagrabu treba na webu
+
+## 05.02.2024
+
+Issues:
+
+- It make sense LSP instead of VScode extension? Could be used in any
+editors with LSP support.
+- Problem with coplitions - complitions are synchronized, that is, they cannot
+  be used correctly with asynchronous functions (fetch) 
+
+## 7.02.2024
+
+- Write about async complitions
+- Commit and PUSH
+
+## 9.02.2024
+
+- Status update about:
+    - Etities and Anotations view
+    - Try to generate random id in the entity id when creating the entity
+

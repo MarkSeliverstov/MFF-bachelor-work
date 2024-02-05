@@ -1,5 +1,4 @@
-from flask import Flask, jsonify
-from flask import request
+from flask import Flask, jsonify, request
 from .db.api import DataBaseException, InvalidModel, Database as db
 
 app = Flask(__name__)
@@ -24,3 +23,12 @@ def save_model():
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_model(req["model"])
     return jsonify({"status": "OK"})
+
+@app.route("/model/complition-items", methods=["POST"])
+def get_complition_items_from_model():
+    editor_line = request.get_json();
+    print(f"Recieved line from client: {editor_line}")
+    cmp_items = ["HELLO", "FROM", "SERVER"]
+    print(jsonify(cmp_items))
+    return jsonify(cmp_items)
+
