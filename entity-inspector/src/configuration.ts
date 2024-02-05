@@ -7,9 +7,9 @@ const EXTENSION_NAME = "entity-inspector";
 const USER_CONFIG = () => vscode.workspace.getConfiguration(EXTENSION_NAME);
 
 /**
- * Model source user definition.
+ * User defined server
  */
-export const sourceDefinitionURL = () => USER_CONFIG().get("sourceDefinition", "");
+export const serverURL = () => USER_CONFIG().get("serverUrl", "");
 
 /**
  * Configurates EI extension commands.
