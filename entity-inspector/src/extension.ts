@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 
 import { commentsConfiguration } from './configuration';
 import { initComplitions } from './complitions';
-import { getModel, saveModel } from './http-api';
+import { getModel, saveModel } from './server';
 import { mockInstanceModel } from './model/mocker';
 import { InstanceModel } from './model';
 
