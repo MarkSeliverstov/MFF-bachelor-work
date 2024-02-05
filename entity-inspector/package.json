@@ -71,11 +71,11 @@
         "id": "general",
         "title": "User definitions",
         "properties": {
-          "entity-inspector.sourceDefinition": {
+          "entity-inspector.serverUrl": {
             "order": 0,
             "type": "string",
             "default": "",
-            "description": "Source Definition URL"
+            "description": "Server URL"
           }
         }
       }
