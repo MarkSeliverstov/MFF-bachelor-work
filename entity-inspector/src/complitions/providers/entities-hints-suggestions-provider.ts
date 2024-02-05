@@ -1,30 +1,33 @@
 import * as vscode from 'vscode';
 
-import { AnnotationMarkers } from "../../configuration";
-import { getModel } from "../../http-api";
-import { model } from "../../extension";
+import { getCmpFromServer, getCmpFromServerAsync } from "../../server";
 
 /**
- * Providers completions user defined markers by prefix.
+ * Providers completions by current line via server
  */
-export class EntitiesHintsProvider implements vscode.CompletionItemProvider {
+export class ServerCmpProvider implements vscode.CompletionItemProvider {
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position): vscode.ProviderResult<vscode.CompletionItem[]> {
         const line = document.lineAt(position).text.substring(0, position.character);
-        const completionItems: vscode.CompletionItem[] = [];
-		if (line.match(AnnotationMarkers.prefix() + AnnotationMarkers.id() + " :")) {
-            console.error(model);
-            if (model !== null) {
-                model.entities.forEach(en => {
-                    console.error(en);
-                    completionItems.push(
-                        new vscode.CompletionItem(
-                            en.identifier, 
-                            vscode.CompletionItemKind.Keyword
-                        )
-                    );
-                });
-            }
-        }
-		return completionItems;
+
+        const cmpItems: vscode.CompletionItem[] = [];
+        getCmpFromServerAsync(line).then(items => {
+            items.forEach((item: string) => {
+                console.log(`Creatin cmp item by: ${item}`)
+                cmpItems.push(
+                    new vscode.CompletionItem(
+                        item,
+                        vscode.CompletionItemKind.Keyword
+                    )
+                );
+            });
+            console.log(items);
+            return cmpItems;
+        }).catch(error => {
+            console.error('Error fetching completion items:', error);
+            return []; // Return an empty array in case of error
+        });
+        console.log("MUST BE THE END");
+        return cmpItems;
     }
 }
+

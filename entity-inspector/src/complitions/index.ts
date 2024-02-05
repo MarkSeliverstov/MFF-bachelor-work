@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { MarkerProvider } from './providers/completion-provider';
 import { SuggestionProvider } from './providers/inline-complition-provider';
 import { SnippetsProvider } from './providers/snippets-provider';
-import { EntitiesHintsProvider } from './providers/entities-hints-suggestions-provider';
+import { ServerCmpProvider } from './providers/entities-hints-suggestions-provider';
 
 export function initComplitions(context: vscode.ExtensionContext): void {
     context.subscriptions.push(
@@ -12,7 +12,7 @@ export function initComplitions(context: vscode.ExtensionContext): void {
 
         vscode.languages.registerCompletionItemProvider(
             { pattern: "**" },
-            new EntitiesHintsProvider()),
+            new ServerCmpProvider()),
 
         vscode.languages.registerInlineCompletionItemProvider(
             { pattern: "**" },
