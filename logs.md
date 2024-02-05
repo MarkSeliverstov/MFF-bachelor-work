@@ -40,7 +40,7 @@ experience.
 ## 26.1.2024
 
 - [ ] Rozsireni: napovidani na tom serveru
-- [ ] Zobrazeni modelu pomoci diagrabu treba na webu
+- [x] Zobrazeni modelu pomoci diagrabu treba na webu
 
 ## 05.02.2024
 
@@ -53,12 +53,13 @@ editors with LSP support.
 
 ## 7.02.2024
 
-- Write about async complitions
-- Commit and PUSH
+- [ ] Write about async complitions
+- [ ] Commit and PUSH
 
 ## 9.02.2024
 
-- Status update about:
+- [ ] Status update about:
+    - Next meeting date
     - Etities and Anotations view
     - Try to generate random id in the entity id when creating the entity
 
