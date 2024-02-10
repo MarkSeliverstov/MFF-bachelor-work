@@ -53,13 +53,14 @@ editors with LSP support.
 
 ## 7.02.2024
 
-- [ ] Write about async complitions
-- [ ] Commit and PUSH
+- [x] Write about async complitions
+- [x] Commit and PUSH
 
 ## 9.02.2024
 
-- [ ] Status update about:
-    - Next meeting date
-    - Etities and Anotations view
-    - Try to generate random id in the entity id when creating the entity
+- Status update about:
+    - [ ] Next meeting date
+    - [x] Etities and Anotations view
+    - [x] Try to generate random id in the entity id when creating the entity
 
+## 12.02.2024
