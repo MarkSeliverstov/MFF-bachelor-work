@@ -1,33 +1,10 @@
-<template>
-  <div>
-    <VisDiagram :data="diagramData" />
-  </div>
-</template>
-
-<script>
-import VisDiagram from './components/diagram.vue';
-
-export default {
-  name: 'App',
-  components: {
-    VisDiagram // This registers the VisDiagram component
-  },
-  data() {
-    return {
-      diagramData: {
-        nodes: [
-          { id: 1, label: "Class A" },
-          { id: 2, label: "Class B" }
-        ],
-        edges: [
-          { from: 1, to: 2, label: "Inherits" }
-        ]
-      }
-    }
-  }
-}
+<script setup>
+import { RouterView } from 'vue-router'
 </script>
 
+<template>
+  <RouterView />
+</template>
 
 <style scoped>
 header {
