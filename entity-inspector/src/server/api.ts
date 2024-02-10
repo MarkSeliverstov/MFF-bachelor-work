@@ -17,7 +17,7 @@ export async function getModel(): Promise<InstanceModel | null> {
         // console.info('Response from server:', data);
         return data;
     } catch (exc) {
-        console.error(`Error fetching model via ${modelUrl()}:`, exc);
+        console.log(`Error fetching model via ${modelUrl()}:`);
         return null;
     }
 }
@@ -48,8 +48,7 @@ export function saveModel(model: InstanceModel) {
         }
         console.log("Model was succesfully saved in DB");
     }).catch( exc => {
-        console.error('Error fetching model:', exc);
-        throw exc;
+        console.log('Seerror fetching model');
     });
 }
 
@@ -72,7 +71,7 @@ export function getCmpFromServer(currLine: string): string[] {
         })
     })
     .catch(exc => {
-        console.error('Error when fetching CMP items: ', exc);
+        console.log('Server Error when fetching CMP items');
     });
     return []
 }
@@ -95,7 +94,7 @@ export async function getCmpFromServerAsync(currLine: string): Promise<string[]>
         console.log(`Received ${items.length} cmp items from server`);
         return items;
     } catch (exc) {
-        console.error('Error when fetching CMP items: ', exc);
+        console.log('Server Error when fetching CMP items');
         throw exc; // Rethrow or handle as needed
     }
 }

@@ -23,10 +23,8 @@ export class ServerCmpProvider implements vscode.CompletionItemProvider {
             console.log(items);
             return cmpItems;
         }).catch(error => {
-            console.error('Error fetching completion items:', error);
             return []; // Return an empty array in case of error
         });
-        console.log("MUST BE THE END");
         return cmpItems;
     }
 }
