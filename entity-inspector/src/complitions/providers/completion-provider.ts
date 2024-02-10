@@ -2,6 +2,12 @@ import * as vscode from 'vscode';
 
 import { AnnotationMarkers } from "../../configuration";
 
+
+function generateId(): string {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+
+
 /**
  * Providers completions user defined markers by prefix.
  */
@@ -14,6 +20,12 @@ export class MarkerProvider implements vscode.CompletionItemProvider {
                 completionItems.push(new vscode.CompletionItem(prefixVal));
             }); 
         }
+
+        if (line.endsWith(AnnotationMarkers.prefix() + AnnotationMarkers.id() + " :")) {
+            console.log("Adding id completion item");
+            completionItems.push(new vscode.CompletionItem(generateId()));
+        }
+        console.log("Completion items: ", completionItems);
 		return completionItems;
     }
 }
