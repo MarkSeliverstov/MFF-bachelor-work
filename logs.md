@@ -59,8 +59,15 @@ editors with LSP support.
 ## 9.02.2024
 
 - Status update about:
-    - [ ] Next meeting date
+    - [x] Next meeting date
     - [x] Etities and Anotations view
     - [x] Try to generate random id in the entity id when creating the entity
 
-## 12.02.2024
+## 13.02.2024
+
+- [ ] Connecting Vue app with vizualiazation to the server
+- [ ] Annotations instead of Entities (for now)
+- [ ] Nav bar
+
+## 20.02.2024 (14:00)
+
