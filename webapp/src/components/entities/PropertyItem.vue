@@ -29,3 +29,19 @@ export default {
     }
 };
 </script>
+
+
+<style scoped>
+li {
+    list-style: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding-left: 3rem;
+}
+
+.toggle-icon {
+    margin-left: 1rem;
+}
+
+</style>
+

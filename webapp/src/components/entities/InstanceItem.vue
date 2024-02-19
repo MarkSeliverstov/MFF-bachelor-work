@@ -2,7 +2,7 @@
     <div>
         <li v-if="showInstance" @click="toggleInstance">
             <p>
-                Instance name: {{ instance.name }}
+                {{ instance.name }}
                 <span v-if="instanceVisible" class="toggle-icon">-</span>
                 <span v-else class="toggle-icon">></span>
             </p>
@@ -60,3 +60,23 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+li {
+    list-style: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 0 0 2rem;
+}
+
+.toggle-icon {
+    font-size: 1.5rem;
+}
+
+ul {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+</style> 
+
