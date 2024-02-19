@@ -35,12 +35,13 @@ experience.
 - [x] Post annotations on-save to the server
 - [x] Intellisece for all model entities (Request and generate)
 - [x] Authorizace with token
-- [?] Annotations Converter on the server (FAKE now)
+- [ ] Annotations Converter on the server (FAKE now)
 
 ## 26.1.2024
 
-- [ ] Rozsireni: napovidani na tom serveru
-- [x] Zobrazeni modelu pomoci diagrabu treba na webu
+- [ ] Extension: suggestions from the server. ISSUE: Vscode API does not support
+  asynchronous functions for suggestions.
+- [x] Showing entities as diagram
 
 ## 05.02.2024
 
@@ -65,9 +66,9 @@ editors with LSP support.
 
 ## 13.02.2024
 
-- [ ] Connecting Vue app with vizualiazation to the server
-- [ ] Annotations instead of Entities (for now)
-- [ ] Nav bar
+- [x] Connecting Vue app with vizualiazation to the server
+- [x] Annotations instead of Entities (for now)
+- [x] Nav bar
 
 ## 20.02.2024 (14:00)
 
