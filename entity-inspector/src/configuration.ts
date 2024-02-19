@@ -109,12 +109,12 @@ class CommentsConfiguration{
     /**
      * Adapter getet the configuration information for the specified language by file extension
      */
-    public async getCommentConfigurationByExtension(extension: string)
-        : Promise<CommentConfig | undefined> 
+    public getCommentConfigurationByExtension(extension: string)
+        : CommentConfig | undefined 
     {
         const languageId = this.languageExtensionToLanguageId.get(extension);
         if (languageId !== undefined){
-            return await this.getCommentConfigurationByLangId(languageId);
+            return this.getCommentConfigurationByLangId(languageId);
         }
         return undefined;
     }
