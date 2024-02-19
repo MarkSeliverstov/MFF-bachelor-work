@@ -1,10 +1,10 @@
 <script setup>
-import EntityList from '../components/entities/EntityList.vue'
+import AnnotationList from '../components/annotaions/AnnotationsList.vue'
 </script>
 
 <template>
   <main>
-    <EntityList />
+    <AnnotationList />
   </main>
 </template>
 
@@ -13,4 +13,3 @@ main {
   padding: 2rem;
 }
 </style>
-
