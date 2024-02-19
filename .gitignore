@@ -15,3 +15,4 @@ __pycache__
 bachelor-thesis-drafts
 examples
 *model.json
+*annotations.json
