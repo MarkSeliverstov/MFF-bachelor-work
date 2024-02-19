@@ -3,11 +3,17 @@ import { serverURL } from '../configuration';
 import { InstanceModel } from '../model';
 
 const modelUrl = () => serverURL() + '/model';
+const annotationsUrl = () => serverURL() + '/annotations';
 const cmpItemsUrl = () => modelUrl() + '/complition-items';
+const good_key = "123456789";
+const wrong_key = "1234567890";
+
 
 export async function getModel(): Promise<InstanceModel | null> {
     try {
-        const res = await fetch(modelUrl(), { method: 'GET' });
+        const res = await fetch(modelUrl(), { 
+            method: 'GET',
+        });
 
         if (!res.ok) {
             throw new Error(`Error ${res.status}, message: ${res.statusText}`);
@@ -22,26 +28,18 @@ export async function getModel(): Promise<InstanceModel | null> {
     }
 }
 
-interface RequestEntity{
-    authorizedKey: string;
-    model: InstanceModel
-}
 
-const good_key = "123456789";
-const wrong_key = "1234567890";
-
-
-export function saveModel(model: InstanceModel) {
-    const reqEntity: RequestEntity = {
+export function saveModel(model: any): void{
+    const reqEntity = {
         authorizedKey: good_key,
-        model: model
+        model: model,
     };
     fetch(modelUrl(), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(reqEntity) 
+        body: JSON.stringify(reqEntity)
     }).then( res => {
         if (!res.ok) {
             throw new Error(`Server responded with status: ${res.status}`);
@@ -67,13 +65,13 @@ export function getCmpFromServer(currLine: string): string[] {
         console.log("HELLO");
         res.json().then(items => {
             console.log(`Received ${items.length} cmp items from server`);
-            return items
-        })
+            return items;
+        });
     })
     .catch(exc => {
         console.log('Server Error when fetching CMP items');
     });
-    return []
+    return [];
 }
 
 export async function getCmpFromServerAsync(currLine: string): Promise<string[]> {
@@ -99,3 +97,42 @@ export async function getCmpFromServerAsync(currLine: string): Promise<string[]>
     }
 }
 
+export async function getAnnotations(): Promise<any> {
+    try {
+        const res = await fetch(annotationsUrl(), { 
+            method: 'GET',
+        });
+
+        if (!res.ok) {
+            throw new Error(`Error ${res.status}, message: ${res.statusText}`);
+        }
+
+        const data: any = await res.json();
+        // console.info('Response from server:', data);
+        return data;
+    } catch (exc) {
+        console.log(`Error fetching model via ${modelUrl()}:`);
+        return null;
+    }
+}
+
+export function saveAnnotations(annotations: any): void{
+    const reqEntity = {
+        authorizedKey: good_key,
+        annotations: annotations,
+    };
+    fetch(annotationsUrl(), {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reqEntity)
+    }).then( res => {
+        if (!res.ok) {
+            throw new Error(`Server responded with status: ${res.status}`);
+        }
+        console.log("Annotations were succesfully saved in DB");
+    }).catch( exc => {
+        console.log('Seerror fetching model');
+    });
+}
