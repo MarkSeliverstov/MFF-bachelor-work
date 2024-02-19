@@ -1,9 +1,12 @@
 from flask import Flask, jsonify, request
 from .db.api import DataBaseException, InvalidModel, Database as db
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app)
 
 authorized_key = "123456789"
+
 
 @app.route("/model", methods=["GET"])
 def get_model():
@@ -22,6 +25,23 @@ def save_model():
         print(f"Wrong key: {req['authorizedKey']}")
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_model(req["model"])
+    return jsonify({"status": "OK"})
+
+@app.route("/annotations", methods=["GET"])
+def get_annotations():
+    try:
+        annotations = db.get_annotations()
+    except DataBaseException as err:
+        return jsonify({"status": "ERROR", "message": str(err)}), 404
+    return jsonify(annotations)
+
+@app.route("/annotations", methods=["POST"])
+def save_annotations():
+    req = request.get_json()
+    if (req["authorizedKey"] != authorized_key):
+        print(f"Wrong key: {req['authorizedKey']}")
+        return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
+    db.save_annotations(req["annotations"])
     return jsonify({"status": "OK"})
 
 @app.route("/model/complition-items", methods=["POST"])
