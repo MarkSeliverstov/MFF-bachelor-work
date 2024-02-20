@@ -72,3 +72,11 @@ editors with LSP support.
 
 ## 20.02.2024 (14:00)
 
+- [ ] Searching by files, entities, annotation values
+- [ ] Group by files and by separators (`Entity`, `property`)
+- [ ] View for identifiers (with query parameter `?id=...`)
+- [ ] Click in VSCode to go to entities definition by identifier
+- Possible feature: using handlebars (js library) to auto generate code by user
+  template (generates class by entity model)
+
+## 27.02.2024 (14:00)
