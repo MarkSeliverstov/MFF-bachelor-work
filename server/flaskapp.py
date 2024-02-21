@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from .db.api import DataBaseException, InvalidModel, Database as db
 from flask_cors import CORS
+from .annotations_to_entities_convertier import AnnotationsToEntitiesConverter
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -26,6 +27,18 @@ def save_model():
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_model(req["model"])
     return jsonify({"status": "OK"})
+
+@app.route("/entities", methods=["GET"])
+def get_entities():
+    try:
+        annotations = db.get_annotations()
+        converter = AnnotationsToEntitiesConverter()
+        entities = converter.convert(annotations)
+    except DataBaseException as err:
+        return jsonify({"status": "ERROR", "message": str(err)}), 404
+    except Exception as err:
+        return jsonify({"status": "ERROR", "message": str(err)}), 500
+    return jsonify(entities)
 
 @app.route("/annotations", methods=["GET"])
 def get_annotations():
