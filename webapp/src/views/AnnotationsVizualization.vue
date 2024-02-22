@@ -1,5 +1,5 @@
 <script setup>
-import AnnotationList from '../components/annotaions/AnnotationsList.vue'
+import AnnotationList from '../components/AnnotationsList.vue'
 </script>
 
 <template>
@@ -7,9 +7,3 @@ import AnnotationList from '../components/annotaions/AnnotationsList.vue'
     <AnnotationList />
   </main>
 </template>
-
-<style scoped>
-main {
-  padding: 2rem;
-}
-</style>

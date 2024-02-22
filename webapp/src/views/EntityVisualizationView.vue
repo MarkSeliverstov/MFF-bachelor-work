@@ -1,5 +1,5 @@
 <script setup>
-import EntityList from '../components/entities/EntityList.vue'
+import EntityList from '../components/EntityList.vue'
 </script>
 
 <template>
@@ -7,10 +7,4 @@ import EntityList from '../components/entities/EntityList.vue'
     <EntityList />
   </main>
 </template>
-
-<style scoped>
-main {
-  padding: 2rem;
-}
-</style>
 

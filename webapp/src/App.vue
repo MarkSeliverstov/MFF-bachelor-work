@@ -3,49 +3,37 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-    <header>
-        <nav>
-            <router-link to="/" exact>Home</router-link>
-            <router-link to="/entities">Entities</router-link>
-            <router-link to="/annotations">Annotations</router-link>
-        </nav>
-    </header>
-    <RouterView />
+    <div style="max-width: 1200px; margin: 0 auto; position: relative;">
+        <div class="q-pa-md">
+            <q-tabs dense class="bg-indigo text-white rounded-borders">
+                <q-route-tab to="/" name="home" label="Home" />
+                <q-space />
+                <q-route-tab to="/entities" name="entities" label="Entities" />
+                <q-route-tab to="/annotations" name="annotations" label="Annotations" />
+            </q-tabs>
+        </div>
+
+        <RouterView />
+    </div>
 </template>
 
-<style>
+<script>
+import { ref } from 'vue'
 
+export default {
+  setup () {
+    return {
+      tab: ref('')
+    }
+  }
+}
+</script>
+
+<style>
 h1 {
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 2rem;
     text-transform: uppercase;
     font-weight: 900;
-}
-
-nav {
-    display: block;
-    width: 100%;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-    color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-    background-color: transparent;
-}
-
-nav a {
-    display: inline-block;
-    padding: 0 2rem;
-    border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-    border: 0;
 }
 </style>
