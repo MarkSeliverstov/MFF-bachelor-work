@@ -75,8 +75,8 @@ editors with LSP support.
 - [x] Annotations - entities converter
 - [x] Searching by files, entities, annotation values
 - [x] Group by files and by separators (`Entity`, `property`)
-- [ ] View for identifiers (with query parameter `?id=...`)
-- [ ] Click in VSCode to go to entities definition by identifier
+- [x] View for identifiers (with query parameter `?id=...`)
+- [x] Click in VSCode to go to entities definition by identifier
 - Possible feature: using handlebars (js library) to auto generate code by user
   template (generates class by entity model)
 
