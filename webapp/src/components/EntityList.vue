@@ -43,10 +43,16 @@ export default {
             loading: true,
             entities: {},
             tree: [],
+            id: null,
         };
     },
     beforeMount() {
         this.convertToTree();
+    },
+    created() {
+        let urlParams = new URLSearchParams(window.location.search);
+        this.id = urlParams.get('id');
+
     },
     methods: {
         async fetchData() {
@@ -93,7 +99,15 @@ export default {
                             ],
                         });
                     }
-                    tree.push(entityNode);
+                    
+                    // filter by id if id is present in the url
+                    if (this.id) {
+                        if (instance.identifier === this.id) {
+                            tree.push(entityNode);
+                        }
+                    } else {
+                        tree.push(entityNode);
+                    }
                 }
                 this.NodeTree = tree;
                 this.loading = false;
