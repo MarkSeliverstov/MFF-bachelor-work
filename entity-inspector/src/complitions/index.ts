@@ -3,6 +3,7 @@ import { MarkerProvider } from './providers/completion-provider';
 import { SuggestionProvider } from './providers/inline-complition-provider';
 import { SnippetsProvider } from './providers/snippets-provider';
 import { ServerCmpProvider } from './providers/entities-hints-suggestions-provider';
+import { EntitiesDocumentLinkProvider } from './providers/definition-provider';
 
 export function initComplitions(context: vscode.ExtensionContext): void {
     context.subscriptions.push(
@@ -21,5 +22,9 @@ export function initComplitions(context: vscode.ExtensionContext): void {
         vscode.languages.registerInlineCompletionItemProvider(
             { pattern: "**" },
             new SnippetsProvider()),
+
+        vscode.languages.registerDocumentLinkProvider(
+            { pattern: "**" },
+            new EntitiesDocumentLinkProvider()),
     );
 }

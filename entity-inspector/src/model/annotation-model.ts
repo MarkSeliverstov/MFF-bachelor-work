@@ -1,4 +1,7 @@
-// @lc-entity
+// @lc-entity 
+
+entity
+
 // @lc-identifier :Annotation
 // @lc-name Annotation
 // @lc-description Base class for all annotations.
