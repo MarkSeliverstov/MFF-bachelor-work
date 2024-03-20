@@ -15,7 +15,7 @@ class Annotation:
     value: Optional[str]
     # @lc-property
     # @lc-name line
-    line: int
+    lineNumber: int
 
 
 # @lc-entity

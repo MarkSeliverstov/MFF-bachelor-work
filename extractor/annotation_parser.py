@@ -69,7 +69,10 @@ def _export_to_json(model: List[SourceFileAnnotations], file: str) -> None:
             "annotations": [annotation.__dict__ for annotation in source_file.annotations]
         }
     with open(file, "w") as f:
-        json.dump([_source_file_to_dict(source_file) for source_file in model], f, indent=4)
+        json_model = {
+            "filesAnnotations": [_source_file_to_dict(source_file) for source_file in model]
+        }
+        json.dump(json_model, f, indent=4)
 
     
 if __name__ == "__main__":
