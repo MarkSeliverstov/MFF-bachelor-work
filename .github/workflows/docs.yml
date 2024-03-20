@@ -9,7 +9,5 @@ jobs:
         working-directory: ./webapp
         run: npm run install && npm run build
       - name: Create annotation model
-        working-directory: .
-        run: pip3 install -r requirements.txt
-        run: chmod +x ./extractor/annotation_model.py
-        run: ./extractor/annotation_model.py ./extractor -o ./static/annotations.json
+        working-directory: ./
+        run: pip3 install -r requirements.txt && chmod +x ./extractor/annotation_model.py && ./extractor/annotation_model.py ./extractor -o ./static/annotations.json
