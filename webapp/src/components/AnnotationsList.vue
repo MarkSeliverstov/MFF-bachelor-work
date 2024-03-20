@@ -53,17 +53,13 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const url = "http://localhost:5000/annotations"; 
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                });
+                const url = import.meta.env.VITE_ANNOTATIONS_FILENAME
+                const response = await fetch(url);
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`File not found at ${url}`);
                 }
                 this.entities = await response.json();
+                console.log(this.entities);
                 return this.entities;
             } catch (error) {
                 console.error("Failed to fetch data:", error);
