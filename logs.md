@@ -84,13 +84,41 @@ user template (generates class by entity model)
 
 - [ ] CI/CD as a script for generating documentation (actually
   "annotations/entity file") as GitHub pages
-- [ ] Extracting the annotations from the code by python script
+- [x] Extracting the annotations from the code by python script
 - [ ] Using filepath to model instead of server url in webapp
 - [ ] Command for reloading the model from server instead of auto reload by save
     - [ ] User setting switch for auto reload
 
 NOTE: Writing about usecases and (?) tutorials - for example, how to extend the
 tool.
+
+#### Definition of done
+
+**VSCode extension:** Extension hints, suggestions the annotations and
+creates the annotations model from the code base. Also allows to generate the
+code based on the annotations model.
+
+**Python script:** Extracts the annotations from the code base and creates the
+annotations model. Can be used as a CI/CD script.
+
+**Webapp:** Visualizes the annotations model and allows to navigate through the
+annotations.
+
+**Documentation:** The documentation is generated from the annotations model and
+is available as a GitHub page.
+
+#### Use cases
+
+Examples of use cases:
+
+We have a data pipeline writed in different languages. We want to make sure that
+the entities are consistent across the code base. We can use the tool to create
+the model of the code base and analyze it. In case of different entities, you
+can see locations of the entities and fix it.
+
+
+- For Analysts: You can now easily create models of the code base and analyze it.
+- For Developers: Suggestions and hints entities existed in the model.
 
 ## 26.03.2024 (14:00)
 
