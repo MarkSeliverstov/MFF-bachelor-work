@@ -5,7 +5,11 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: cd webapp && npm run install && npm run build
-      - run: pip3 install -r requirements.txt
-      - run: chmod +x ./extractor/annotation_model.py
-      - run: ./extractor/annotation_model.py ./extractor -o ./static/annotations.json
+      - name: Setup and build webapp
+        working-directory: ./webapp
+        run: npm run install && npm run build
+      - name: Create annotation model
+        working-directory: .
+        run: pip3 install -r requirements.txt
+        run: chmod +x ./extractor/annotation_model.py
+        run: ./extractor/annotation_model.py ./extractor -o ./static/annotations.json
