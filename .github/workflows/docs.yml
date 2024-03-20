@@ -1,0 +1,11 @@
+name: Docs Building
+run-name: Building docs for the project
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd webapp && npm run install && npm run build
+      - run: pip3 install -r requirements.txt
+      - run: chmod +x ./extractor/annotation_model.py
+      - run: ./extractor/annotation_model.py ./extractor -o ./static/annotations.json
