@@ -59,10 +59,9 @@ editors with LSP support.
 
 ## 9.02.2024
 
-- Status update about:
-    - [x] Next meeting date
-    - [x] Etities and Anotations view
-    - [x] Try to generate random id in the entity id when creating the entity
+- [x] Next meeting date
+- [x] Etities and Anotations view
+- [x] Try to generate random id in the entity id when creating the entity
 
 ## 13.02.2024
 
@@ -77,7 +76,21 @@ editors with LSP support.
 - [x] Group by files and by separators (`Entity`, `property`)
 - [x] View for identifiers (with query parameter `?id=...`)
 - [x] Click in VSCode to go to entities definition by identifier
-- Possible feature: using handlebars (js library) to auto generate code by user
-  template (generates class by entity model)
+
+NOTE: Possible feature: using handlebars (js library) to auto generate code by
+user template (generates class by entity model)
 
 ## 27.02.2024 (14:00)
+
+- [ ] CI/CD as a script for generating documentation (actually
+  "annotations/entity file") as GitHub pages
+- [ ] Extracting the annotations from the code by python script
+- [ ] Using filepath to model instead of server url in webapp
+- [ ] Command for reloading the model from server instead of auto reload by save
+    - [ ] User setting switch for auto reload
+
+NOTE: Writing about usecases and (?) tutorials - for example, how to extend the
+tool.
+
+## 26.03.2024 (14:00)
+
