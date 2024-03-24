@@ -1,22 +1,9 @@
+#!/usr/bin/env python3
+
 from typing import List, Optional
-from copy import deepcopy
-
-class Property:
-    def __init__(self, name: Optional[str] = None, description: Optional[str] = None):
-        self.name = name
-        self.description = description
-
-class EntityInstance:
-    def __init__(self, from_file: Optional[str] = None, identifier: Optional[str] = None, description: Optional[str] = None, properties: Optional[List[Property]] = None):
-        self.from_file = from_file
-        self.identifier = identifier
-        self.description = description
-        self.properties: List[Property] = deepcopy(properties) if properties else []
-
-class Entity:
-    def __init__(self, name: Optional[str] = None, instances: Optional[List[EntityInstance]] = None):
-        self.name = name
-        self.instances: List[EntityInstance] = deepcopy(instances) if instances else []
+import argparse
+import json
+from models.entity_model import *
 
 class AnnotationsToEntitiesConverter:
     def __init__(self):
@@ -99,3 +86,18 @@ class AnnotationsToEntitiesConverter:
         self.entities = []
         return json_entities
 
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Convert annotations to entities")
+    parser.add_argument("annotations", type=str, help="Path to the annotations file")
+    parser.add_argument("output", type=str, help="Path to the output file")
+    args = parser.parse_args()
+
+    with open(args.annotations, "r") as f:
+        annotations = json.load(f)
+
+    converter = AnnotationsToEntitiesConverter()
+    json_entities = converter.convert(annotations)
+
+    with open(args.output, "w") as f:
+        json.dump(json_entities, f, indent=4)

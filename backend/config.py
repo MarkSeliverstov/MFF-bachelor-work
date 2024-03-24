@@ -11,4 +11,5 @@ EXTENSIONS_MAP = {
     "hpp": "text/x-c++",
     "xml": "text/xml",
 }
-MODEL_FILE = "annotations.json"
+OUTPUT_ANNOTATIONS = "annotations.json"
+OUTPUT_ENTITIES = "entities.json"

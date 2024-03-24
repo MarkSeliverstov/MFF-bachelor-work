@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from .db.api import DataBaseException, InvalidModel, Database as db
 from flask_cors import CORS
-from .annotations_to_entities_convertier import AnnotationsToEntitiesConverter
+from src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
 
 app = Flask(__name__)
 cors = CORS(app)

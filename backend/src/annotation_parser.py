@@ -5,13 +5,8 @@ import os
 import json
 from comment_parser import comment_parser
 
-from annotation_model import *
+from models.annotation_model import *
 from config import *
-
-
-def main(args) -> None:
-   model: List[SourceFileAnnotations] = extract_annotations(args.path, args.annotation_prefix)
-   _export_to_json(model, args.output)
 
 
 def extract_annotations(path: str, annotation_prefix: str) -> List[SourceFileAnnotations]:
@@ -62,15 +57,15 @@ def _convert_comment_to_annotations(comment, prefix) -> Optional[Annotation]:
     return Annotation(annotation_name, tokens[1].strip(), comment.line_number())
 
 
-def _export_to_json(model: List[SourceFileAnnotations], file: str) -> None:
-    def _source_file_to_dict(source_file: SourceFileAnnotations) -> dict:
-        return {
-            "relativeFilePath": source_file.relative_file_path,
-            "annotations": [annotation.__dict__ for annotation in source_file.annotations]
-        }
+def export_annotations_to_json(model: List[SourceFileAnnotations], file: str) -> None:
     with open(file, "w") as f:
         json_model = {
-            "filesAnnotations": [_source_file_to_dict(source_file) for source_file in model]
+            "filesAnnotations": [
+                {
+                    "relativeFilePath": source_file.relative_file_path,
+                    "annotations": [annotation.__dict__ for annotation in source_file.annotations]
+                } for source_file in model
+            ]
         }
         json.dump(json_model, f, indent=4)
 
@@ -78,7 +73,11 @@ def _export_to_json(model: List[SourceFileAnnotations], file: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse annotations from source code")
     parser.add_argument("path", help="Path to file or directory to parse", type=str)
-    parser.add_argument("-o", "--output", help="Path to model file", type=str, default=MODEL_FILE)
+    parser.add_argument("-o", "--output", help="Path to model file", type=str, default=OUTPUT)
     parser.add_argument("-p", "--annotation-prefix", help="Annotation prefix", type=str, default=ANNOTATION_PREFIX)
-    main(parser.parse_args())
+
+    args = parser.parse_args()
+    model: List[SourceFileAnnotations] = extract_annotations(args.path, args.annotation_prefix)
+    export_annotations_to_json(model, args.output)
+
 
