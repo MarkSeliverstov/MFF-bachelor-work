@@ -85,7 +85,7 @@ user template (generates class by entity model)
 - [ ] CI/CD as a script for generating documentation (actually
   "annotations/entity file") as GitHub pages
 - [x] Extracting the annotations from the code by python script
-- [ ] Using filepath to model instead of server url in webapp
+- [x] Using filepath to model instead of server url in webapp
 - [ ] Command for reloading the model from server instead of auto reload by save
     - [ ] User setting switch for auto reload
 
@@ -116,9 +116,20 @@ the entities are consistent across the code base. We can use the tool to create
 the model of the code base and analyze it. In case of different entities, you
 can see locations of the entities and fix it.
 
-
 - For Analysts: You can now easily create models of the code base and analyze it.
 - For Developers: Suggestions and hints entities existed in the model.
 
-## 26.03.2024 (14:00)
+## 22.03.2024 (14:00)
+
+- [ ] Add some abstract entities defined by user
+- [ ] Using config file instead of vscode settings
+- [x] Cnnect extractor and server - it is backend no where is server and cli app
+
+- 27.03 Write updates
+
+## Writing
+
+- [ ] Analyze - what is the problem? Use cases and examples. Who is the user?
+  What is the goal? What is the solution? OR Design
+
 
