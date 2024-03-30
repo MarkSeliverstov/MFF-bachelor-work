@@ -121,11 +121,14 @@ can see locations of the entities and fix it.
 
 ## 22.03.2024 (14:00)
 
-- [ ] Add some abstract entities defined by user
-- [ ] Using config file instead of vscode settings
+- [?] Add some abstract entities defined by user - how we want to convert and
+  use it?
+- [1/2] Using config file instead of vscode settings - using the same config
+  file for the server and the extension (currently only for the server, for 
+  extension it is more difficult)
 - [x] Cnnect extractor and server - it is backend no where is server and cli app
 
-- 27.03 Write updates
+- [x] 27.03 Write updates
 
 ## Writing
 
