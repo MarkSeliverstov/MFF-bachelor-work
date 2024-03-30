@@ -4,7 +4,29 @@ import path = require('path');
 import { TextDecoder } from 'util';
 
 const EXTENSION_NAME = "entity-inspector";
-const USER_CONFIG = () => vscode.workspace.getConfiguration(EXTENSION_NAME);
+const EI_CONFIG = "ei-config.json";
+
+
+async function readConfigFile(): Promise<Map<string, string>>{
+    const configPath = path.join(__dirname, EI_CONFIG);
+    const file = vscode.Uri.file(configPath);
+    if (!vscode.workspace.fs.stat(file)){
+        console.log("EI configuration file not found!");
+        return new Map<string, string>();
+    }
+    const rawContent = await vscode.workspace.fs.readFile(file);
+    const content = new TextDecoder().decode(rawContent);
+    return JSON.parse(content);
+}
+
+const USER_CONFIG = (config: Map<string, string>) => {
+    return {
+        get: (key: string, defaultValue: string) => {
+            return config.get(key) || defaultValue;
+        }
+    };
+};
+
 
 /**
  * User defined server

@@ -70,7 +70,7 @@ $ python3 run.py                            # runs on `http://127.0.0.1:5000`
 | `./cli.py convert <path>` | Convert the given path to the entities model |
 | `./cli.py` | parses root and converts to entities model` |
 
-#    Configuration
+# Configuration
 
 - `ei-config.json` file is used to configure the CLI and extension:
     ```json
@@ -91,3 +91,26 @@ $ python3 run.py                            # runs on `http://127.0.0.1:5000`
         "parserInclude": ["entity-inspector"]
     }
     ```
+
+# Web application
+
+Application for ei-models vizualzation. **All commands are executed in the `webapp` folder**
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
