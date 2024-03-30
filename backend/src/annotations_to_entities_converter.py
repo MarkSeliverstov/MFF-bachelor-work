@@ -3,7 +3,7 @@
 from typing import List, Optional
 import argparse
 import json
-from models.entity_model import *
+from ..models.entity_model import *
 
 class AnnotationsToEntitiesConverter:
     def __init__(self):

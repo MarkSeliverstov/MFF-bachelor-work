@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import argparse
-from config import *
-from src.annotations_to_entities_converter import *
-from src.annotation_parser import *
+from .config import Config
+from .src.annotations_to_entities_converter import *
+from .src.annotation_parser import *
 
-def _parse_command(path: str, annotation_prefix: str, output: str) -> None:
-    model = extract_annotations(path, annotation_prefix)
+def _parse_command(path: str, annotation_prefix: str, output: str, exclude: List[str], include: List[str]) -> None:
+    model = extract_annotations(path, annotation_prefix, exclude, include)
     export_annotations_to_json(model, output)
 
 def _convert_command(annotations_file: str, output: str) -> None:
@@ -44,11 +44,12 @@ def run():
 
     args = parser.parse_args()
     if args.command == "parse":
-        _parse_command(args.path, args.annotation_prefix, args.output)
+        _parse_command(args.path, args.annotation_prefix, args.output, config.PARSER_EXCLUDE, config.PARSER_INCLUDE)
     elif args.command == "convert":
         _convert_command(args.annotations, args.output)
     else:
-        _parse_command(".", config.ANNOTATION_PREFIX, config.OUTPUT_ANNOTATIONS)
+        _parse_command(".", config.ANNOTATION_PREFIX, config.OUTPUT_ANNOTATIONS, config.PARSER_EXCLUDE, config.PARSER_INCLUDE)
+        _convert_command(config.OUTPUT_ANNOTATIONS, config.OUTPUT_ENTITIES)
 
 
 if __name__ == "__main__":

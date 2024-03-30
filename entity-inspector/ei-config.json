@@ -1,5 +1,5 @@
 {
-    "prefixName": "@lc",
+    "prefixName": "@lc-",
     "identifierMarker": "identifier",
     "nameMarker": "name",
     "typeMarker": "type",
@@ -8,7 +8,5 @@
     "propertyMarker": "property",
     "methodMarker": "method",
     "sourceMarker": "source",
-    "serverUrl": "http://localhost:8080",
-    "annotationsModel": "annotations.json",
-    "entitiesModel": "entities.json"
+    "serverUrl": "http://localhost:8080"
 }

@@ -5,20 +5,27 @@ import os
 import json
 from comment_parser import comment_parser
 
-from models.annotation_model import *
-from config import *
+from ..models.annotation_model import *
+from ..config import *
 
 
-def extract_annotations(path: str, annotation_prefix: str) -> List[SourceFileAnnotations]:
+def extract_annotations(path: str, annotation_prefix: str, exclude: List[str], include: List[str]) -> List[SourceFileAnnotations]:
     if os.path.isfile(path):
-        return [_parse_file(path, annotation_prefix)]
+        if any(ex in path for ex in exclude):
+            return []
+        if any(path.startswith("./" + inc) for inc in include) or len(include) == 0:
+            return [_parse_file(path, annotation_prefix)]
+        return []
+
     elif os.path.isdir(path):
         model: List[SourceFileAnnotations] = []
         for root, dirs, files in os.walk(path):
+            if any(ex in root for ex in exclude) or not any(root.startswith("./" + inc) for inc in include):
+                continue
             for file in files:
                 model.append(_parse_file(os.path.join(root, file), annotation_prefix))
             for dir in dirs:
-                model.extend(extract_annotations(os.path.join(root, dir), annotation_prefix))
+                model.extend(extract_annotations(os.path.join(root, dir), annotation_prefix, exclude, include))
         return model
     else:
         raise ValueError(f"Path {path} is not a file or directory")
@@ -71,13 +78,14 @@ def export_annotations_to_json(model: List[SourceFileAnnotations], file: str) ->
 
     
 if __name__ == "__main__":
+    config = Config.from_file("ei-config.json")
     parser = argparse.ArgumentParser(description="Parse annotations from source code")
     parser.add_argument("path", help="Path to file or directory to parse", type=str)
-    parser.add_argument("-o", "--output", help="Path to model file", type=str, default=OUTPUT)
-    parser.add_argument("-p", "--annotation-prefix", help="Annotation prefix", type=str, default=ANNOTATION_PREFIX)
+    parser.add_argument("-o", "--output", help="Path to model file", type=str, default=config.OUTPUT_ANNOTATIONS)
+    parser.add_argument("-p", "--annotation-prefix", help="Annotation prefix", type=str, default=config.ANNOTATION_PREFIX)
 
     args = parser.parse_args()
-    model: List[SourceFileAnnotations] = extract_annotations(args.path, args.annotation_prefix)
+    model: List[SourceFileAnnotations] = extract_annotations(args.path, args.annotation_prefix, config.PARSER_EXCLUDE, config.PARSER_INCLUDE)
     export_annotations_to_json(model, args.output)
 
 
