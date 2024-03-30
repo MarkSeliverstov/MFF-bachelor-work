@@ -35,9 +35,9 @@ Uživatel bude dále s pomocí řešení schopen anotovat datové entity a násl
 </details>
 
 
-## Entity Inspector VScode extension
+# Entity Inspector VScode extension
 
-### Extension installation
+#### Extension installation
 
 ```bash
 $ cd ./entity-inspector                     # go to the extension folder
@@ -45,9 +45,9 @@ $ npm install                               # install npm packages
 $ npm run build                             # create vsix package in current folder
 ```
 
-## Flask sever for Entity Extension
+# Backend for the project (server and CLI)
 
-### Instalation
+#### Instalation
 
 ```bash
 $ python3 -m venv .venv                     # create virtual env.
@@ -55,8 +55,39 @@ $ ./.venv/bin/activate                      # activaste virtual env.
 $ python3 install -r requirements.txt       # install dependencies
 ```
 
-### Usage
+#### Flask sever for Entity Extension
 
 ```bash
 $ python3 run.py                            # runs on `http://127.0.0.1:5000`
 ```
+
+#### CLI for Entity Extension
+
+| Command | Description |
+| --- | --- |
+| `./cli.py --help` | Display help message |
+| `./cli.py parse <path>` | Parse the given path and creates annotations model |
+| `./cli.py convert <path>` | Convert the given path to the entities model |
+| `./cli.py` | parses root and converts to entities model` |
+
+#    Configuration
+
+- `ei-config.json` file is used to configure the CLI and extension:
+    ```json
+    {
+        "prefixName": "@lc",
+        "identifierMarker": "identifier",
+        "nameMarker": "name",
+        "typeMarker": "type",
+        "descriptionMarker": "description",
+        "entityMarker": "entity",
+        "propertyMarker": "property",
+        "methodMarker": "method",
+        "sourceMarker": "source",
+        "serverUrl": "http://localhost:5000",
+        "annotationsModel": "annotations.json",
+        "entitiesModel": "entities.json",
+        "parserExclude": ["node_modules", ".git", ".venv"],
+        "parserInclude": ["entity-inspector"]
+    }
+    ```
