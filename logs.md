@@ -122,13 +122,15 @@ can see locations of the entities and fix it.
 ## 22.03.2024 (14:00)
 
 - [?] Add some abstract entities defined by user - how we want to convert and
-  use it?
+  use it? (additional prfixes in config file? - [`@lc-issue`] for example)
 - [1/2] Using config file instead of vscode settings - using the same config
   file for the server and the extension (currently only for the server, for 
-  extension it is more difficult)
+  extension it is more difficult) - `ei-config.json`
 - [x] Cnnect extractor and server - it is backend no where is server and cli app
 
 - [x] 27.03 Write updates
+
+Additional: Wrote readme's for the backend, cleaned up the code.
 
 ## Writing
 
