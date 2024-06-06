@@ -1,16 +1,23 @@
 {
-    "prefixName": "@lc",
-    "identifierMarker": "identifier",
-    "nameMarker": "name",
-    "typeMarker": "type",
-    "descriptionMarker": "description",
-    "entityMarker": "entity",
-    "propertyMarker": "property",
-    "methodMarker": "method",
-    "sourceMarker": "source",
-    "serverUrl": "http://localhost:5000",
-    "annotationsModel": "annotations.json",
-    "entitiesModel": "entities.json",
-    "parserExclude": ["node_modules", ".git", ".venv"],
-    "parserInclude": ["entity-inspector"]
+  "prefix": "@lc-",
+  "markers": {
+    "identifier": "identifier",
+    "name": "name",
+    "type": "type",
+    "description": "description",
+    "entity": "entity",
+    "property": "property",
+    "method": "method",
+    "source": "source"
+  },
+  "output": {
+    "entities": "entities.json",
+    "annotations": "annotations.json"
+  },
+  "server": {
+    "url": "http://localhost:5000"
+  },
+  "parser": {
+    "exclude": ["node_modules", ".git", ".venv"]
+  }
 }
