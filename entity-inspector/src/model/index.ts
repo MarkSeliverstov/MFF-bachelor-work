@@ -1,2 +1,3 @@
-export * from './annotation-model';
-export * from './instatnce-model';
+export * from './annotation-model'
+export * from './instatnce-model'
+

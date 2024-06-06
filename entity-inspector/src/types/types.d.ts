@@ -1,11 +1,12 @@
 interface CommentConfig {
-    lineComment?: string;
-    blockComment?: [string, string];
+  lineComment?: string
+  blockComment?: [string, string]
 }
 
-type LanguageId = string;
-type ConfigPath = string;
-type LanguageExtenssion = string;
-type command = string;
+type LanguageId = string
+type ConfigPath = string
+type LanguageExtenssion = string
+type command = string
 
 type Snippets = Record<string, string>
+

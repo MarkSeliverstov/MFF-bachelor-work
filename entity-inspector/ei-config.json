@@ -1,12 +1,12 @@
 {
-    "prefixName": "@lc-",
-    "identifierMarker": "identifier",
-    "nameMarker": "name",
-    "typeMarker": "type",
-    "descriptionMarker": "description",
-    "entityMarker": "entity",
-    "propertyMarker": "property",
-    "methodMarker": "method",
-    "sourceMarker": "source",
-    "serverUrl": "http://localhost:8080"
+  "prefixName": "@lc-",
+  "identifierMarker": "identifier",
+  "nameMarker": "name",
+  "typeMarker": "type",
+  "descriptionMarker": "description",
+  "entityMarker": "entity",
+  "propertyMarker": "property",
+  "methodMarker": "method",
+  "sourceMarker": "source",
+  "serverUrl": "http://localhost:8080"
 }
