@@ -2,10 +2,17 @@ import * as vscode from 'vscode'
 
 import { AnnotationMarkers } from '../../configuration'
 
-function generateId(): string {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+function createIdentifier() {
+  const time = new Date().getTime()
+  return (
+    time +
+    '-xxxx-yxxx'.replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0
+      const v = c == 'x' ? r : (r & 0x3) | 0x8
+      return v.toString(16)
+    })
+  )
 }
-
 /**
  * Providers completions user defined markers by prefix.
  */
@@ -24,7 +31,7 @@ export class MarkerProvider implements vscode.CompletionItemProvider {
 
     if (line.endsWith(AnnotationMarkers.prefix() + AnnotationMarkers.id() + ' :')) {
       console.log('Adding id completion item')
-      completionItems.push(new vscode.CompletionItem(generateId()))
+      completionItems.push(new vscode.CompletionItem(createIdentifier()))
     }
     console.log('Completion items: ', completionItems)
     return completionItems
