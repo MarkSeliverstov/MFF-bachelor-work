@@ -1,6 +1,6 @@
 # Bachelor work repository
 
-### Propojení softwarových artefaktů 
+### Propojení softwarových artefaktů
 
 Rostoucí velikost a složitost softwarových systémů vytváří potřebu snadné navigace a detekce souvisejících částí.
 Dohledání využití komponenty, či deklarace funkce, je dnes již běžně dostupnou funkcionalitou.
@@ -14,12 +14,11 @@ V rámci práce student navrhne a implementuje proof-of-concept řešení, kter�
 Součástí řešení bude rozšíření pro Visual Studio Code, které usnadní vývojáři tvorbu anotací.
 Uživatel bude dále s pomocí řešení schopen anotovat datové entity a následně vizualizovat jejich vztahy napříč softwarovým systémem.
 
-
 <details close>
 <summary>English version</summary>
 
 > ### Linking software artifacts
-> 
+>
 > The increasing size and complexity of software systems creates the need for easy navigation and detection of related parts.
 > Finding the use of a component or a function declaration is now a commonly available functionality.
 > However, this functionality can be extended by linking at the data semantic level.
@@ -34,34 +33,34 @@ Uživatel bude dále s pomocí řešení schopen anotovat datové entity a násl
 
 </details>
 
+## Entity Inspector VScode extension
 
-# Entity Inspector VScode extension
-
-#### Extension installation
-
-```bash
-$ cd ./entity-inspector                     # go to the extension folder
-$ npm install                               # install npm packages
-$ npm run build                             # create vsix package in current folder
-```
-
-# Backend for the project (server and CLI)
-
-#### Instalation
+### Extension installation
 
 ```bash
-$ python3 -m venv .venv                     # create virtual env.
-$ ./.venv/bin/activate                      # activaste virtual env.
-$ python3 install -r requirements.txt       # install dependencies
+cd ./entity-inspector                     # go to the extension folder
+npm install                               # install npm packages
+npm run build                             # create vsix package in current folder
 ```
 
-#### Flask sever for Entity Extension
+## Backend for the project (server and CLI)
+
+### Instalation
 
 ```bash
-$ python3 run.py                            # runs on `http://127.0.0.1:5000`
+python3 -m venv .venv           # create virtual env.
+.venv/bin/activate              # Activate venv for Unix
+.venv\Scripts\activate          # Activate venv for Windows
+pip install -r requirements.txt # install dependencies
 ```
 
-#### CLI for Entity Extension
+### Flask sever for Entity Extension
+
+```bash
+python3 run.py                            # runs on `http://127.0.0.1:5000`
+```
+
+### CLI for Entity Extension
 
 | Command | Description |
 | --- | --- |
@@ -70,9 +69,10 @@ $ python3 run.py                            # runs on `http://127.0.0.1:5000`
 | `./cli.py convert <path>` | Convert the given path to the entities model |
 | `./cli.py` | parses root and converts to entities model` |
 
-# Configuration
+## Configuration
 
 - `ei-config.json` file is used to configure the CLI and extension:
+
     ```json
     {
         "prefixName": "@lc",
@@ -92,25 +92,24 @@ $ python3 run.py                            # runs on `http://127.0.0.1:5000`
     }
     ```
 
-# Web application
+## Web application
 
 Application for ei-models vizualzation. **All commands are executed in the `webapp` folder**
 
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+#### Compile and Minify for Production
 
 ```sh
 npm run build
 ```
-
