@@ -7,4 +7,3 @@ import EntityList from '../components/EntityList.vue'
     <EntityList />
   </main>
 </template>
-
