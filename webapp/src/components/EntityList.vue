@@ -19,10 +19,11 @@
 </template>
 
 <script>
+import { useQuasar } from 'quasar'
 import { ref } from 'vue'
-
 export default {
     setup() {
+        const $q = useQuasar();
         const filter = ref('');
         const filterRef = ref(null);
         const NodeTree = ref([]);
@@ -55,6 +56,15 @@ export default {
 
     },
     methods: {
+        notify(message) {
+          this.$q.notify({
+            color: 'red',
+            message: message,
+            position: 'top-right',
+            icon: 'error',
+            timeout: 1000
+          })
+        },
         async fetchData() {
             try {
                 const url = import.meta.env.VITE_ENTITIES_URL;
@@ -70,11 +80,14 @@ export default {
                 this.entities = await response.json();
                 return this.entities;
             } catch (error) {
-                console.error("Failed to fetch data:", error);
+                this.notify(`Failed to fetch data: ${error}`);
             }
         },
         async convertToTree() {
             const entities = await this.fetchData();
+            if (!entities) {
+                return;
+            }
             const tree = [];
             for (const i in entities.entities) {
                 const entity = entities.entities[i];

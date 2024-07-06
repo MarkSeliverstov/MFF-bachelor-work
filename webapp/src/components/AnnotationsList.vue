@@ -23,10 +23,11 @@
 </template>
 
 <script>
+import { useQuasar } from 'quasar'
 import { ref } from 'vue'
-
 export default {
     setup() {
+        const $q = useQuasar();
         const filter = ref('');
         const filterRef = ref(null);
         const NodeTree = ref([]);
@@ -39,7 +40,7 @@ export default {
                 filter.value = ''
                 filterRef.value.focus()
             }
-        };
+        }
     },
 
     data() {
@@ -52,6 +53,15 @@ export default {
         this.convertToTree();
     },
     methods: {
+        notify(message) {
+          this.$q.notify({
+            color: 'red',
+            message: message,
+            position: 'top-right',
+            icon: 'error',
+            timeout: 1000
+          })
+        },
         async fetchData() {
             try {
                 const url = import.meta.env.VITE_ANNOTATIONS_URL;
@@ -63,7 +73,7 @@ export default {
                 console.log(this.entities);
                 return this.entities;
             } catch (error) {
-                console.error("Failed to fetch data:", error);
+                this.notify(`Failed to fetch data: ${error}`);
             }
         },
         async convertToTree() {
