@@ -53,7 +53,7 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const url = import.meta.env.VITE_ANNOTATIONS_FILENAME
+                const url = import.meta.env.VITE_ANNOTATIONS_URL;
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`File not found at ${url}`);
