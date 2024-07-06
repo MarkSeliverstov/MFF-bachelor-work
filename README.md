@@ -1,37 +1,108 @@
 # Bachelor work repository
 
-### Propojení softwarových artefaktů
+## Linking software artifacts
 
-Rostoucí velikost a složitost softwarových systémů vytváří potřebu snadné navigace a detekce souvisejících částí.
-Dohledání využití komponenty, či deklarace funkce, je dnes již běžně dostupnou funkcionalitou.
-Tato funkcionalita však může být rozšířena o propojení na datově sémantické úrovni.
-Nové propojení by umožnilo provázat datové modely, specifikace, zdrojové kódy v různých jazycích, dokumentace, ale i další artefakty softwarového systému.
-Základní myšlenkou je využití anotací umístěných v komentářích, které budou označovat významné části artefaktů.
-Anotace mohou například popisovat vybrané datové entity a jejich vlastnosti.
-Tuto informaci by následně bylo možné využít například pro analýzu kódu, konstrukci doménového modelu, či asistenci programátorům.
-Zcela zásadní pro adopci tohoto přístupu, je však podpora ze strany softwarových nástrojů.
-V rámci práce student navrhne a implementuje proof-of-concept řešení, které budou demonstrovat využití výše popsaného přístupu.
-Součástí řešení bude rozšíření pro Visual Studio Code, které usnadní vývojáři tvorbu anotací.
-Uživatel bude dále s pomocí řešení schopen anotovat datové entity a následně vizualizovat jejich vztahy napříč softwarovým systémem.
+The increasing size and complexity of software systems creates the need for
+easy navigation and detection of related parts. Finding the use of a component
+or a function declaration is now a commonly available functionality. However,
+this functionality can be extended by linking at the data semantic level. The
+new linking would allow linking data models, specifications, source code in
+different languages, documentation, as well as other artifacts of the software
+system. The basic idea is to use annotations placed in comments to indicate
+significant parts of the artifacts. Annotations can, for example, describe
+selected data entities and their properties. This information could then be
+used, for example, for code analysis, domain model construction, or assisting
+programmers. However, support from software tools is essential for the adoption
+of this approach. As part of the thesis, the student will design and implement
+proof-of-concept solutions that demonstrate the use of the approach described
+above. The solution will include an extension for Visual Studio Code to
+facilitate the developer's annotation. Furthermore, the user will be able to
+annotate data entities with the solution and then visualize their relationships
+across the software system.
+
+## Get started
+
+### Annotations
+
+```typescript
+// @lc-entity
+// @lc-identifier :Annotation
+// @lc-name Annotation
+// @lc-description Base class for all annotations.
+export interface IAnnotation {
+  // @lc-property
+  // @lc-name name
+  name: string
+  // @lc-property
+  // @lc-name value
+  value: string | null
+  // @lc-property
+  // @lc-name annotationStartPos
+  startPos: number
+  // @lc-property
+  // @lc-name annotationEndPos
+  endPos: number
+  // @lc-property
+  // @lc-name annotationLine
+  lineNumber: number
+}
+```
+
+By adding annotations to your code, you can define entities and their
+properties, which can be later used for visualization and analysis. The
+annotations are defined by the `@lc-` prefix, followed by the annotation name.
+The annotation name is followed by the annotation value.
+
+> **Note:** You can redefine the prefix and annotation markers in the
+> `ei-config.json` file.
+
+### Entity Inspector VScode extension
+
+The extension is used to provide support for annotating the code. It provides:
+
+- **Hint to the user** about existing artifacts with IntelliSense `ctrl+space`
+  when your cursor is in the `@lc-`
+
+![suggestions](./entity-inspector/assets/hints.png =500x)
+
+- Inline-suggest snippets for `@lc-enity` / `@lc-property` / `@lc-method`.
+
+![snippets](./entity-inspector/assets/inline-snippets.png =500x)
+
+- Inline-suggest user defined source as `@lc-source ...` if exists.
+
+![setting source](./entity-inspector/assets/setings-source.png =500x)
+![inline source](./entity-inspector/assets/inline-source.png =500x)
+
+### CLI
+
+The CLI tool is used to parse the code and create an annotations model. The
+model is then used to create an entities model, which is used for visualization
+and analysis.
+
+```bash
+./cli.py parse <path>    # Parse the given path and creates annotations model
+./cli.py convert <path>  # Convert the given path to the entities model
+./cli.py                # Parses root and converts to entities model
+```
+
+### Web application
+
+The web application is used to visualize the entities model. It provides a
+hierarchical view of the entities and their properties.
+
+```bash
+cd ./webapp
+npm install
+npm run dev
+```
+
+![webapp](./assets/webapp.png)
+
+## Development
 
 <details close>
-<summary>English version</summary>
-
-> ### Linking software artifacts
->
-> The increasing size and complexity of software systems creates the need for easy navigation and detection of related parts.
-> Finding the use of a component or a function declaration is now a commonly available functionality.
-> However, this functionality can be extended by linking at the data semantic level.
-> The new linking would allow linking data models, specifications, source code in different languages, documentation, as well as other artifacts > of the software system.
-> The basic idea is to use annotations placed in comments to indicate significant parts of the artifacts.
-> Annotations can, for example, describe selected data entities and their properties.
-> This information could then be used, for example, for code analysis, domain model construction, or assisting programmers.
-> However, support from software tools is essential for the adoption of this approach.
-> As part of the thesis, the student will design and implement proof-of-concept solutions that demonstrate the use of the approach described > above.
-> The solution will include an extension for Visual Studio Code to facilitate the developer's annotation.
-> Furthermore, the user will be able to annotate data entities with the solution and then visualize their relationships across the software > system.
-
-</details>
+<summary> Details </summary>
 
 ## Entity Inspector VScode extension
 
@@ -113,3 +184,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+</details>
