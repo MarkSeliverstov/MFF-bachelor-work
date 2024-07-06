@@ -57,7 +57,7 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const url = "http://127.0.0.1:5000/entities";
+                const url = import.meta.env.VITE_ENTITIES_URL;
                 const response = await fetch(url, {
                     method: "GET",
                     headers: {
