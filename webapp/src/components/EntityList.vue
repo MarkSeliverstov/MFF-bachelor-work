@@ -4,8 +4,8 @@
             Entities
         </h4>
         <p>
-            This is a list of all entities and from your project.
-            You can filter the list by typing in the input field below.
+          This is a list of all entities from your project. You can filter the
+          list by typing in the input field below.
         </p>
         <q-input ref="filterRef" filled v-model="filter" label="Filter">
             <template v-slot:append>
