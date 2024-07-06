@@ -27,4 +27,3 @@ ${commentLine} ${prefix}description`
     [AnnotationMarkers.method()]: base,
   }
 }
-

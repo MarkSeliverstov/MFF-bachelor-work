@@ -9,4 +9,3 @@ type LanguageExtenssion = string
 type command = string
 
 type Snippets = Record<string, string>
-

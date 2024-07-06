@@ -71,4 +71,3 @@ export interface InstanceModel {
   // @lc-name entities
   entities: Entity[]
 }
-

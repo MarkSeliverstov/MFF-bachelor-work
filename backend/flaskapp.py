@@ -18,15 +18,17 @@ def get_model():
     except DataBaseException as err:
         return jsonify({"status": "ERROR", "message": str(err)}), 404
     return jsonify(model)
-    
+
+
 @app.route("/model", methods=["POST"])
 def save_model():
     req = request.get_json()
-    if (req["authorizedKey"] != authorized_key):
+    if req["authorizedKey"] != authorized_key:
         print(f"Wrong key: {req['authorizedKey']}")
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_model(req["model"])
     return jsonify({"status": "OK"})
+
 
 @app.route("/entities", methods=["GET"])
 def get_entities():
@@ -40,6 +42,7 @@ def get_entities():
         return jsonify({"status": "ERROR", "message": str(err)}), 500
     return jsonify(entities)
 
+
 @app.route("/annotations", methods=["GET"])
 def get_annotations():
     try:
@@ -48,20 +51,21 @@ def get_annotations():
         return jsonify({"status": "ERROR", "message": str(err)}), 404
     return jsonify(annotations)
 
+
 @app.route("/annotations", methods=["POST"])
 def save_annotations():
     req = request.get_json()
-    if (req["authorizedKey"] != authorized_key):
+    if req["authorizedKey"] != authorized_key:
         print(f"Wrong key: {req['authorizedKey']}")
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_annotations(req["annotations"])
     return jsonify({"status": "OK"})
 
+
 @app.route("/model/complition-items", methods=["POST"])
 def get_complition_items_from_model():
-    editor_line = request.get_json();
+    editor_line = request.get_json()
     print(f"Recieved line from client: {editor_line}")
     cmp_items = ["HELLO", "FROM", "SERVER"]
     print(jsonify(cmp_items))
     return jsonify(cmp_items)
-
