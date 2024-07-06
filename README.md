@@ -63,16 +63,16 @@ The extension is used to provide support for annotating the code. It provides:
 - **Hint to the user** about existing artifacts with IntelliSense `ctrl+space`
   when your cursor is in the `@lc-`
 
-![suggestions](./entity-inspector/assets/hints.png =500x)
+![suggestions](./entity-inspector/assets/hints.png)
 
 - Inline-suggest snippets for `@lc-enity` / `@lc-property` / `@lc-method`.
 
-![snippets](./entity-inspector/assets/inline-snippets.png =500x)
+![snippets](./entity-inspector/assets/inline-snippets.png)
 
 - Inline-suggest user defined source as `@lc-source ...` if exists.
 
-![setting source](./entity-inspector/assets/setings-source.png =500x)
-![inline source](./entity-inspector/assets/inline-source.png =500x)
+![setting source](./entity-inspector/assets/setings-source.png)
+![inline source](./entity-inspector/assets/inline-source.png)
 
 ### CLI
 
