@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-# @lc-entity 
+
+# @lc-entity
 # @lc-identifier :Annotation
 # @lc-name Annotation
 # @lc-description Base class for all annotations.
@@ -32,5 +33,3 @@ class SourceFileAnnotations:
     # @lc-name annotations
     # @lc-description Annotations found in given file.
     annotations: List[Annotation]
-
-

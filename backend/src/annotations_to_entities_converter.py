@@ -5,6 +5,7 @@ import argparse
 import json
 from ..models.entity_model import *
 
+
 class AnnotationsToEntitiesConverter:
     def __init__(self):
         self.entities: List[Entity] = []
@@ -35,11 +36,17 @@ class AnnotationsToEntitiesConverter:
 
                 elif annotation_name == "property":
                     if current_instance and current_property:
-                        current_instance.properties.append(Property(current_property.name, current_property.description))
+                        current_instance.properties.append(
+                            Property(
+                                current_property.name, current_property.description
+                            )
+                        )
                     current_property = Property(None, None)
 
                 elif annotation_name == "identifier":
-                    current_instance = EntityInstance(current_file_path, annotation_value, None)
+                    current_instance = EntityInstance(
+                        current_file_path, annotation_value, None
+                    )
 
                 elif annotation_name == "name":
                     if current_instance:
@@ -72,13 +79,13 @@ class AnnotationsToEntitiesConverter:
                             "properties": [
                                 {
                                     "name": property.name,
-                                    "description": property.description
+                                    "description": property.description,
                                 }
                                 for property in instance.properties
-                            ]
+                            ],
                         }
                         for instance in entity.instances
-                    ]
+                    ],
                 }
                 for entity in self.entities
             ]
