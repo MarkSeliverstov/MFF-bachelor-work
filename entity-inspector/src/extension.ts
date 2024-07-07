@@ -9,11 +9,11 @@ import { AnnotationReader } from './exporter'
 
 export let model: InstanceModel | null = null
 let anotationModel: AnnotationModel
+export const config = new Config()
 
 export async function activate(context: vscode.ExtensionContext) {
   console.log('Yep, "entity-inspector" is now active!')
   console.log('Try to read configuration file...')
-  const config = new Config()
   await config.init()
 
   // model = await getModel()

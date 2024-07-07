@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import { AnnotationMarkers } from '../../configuration'
+import { config } from '../../extension'
 
 function createIdentifier() {
   const time = new Date().getTime()
@@ -23,13 +23,17 @@ export class MarkerProvider implements vscode.CompletionItemProvider {
   ): vscode.ProviderResult<vscode.CompletionItem[]> {
     const line = document.lineAt(position).text.substring(0, position.character)
     const completionItems: vscode.CompletionItem[] = []
-    if (line.endsWith(AnnotationMarkers.prefix())) {
-      AnnotationMarkers.getAllPrefixValues().forEach((prefixVal) => {
+
+    const prefix = config.annotationMarkers.prefix()
+    const id = config.annotationMarkers.id()
+
+    if (line.endsWith(prefix)) {
+      config.annotationMarkers.getAllPrefixValues().forEach((prefixVal) => {
         completionItems.push(new vscode.CompletionItem(prefixVal))
       })
     }
 
-    if (line.endsWith(AnnotationMarkers.prefix() + AnnotationMarkers.id() + ' :')) {
+    if (line.endsWith(prefix + id + ' :')) {
       console.log('Adding id completion item')
       completionItems.push(new vscode.CompletionItem(createIdentifier()))
     }

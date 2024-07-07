@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { AnnotationMarkers } from '../../configuration'
+import { config } from '../../extension'
 
 export class EntitiesDocumentLinkProvider implements vscode.DocumentLinkProvider {
   /**
@@ -8,7 +8,7 @@ export class EntitiesDocumentLinkProvider implements vscode.DocumentLinkProvider
   provideDocumentLinks(document: vscode.TextDocument): vscode.DocumentLink[] {
     const links: vscode.DocumentLink[] = []
     const text = document.getText()
-    const findingPrefix = AnnotationMarkers.prefix() + AnnotationMarkers.id()
+    const findingPrefix = config.annotationMarkers.prefix() + config.annotationMarkers.id()
     const lcIdentifier = new RegExp(`(${findingPrefix}\\s+)([:\\w]+)`, 'g')
 
     let match

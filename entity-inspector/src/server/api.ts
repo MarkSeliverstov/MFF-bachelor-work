@@ -1,10 +1,10 @@
 import fetch from 'node-fetch'
-import { serverURL } from '../configuration'
+import { config } from '../extension'
 import { InstanceModel } from '../model'
 
-const modelUrl = () => serverURL() + '/model'
-const annotationsUrl = () => serverURL() + '/annotations'
-const cmpItemsUrl = () => modelUrl() + '/complition-items'
+const modelUrl = () => config.serverUrl + '/model'
+const annotationsUrl = () => config.serverUrl + '/annotations'
+const cmpItemsUrl = () => config.serverUrl + '/complition-items'
 const goodKey = '123456789'
 // const wrong_key = '1234567890'
 
