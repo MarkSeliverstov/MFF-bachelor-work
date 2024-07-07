@@ -9,3 +9,7 @@ type LanguageExtenssion = string
 type command = string
 
 type Snippets = Record<string, string>
+
+type ConfigType = {
+  get: (key: string, defaultValue: string) => string
+}
