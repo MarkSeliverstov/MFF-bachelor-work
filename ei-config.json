@@ -18,6 +18,11 @@
     "url": "http://localhost:5000"
   },
   "parser": {
-    "exclude": ["node_modules", ".git", ".venv"]
+    "exclude": ["node_modules", ".git", ".venv"],
+    "extend": {
+      "cjs": "application/javascript",
+      "mjs": "application/javascript",
+      "jsx": "application/javascript"
+    }
   }
 }

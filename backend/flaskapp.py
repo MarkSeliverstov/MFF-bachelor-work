@@ -1,12 +1,18 @@
+import os
 from flask import Flask, jsonify, request
-from .db.api import DataBaseException, InvalidModel, Database as db
 from flask_cors import CORS
+
+from .db.api import DataBaseException, InvalidModel, Database as db
 from src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
+
+authorized_key = os.getenv("AUTHORIZED_KEY")
+if not authorized_key:
+    raise Exception(
+        "Authorized key not found in environment variables. Please set it up."
+    )
 
 app = Flask(__name__)
 cors = CORS(app)
-
-authorized_key = "123456789"
 
 
 @app.route("/model", methods=["GET"])

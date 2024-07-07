@@ -99,6 +99,54 @@ npm run dev
 
 ![webapp](./assets/webapp.png)
 
+### ei-config.json
+
+The configuration file is used to configure the CLI and extension. You can
+redefine the prefix and annotation markers, as well as the server URL and
+parser settings.
+
+```json
+{
+  "prefix": "@lc-",
+  "markers": {
+    "identifier": "identifier",
+    "name": "name",
+    "type": "type",
+    "description": "description",
+    "entity": "entity",
+    "property": "property",
+    "method": "method",
+    "source": "source"
+  },
+  "output": {
+    "entities": "entities.json",
+    "annotations": "annotations.json"
+  },
+  "server": {
+    "url": "http://localhost:5000"
+  },
+  "parser": {
+    "exclude": ["node_modules", ".git", ".venv"],
+    "extend": {
+      "cjs": "application/javascript",
+      "mjs": "application/javascript",
+      "jsx": "application/javascript"
+    }
+  }
+}
+```
+
+- `<prefix><marker>` - Defines the annotations, where
+  - `prefix` - Prefix for the annotations.
+  - `markers` - Annotation markers (for example, `<prefix>entity`).
+- `output` - Output files for the CLI.
+- `server` - Server URL for the extension.
+- `parser` - Parser settings for the CLI.
+  - `exclude` - Paths to exclude from parsing.
+  - `extend` - File extensions to extend the parser. Where the key is the
+    extension and the value is the MIME type ( you can see the list of supported
+    MIME types [here](https://github.com/jeanralphaviles/comment_parser)).
+
 ## Development
 
 <details close>

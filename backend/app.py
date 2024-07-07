@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
+import os
+
 from .config import Config
-from .src.annotations_to_entities_converter import *
-from .src.annotation_parser import *
+from .src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
+from .src.annotation_parser import AnnotationParser, export_annotations_to_json
 
 
-def _parse_command(
-    path: str,
-    annotation_prefix: str,
-    output: str,
-    exclude: List[str],
-    include: List[str],
-) -> None:
-    model = extract_annotations(path, annotation_prefix, exclude, include)
+def _parse_command(path: str, config: Config, output: str) -> None:
+    parser = AnnotationParser(
+        config.PARSER_EXCLUDE, config.ANNOTATION_PREFIX, config.EXTENSIONS_MAP
+    )
+    model = parser.parse(path)
     export_annotations_to_json(model, output)
 
 
@@ -53,13 +53,6 @@ def run():
         "path", help="Path to file or directory to parse", type=str, default="."
     )
     parse_parser.add_argument(
-        "-p",
-        "--annotation-prefix",
-        help="Annotation prefix",
-        type=str,
-        default=config.ANNOTATION_PREFIX,
-    )
-    parse_parser.add_argument(
         "-o",
         "--output",
         help="Output file name",
@@ -85,23 +78,11 @@ def run():
 
     args = parser.parse_args()
     if args.command == "parse":
-        _parse_command(
-            args.path,
-            args.annotation_prefix,
-            args.output,
-            config.PARSER_EXCLUDE,
-            config.PARSER_INCLUDE,
-        )
+        _parse_command(args.path, config, args.output)
     elif args.command == "convert":
         _convert_command(args.annotations, args.output)
     else:
-        _parse_command(
-            ".",
-            config.ANNOTATION_PREFIX,
-            config.OUTPUT_ANNOTATIONS,
-            config.PARSER_EXCLUDE,
-            config.PARSER_INCLUDE,
-        )
+        _parse_command(".", config, config.OUTPUT_ANNOTATIONS)
         _convert_command(config.OUTPUT_ANNOTATIONS, config.OUTPUT_ENTITIES)
 
 
