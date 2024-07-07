@@ -1,10 +1,12 @@
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from dotenv import load_dotenv
 
 from .db.api import DataBaseException, InvalidModel, Database as db
-from src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
+from .src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
 
+load_dotenv()
 authorized_key = os.getenv("AUTHORIZED_KEY")
 if not authorized_key:
     raise Exception(
