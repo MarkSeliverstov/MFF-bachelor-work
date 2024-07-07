@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-import argparse
 import json
 import os
+from argparse import Namespace, ArgumentParser
 
 from .config import Config
 from .src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
@@ -35,10 +35,17 @@ def _convert_command(annotations_file: str, output: str) -> None:
 
 
 def run():
-    config = Config.from_file("ei-config.json")
+    default_config = Config()
+
     # Commands for parse annotations, convert annotations to entities and save entities as enum
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
         description="Parse annotations from source code and convert them to entities"
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        help="Path to the configuration file",
+        type=str,
     )
     subparsers = parser.add_subparsers(dest="command", help="commands")
     parse_parser = subparsers.add_parser(
@@ -57,7 +64,7 @@ def run():
         "--output",
         help="Output file name",
         type=str,
-        default=config.OUTPUT_ANNOTATIONS,
+        default=default_config.OUTPUT_ANNOTATIONS,
     )
 
     # Arguments for convert command
@@ -66,17 +73,18 @@ def run():
         "--annotations",
         type=str,
         help="Path to the annotations file",
-        default=config.OUTPUT_ANNOTATIONS,
+        default=default_config.OUTPUT_ANNOTATIONS,
     )
     convert_parser.add_argument(
         "-o",
         "--output",
         type=str,
         help="Path to the output file",
-        default=config.OUTPUT_ENTITIES,
+        default=default_config.OUTPUT_ENTITIES,
     )
 
-    args = parser.parse_args()
+    args: Namespace = parser.parse_args()
+    config: Config = Config.from_file(args.config) if args.config else default_config
     if args.command == "parse":
         _parse_command(args.path, config, args.output)
     elif args.command == "convert":
