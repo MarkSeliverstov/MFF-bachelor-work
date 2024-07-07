@@ -16,3 +16,4 @@ bachelor-thesis-drafts
 examples
 *model.json
 *annotations.json
+.env
