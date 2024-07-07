@@ -1,28 +1,38 @@
-import * as vscode from 'vscode'
-import { AnnotationMarkers, serverURL } from '../../configuration'
+import {
+  InlineCompletionItemProvider,
+  TextDocument,
+  Position,
+  Range,
+  InlineCompletionItem,
+  ProviderResult,
+} from 'vscode'
+
+import { config } from '../../extension'
 
 /**
  * Provides inline completions suggestions about user defined model source.
  */
-export class SuggestionProvider implements vscode.InlineCompletionItemProvider {
+export class SuggestionProvider implements InlineCompletionItemProvider {
   provideInlineCompletionItems(
-    document: vscode.TextDocument,
-    position: vscode.Position,
-  ): vscode.ProviderResult<vscode.InlineCompletionItem[]> {
-    const textBeforeCursor = document.getText(
-      new vscode.Range(position.with(undefined, 0), position),
-    )
+    document: TextDocument,
+    position: Position,
+  ): ProviderResult<InlineCompletionItem[]> {
+    const textBeforeCursor = document.getText(new Range(position.with(undefined, 0), position))
 
-    const suggestionItems: vscode.InlineCompletionItem[] = []
+    const suggestionItems: InlineCompletionItem[] = []
+    const prefix = config.annotationMarkers.prefix()
+    const source = config.annotationMarkers.source()
+    const serverUrl = config.serverUrl
+
     if (
-      textBeforeCursor.match(AnnotationMarkers.prefix() + AnnotationMarkers.source() + ' ') &&
-      serverURL() !== '' &&
-      !textBeforeCursor.match(serverURL())
+      textBeforeCursor.match(prefix + source + ' ') &&
+      serverUrl !== '' &&
+      !textBeforeCursor.match(serverUrl)
     ) {
       suggestionItems.push(
-        new vscode.InlineCompletionItem(
-          serverURL(),
-          new vscode.Range(position, position.translate(0, serverURL().length)),
+        new InlineCompletionItem(
+          serverUrl,
+          new Range(position, position.translate(0, serverUrl.length)),
         ),
       )
     }

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import { commentsConfiguration, Commands } from './configuration'
+import { Commands, Config } from './configuration'
 import { initComplitions } from './complitions'
 import { getModel, saveModel, saveAnnotations } from './server'
 import { mockInstanceModel } from './model/mocker'
@@ -9,14 +9,18 @@ import { AnnotationReader } from './exporter'
 
 export let model: InstanceModel | null = null
 let anotationModel: AnnotationModel
-// This method is called when your extension is activated
+export const config = new Config()
+
 export async function activate(context: vscode.ExtensionContext) {
   console.log('Yep, "entity-inspector" is now active!')
-  model = await getModel()
+  console.log('Try to read configuration file...')
+  await config.init()
+
+  // model = await getModel()
   // Handle extensions being added or removed
   vscode.extensions.onDidChange(
     () => {
-      commentsConfiguration.updateLanguagesDefinitions()
+      config.commentsConfiguration.updateLanguagesDefinitions()
     },
     null,
     context.subscriptions,

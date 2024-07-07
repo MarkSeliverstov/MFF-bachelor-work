@@ -1,24 +1,24 @@
 import * as vscode from 'vscode'
+import * as path from 'path'
 
-import path = require('path')
 import { TextDecoder } from 'util'
 
-const EXTENSION_NAME = 'entity-inspector'
-const EI_CONFIG = 'ei-config.json'
-
-async function readConfigFile(): Promise<Map<string, string>> {
-  const configPath = path.join(__dirname, EI_CONFIG)
+async function readConfigFile(relativeFilePath: string): Promise<Map<string, string>> {
+  const configPath = path.join(__dirname, relativeFilePath)
   const file = vscode.Uri.file(configPath)
-  if (!vscode.workspace.fs.stat(file)) {
+
+  try {
+    const rawContent = await vscode.workspace.fs.readFile(file)
+    const content = new TextDecoder().decode(rawContent)
+    return JSON.parse(content)
+  } catch (error) {
     console.log('EI configuration file not found!')
     return new Map<string, string>()
   }
-  const rawContent = await vscode.workspace.fs.readFile(file)
-  const content = new TextDecoder().decode(rawContent)
-  return JSON.parse(content)
 }
 
-const USER_CONFIG = (config: Map<string, string>) => {
+async function getConfig(relativeFilePath: string): Promise<ConfigType> {
+  const config = await readConfigFile(relativeFilePath)
   return {
     get: (key: string, defaultValue: string) => {
       return config.get(key) || defaultValue
@@ -26,43 +26,75 @@ const USER_CONFIG = (config: Map<string, string>) => {
   }
 }
 
-/**
- * User defined server
- */
-export const serverURL = () => USER_CONFIG().get('serverUrl', '')
+class AnnotationMarkers {
+  private prefixValue: string
+  private idValue: string
+  private aliasValue: string
+  private typeValue: string
+  private entityValue: string
+  private propertyValue: string
+  private methodValue: string
+  private descriptionValue: string
+  private sourceValue: string
 
-/**
- * Configurates EI extension commands.
- */
-export class Commands {
-  static readonly exportModelCmd = () => `${EXTENSION_NAME}.exportModel`
-  static readonly runParserCmd = () => `${EXTENSION_NAME}.runParser`
-}
+  constructor(private config: ConfigType) {
+    this.prefixValue = this.config.get('prefixName', '@lc-')
+    this.idValue = this.config.get('identifierMarker', 'identifier')
+    this.aliasValue = this.config.get('nameMarker', 'name')
+    this.typeValue = this.config.get('typeMarker', 'type')
+    this.entityValue = this.config.get('entityMarker', 'entity')
+    this.propertyValue = this.config.get('propertyMarker', 'property')
+    this.methodValue = this.config.get('methodMarker', 'method')
+    this.descriptionValue = this.config.get('descriptionMarker', 'description')
+    this.sourceValue = this.config.get('sourceMarker', 'source')
+  }
 
-/**
- * User configuration of annotation prefixes.
- */
-export class AnnotationMarkers {
-  static readonly prefix = () => USER_CONFIG().get('prefixName', '@lc-')
-  static readonly id = () => USER_CONFIG().get('identifierMarker', 'identifier')
-  static readonly alias = () => USER_CONFIG().get('nameMarker', 'name')
-  static readonly type = () => USER_CONFIG().get('typeMarker', 'type')
-  static readonly entity = () => USER_CONFIG().get('entityMarker', 'entity')
-  static readonly property = () => USER_CONFIG().get('propertyMarker', 'property')
-  static readonly method = () => USER_CONFIG().get('methodMarker', 'method')
-  static readonly description = () => USER_CONFIG().get('descriptionMarker', 'description')
-  static readonly source = () => USER_CONFIG().get('sourceMarker', 'source')
+  prefix(): string {
+    return this.prefixValue
+  }
 
-  static readonly getAllPrefixValues = () => {
+  id(): string {
+    return this.idValue
+  }
+
+  alias(): string {
+    return this.aliasValue
+  }
+
+  type(): string {
+    return this.typeValue
+  }
+
+  entity(): string {
+    return this.entityValue
+  }
+
+  property(): string {
+    return this.propertyValue
+  }
+
+  method(): string {
+    return this.methodValue
+  }
+
+  description(): string {
+    return this.descriptionValue
+  }
+
+  source(): string {
+    return this.sourceValue
+  }
+
+  getAllPrefixValues(): string[] {
     return [
-      AnnotationMarkers.id(),
-      AnnotationMarkers.alias(),
-      AnnotationMarkers.type(),
-      AnnotationMarkers.entity(),
-      AnnotationMarkers.property(),
-      AnnotationMarkers.method(),
-      AnnotationMarkers.description(),
-      AnnotationMarkers.source(),
+      this.id(),
+      this.alias(),
+      this.type(),
+      this.entity(),
+      this.property(),
+      this.method(),
+      this.description(),
+      this.source(),
     ]
   }
 }
@@ -70,7 +102,7 @@ export class AnnotationMarkers {
 /**
  * Awesome parser helps to determine the format of languages using the installed extensions.
  */
-class CommentsConfiguration {
+export class CommentsConfiguration {
   // languageId : Comment configuration
   private readonly commentConfig = new Map<LanguageId, CommentConfig | undefined>()
   private readonly languageConfigFiles = new Map<LanguageId, ConfigPath>()
@@ -149,6 +181,46 @@ class CommentsConfiguration {
   }
 }
 
-export const commentsConfiguration = new CommentsConfiguration()
-commentsConfiguration.updateLanguagesDefinitions()
-commentsConfiguration.initAllLanguages()
+/**
+ * Configurates EI extension.
+ */
+export class Config {
+  private _config: ConfigType | null = null
+  private _annotationMarkers: AnnotationMarkers | null = null
+  private _commentsConfiguration: CommentsConfiguration | null = null
+
+  async init(relativeFilePath: string = 'ei-config.json'): Promise<void> {
+    this._config = await getConfig(relativeFilePath)
+    this._annotationMarkers = new AnnotationMarkers(this._config)
+    this._commentsConfiguration = new CommentsConfiguration()
+    this._commentsConfiguration.updateLanguagesDefinitions()
+    this._commentsConfiguration.initAllLanguages()
+  }
+
+  get serverUrl(): string {
+    return this._config!.get('serverUrl', 'http://localhost:8080')
+  }
+
+  get annotationMarkers(): AnnotationMarkers {
+    if (!this._annotationMarkers) {
+      throw new Error('Annotation markers not initialized')
+    }
+    return this._annotationMarkers
+  }
+
+  get commentsConfiguration(): CommentsConfiguration {
+    if (!this._commentsConfiguration) {
+      throw new Error('Comments configuration not initialized')
+    }
+    return this._commentsConfiguration
+  }
+}
+
+/**
+ * Configurates EI extension commands.
+ */
+const EXTENSION_NAME = 'entity-inspector'
+export class Commands {
+  static readonly exportModelCmd = () => `${EXTENSION_NAME}.exportModel`
+  static readonly runParserCmd = () => `${EXTENSION_NAME}.runParser`
+}

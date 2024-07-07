@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
 import { IAnnotation, AnnotationModel, SourceFileAnnotations } from '../model'
-import { commentsConfiguration, AnnotationMarkers } from '../configuration'
+import { config } from '../extension'
 
 export class AnnotationReader {
   private delimiter = ''
@@ -116,7 +116,7 @@ export class AnnotationReader {
     }
 
     // Apply all configurable comment start tags
-    this.prefixRegexExpression += `${AnnotationMarkers.prefix()}+(.*)`
+    this.prefixRegexExpression += `${config.annotationMarkers.prefix()}+(.*)`
   }
 
   private setDelimiter(languageExtension: string): void {
@@ -126,13 +126,13 @@ export class AnnotationReader {
       this.isPlainText = true
     }
 
-    const config = commentsConfiguration.getCommentConfigurationByExtension(languageExtension)
-    if (config) {
-      const blockCommentStart = config.blockComment ? config.blockComment[0] : null
-      const blockCommentEnd = config.blockComment ? config.blockComment[1] : null
+    const langConfig = config.commentsConfiguration.getCommentConfigurationByExtension(languageExtension)
+    if (langConfig) {
+      const blockCommentStart = langConfig.blockComment ? langConfig.blockComment[0] : null
+      const blockCommentEnd = langConfig.blockComment ? langConfig.blockComment[1] : null
 
       this.setCommentFormat(
-        config.lineComment || blockCommentStart,
+        langConfig.lineComment || blockCommentStart,
         blockCommentStart,
         blockCommentEnd,
       )
@@ -156,8 +156,8 @@ export class AnnotationReader {
     end: string | null = null,
   ): void {
     this.delimiter = ''
-    this.blockCommentStart = ''
-    this.blockCommentEnd = ''
+    // this.blockCommentStart = ''
+    // this.blockCommentEnd = ''
 
     // If no single line comment delimiter is passed, single line comments are not supported
     if (singleLine) {
@@ -168,14 +168,14 @@ export class AnnotationReader {
         const delimiters = singleLine.map((s) => this.escapeRegExp(s)).join('|')
         this.delimiter = delimiters
       }
-      this.singleLineSupport = true
+      // this.singleLineSupport = true
     }
 
-    if (start && end) {
-      this.blockCommentStart = this.escapeRegExp(start)
-      this.blockCommentEnd = this.escapeRegExp(end)
-      this.multiLineSupport = true
-    }
+    // if (start && end) {
+    //   this.blockCommentStart = this.escapeRegExp(start)
+    //   this.blockCommentEnd = this.escapeRegExp(end)
+    //   this.multiLineSupport = true
+    // }
   }
 }
 
