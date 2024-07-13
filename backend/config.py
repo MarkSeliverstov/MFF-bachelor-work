@@ -1,6 +1,10 @@
 import os
 import json
+import structlog
+
 from enum import Enum
+
+logger = structlog.get_logger()
 
 
 class Config:
@@ -55,7 +59,7 @@ class Config:
         Load the configuration from a file
         """
         if not os.path.exists(config_file_path):
-            print(
+            logger.warning(
                 f"Config file not found: {config_file_path}. ",
                 "Using default configuration.",
             )

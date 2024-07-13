@@ -1,10 +1,14 @@
 import os
+import structlog
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 
 from .db.api import DataBaseException, InvalidModel, Database as db
 from .src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
+
+logger = structlog.get_logger()
 
 load_dotenv()
 authorized_key = os.getenv("AUTHORIZED_KEY")
@@ -32,7 +36,7 @@ def get_model():
 def save_model():
     req = request.get_json()
     if req["authorizedKey"] != authorized_key:
-        print(f"Wrong key: {req['authorizedKey']}")
+        logger.error(f"Wrong key: {req['authorizedKey']}")
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_model(req["model"])
     return jsonify({"status": "OK"})
@@ -64,7 +68,7 @@ def get_annotations():
 def save_annotations():
     req = request.get_json()
     if req["authorizedKey"] != authorized_key:
-        print(f"Wrong key: {req['authorizedKey']}")
+        logger.error(f"Wrong key: {req['authorizedKey']}")
         return jsonify({"status": "ERROR", "message": "Wrong authorized key"}), 300
     db.save_annotations(req["annotations"])
     return jsonify({"status": "OK"})
@@ -73,7 +77,7 @@ def save_annotations():
 @app.route("/model/complition-items", methods=["POST"])
 def get_complition_items_from_model():
     editor_line = request.get_json()
-    print(f"Recieved line from client: {editor_line}")
+    logger.info(f"Recieved line from client: {editor_line}")
     cmp_items = ["HELLO", "FROM", "SERVER"]
-    print(jsonify(cmp_items))
+    logger.info(f"Sending complition items to client: {cmp_items}")
     return jsonify(cmp_items)

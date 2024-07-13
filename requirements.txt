@@ -3,3 +3,4 @@ flask-cors
 comment_parser
 argparse
 python-dotenv
+structlog

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
 import os
+import structlog
 import json
 from comment_parser import comment_parser
 from argparse import ArgumentParser, Namespace
 
 from ..models.annotation_model import Annotation, SourceFileAnnotations
 from ..config import Config
+
+logger = structlog.get_logger()
 
 
 class AnnotationParser:
@@ -21,6 +24,7 @@ class AnnotationParser:
         self.extensions_map: dict[str, str] = extensions_map
 
     def parse(self, path: str) -> list[SourceFileAnnotations]:
+        logger.debug(f"Parsing path: {path}")
         if os.path.isfile(path):
             if any(ex in path for ex in self.parser_exclude):
                 return []
@@ -32,8 +36,21 @@ class AnnotationParser:
                 if any(ex in root for ex in self.parser_exclude):
                     continue
                 for file in files:
-                    model.append(self._parse_file(os.path.join(root, file)))
+                    if any(ex == file for ex in self.parser_exclude):
+                        continue
+                    try:
+                        annotation: SourceFileAnnotations = self._parse_file(
+                            os.path.join(root, file)
+                        )
+                        if annotation.annotations:
+                            model.append(annotation)
+                    except Exception as e:
+                        logger.debug(
+                            f"Error parsing file: {os.path.join(root, file)}: {e}"
+                        )
                 for dir in dirs:
+                    if any(ex == dir for ex in self.parser_exclude):
+                        continue
                     model.extend(self.parse(os.path.join(root, dir)))
             return model
         else:

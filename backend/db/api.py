@@ -1,5 +1,8 @@
 import json
 import os
+import structlog
+
+logger = structlog.get_logger()
 
 MODEL_FILE = "model.json"
 ANNOTATIONS_FILE = "annotations.json"
@@ -33,9 +36,9 @@ class Database:
     @staticmethod
     def save_model(model: dict) -> None:
         with open(_get_full_path(MODEL_FILE), "w") as f:
-            print("Saving model")
+            logger.info("Saving model")
             json.dump(model, f, indent=4)
-            print("File saved")
+            logger.info("File saved")
 
     @staticmethod
     def get_annotations() -> dict:

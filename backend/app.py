@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 
 import json
+import logging
 import os
 from argparse import Namespace, ArgumentParser
+import structlog
 
 from .config import Config
 from .src.annotations_to_entities_converter import AnnotationsToEntitiesConverter
 from .src.annotation_parser import AnnotationParser, export_annotations_to_json
+
+
+logger = structlog.get_logger()
+structlog.configure(wrapper_class=structlog.make_filtering_bound_logger(logging.INFO))
 
 
 def _parse_command(path: str, config: Config, output: str) -> None:
@@ -21,14 +27,14 @@ def _convert_command(annotations_file: str, output: str) -> None:
     converter = AnnotationsToEntitiesConverter()
 
     if not os.path.exists(annotations_file):
-        print(f"File {annotations_file} does not exist")
+        logger.error(f"File {annotations_file} does not exist")
         return
     with open(annotations_file) as f:
         annotations = json.load(f)
 
     entities = converter.convert(annotations)
     if not entities:
-        print("No entities found in annotations")
+        logger.warning("No entities found in the annotations")
         return
     with open(output, "w") as f:
         json.dump(entities, f, indent=4)
