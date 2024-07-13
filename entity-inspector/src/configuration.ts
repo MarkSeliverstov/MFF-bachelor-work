@@ -3,99 +3,65 @@ import * as path from 'path'
 
 import { TextDecoder } from 'util'
 
-async function readConfigFile(relativeFilePath: string): Promise<Map<string, string>> {
-  const configPath = path.join(__dirname, relativeFilePath)
-  const file = vscode.Uri.file(configPath)
+const DEFAULT_CONFIG: EIConfigType = {
+  prefix: '@lc-',
+  markers: {
+    identifier: 'identifier',
+    name: 'name',
+    type: 'type',
+    description: 'description',
+    entity: 'entity',
+    property: 'property',
+    method: 'method',
+    source: 'source',
+  },
+  output: {
+    entities: 'entities.json',
+    annotations: 'annotations.json',
+  },
+  server: {
+    url: 'http://localhost:5000',
+  },
+  parser: {
+    exclude: [],
+    extend: new Map<string, string>(),
+  },
+}
 
+async function getConfig(relativeFilePath: string): Promise<EIConfigType> {
+  const configPath: string = path.join(vscode.workspace.rootPath || '', relativeFilePath)
+  const file: vscode.Uri = vscode.Uri.file(configPath)
   try {
-    const rawContent = await vscode.workspace.fs.readFile(file)
-    const content = new TextDecoder().decode(rawContent)
-    return JSON.parse(content)
+    const rawContent: Uint8Array = await vscode.workspace.fs.readFile(file)
+    const content: string = new TextDecoder().decode(rawContent)
+    const user_config: EIConfigType = JSON.parse(content)
+    return {
+      prefix: user_config.prefix || DEFAULT_CONFIG.prefix,
+      markers: {
+        identifier: user_config.markers.identifier || DEFAULT_CONFIG.markers.identifier,
+        name: user_config.markers.name || DEFAULT_CONFIG.markers.name,
+        type: user_config.markers.type || DEFAULT_CONFIG.markers.type,
+        description: user_config.markers.description || DEFAULT_CONFIG.markers.description,
+        entity: user_config.markers.entity || DEFAULT_CONFIG.markers.entity,
+        property: user_config.markers.property || DEFAULT_CONFIG.markers.property,
+        method: user_config.markers.method || DEFAULT_CONFIG.markers.method,
+        source: user_config.markers.source || DEFAULT_CONFIG.markers.source,
+      },
+      output: {
+        entities: user_config.output.entities || DEFAULT_CONFIG.output.entities,
+        annotations: user_config.output.annotations || DEFAULT_CONFIG.output.annotations,
+      },
+      server: {
+        url: user_config.server.url || DEFAULT_CONFIG.server.url,
+      },
+      parser: {
+        exclude: user_config.parser.exclude || DEFAULT_CONFIG.parser.exclude,
+        extend: user_config.parser.extend || DEFAULT_CONFIG.parser.extend,
+      },
+    }
   } catch (error) {
-    console.log('EI configuration file not found!')
-    return new Map<string, string>()
-  }
-}
-
-async function getConfig(relativeFilePath: string): Promise<ConfigType> {
-  const config = await readConfigFile(relativeFilePath)
-  return {
-    get: (key: string, defaultValue: string) => {
-      return config.get(key) || defaultValue
-    },
-  }
-}
-
-class AnnotationMarkers {
-  private prefixValue: string
-  private idValue: string
-  private aliasValue: string
-  private typeValue: string
-  private entityValue: string
-  private propertyValue: string
-  private methodValue: string
-  private descriptionValue: string
-  private sourceValue: string
-
-  constructor(private config: ConfigType) {
-    this.prefixValue = this.config.get('prefixName', '@lc-')
-    this.idValue = this.config.get('identifierMarker', 'identifier')
-    this.aliasValue = this.config.get('nameMarker', 'name')
-    this.typeValue = this.config.get('typeMarker', 'type')
-    this.entityValue = this.config.get('entityMarker', 'entity')
-    this.propertyValue = this.config.get('propertyMarker', 'property')
-    this.methodValue = this.config.get('methodMarker', 'method')
-    this.descriptionValue = this.config.get('descriptionMarker', 'description')
-    this.sourceValue = this.config.get('sourceMarker', 'source')
-  }
-
-  prefix(): string {
-    return this.prefixValue
-  }
-
-  id(): string {
-    return this.idValue
-  }
-
-  alias(): string {
-    return this.aliasValue
-  }
-
-  type(): string {
-    return this.typeValue
-  }
-
-  entity(): string {
-    return this.entityValue
-  }
-
-  property(): string {
-    return this.propertyValue
-  }
-
-  method(): string {
-    return this.methodValue
-  }
-
-  description(): string {
-    return this.descriptionValue
-  }
-
-  source(): string {
-    return this.sourceValue
-  }
-
-  getAllPrefixValues(): string[] {
-    return [
-      this.id(),
-      this.alias(),
-      this.type(),
-      this.entity(),
-      this.property(),
-      this.method(),
-      this.description(),
-      this.source(),
-    ]
+    console.log('EI configuration file not found, using default configuration')
+    return DEFAULT_CONFIG
   }
 }
 
@@ -185,27 +151,21 @@ export class CommentsConfiguration {
  * Configurates EI extension.
  */
 export class Config {
-  private _config: ConfigType | null = null
-  private _annotationMarkers: AnnotationMarkers | null = null
+  private _eiconfig: EIConfigType | null = null
   private _commentsConfiguration: CommentsConfiguration | null = null
 
   async init(relativeFilePath: string = 'ei-config.json'): Promise<void> {
-    this._config = await getConfig(relativeFilePath)
-    this._annotationMarkers = new AnnotationMarkers(this._config)
+    this._eiconfig = await getConfig(relativeFilePath)
     this._commentsConfiguration = new CommentsConfiguration()
     this._commentsConfiguration.updateLanguagesDefinitions()
     this._commentsConfiguration.initAllLanguages()
   }
 
-  get serverUrl(): string {
-    return this._config!.get('serverUrl', 'http://localhost:8080')
-  }
-
-  get annotationMarkers(): AnnotationMarkers {
-    if (!this._annotationMarkers) {
-      throw new Error('Annotation markers not initialized')
+  get eiconfig(): EIConfigType {
+    if (!this._eiconfig) {
+      throw new Error('Configuration not initialized')
     }
-    return this._annotationMarkers
+    return this._eiconfig
   }
 
   get commentsConfiguration(): CommentsConfiguration {
@@ -213,6 +173,10 @@ export class Config {
       throw new Error('Comments configuration not initialized')
     }
     return this._commentsConfiguration
+  }
+
+  get allAnnotationMarkersNames(): string[] {
+    return Object.values(this.eiconfig.markers)
   }
 }
 

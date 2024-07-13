@@ -24,7 +24,7 @@ export class SnippetsProvider implements InlineCompletionItemProvider {
     const suggestionItems: InlineCompletionItem[] = []
 
     for (const key in snippets) {
-      if (textBeforeCursor.endsWith(config.annotationMarkers.prefix() + key)) {
+      if (textBeforeCursor.endsWith(config.eiconfig.prefix + key)) {
         const snippet = snippets[key]
         suggestionItems.push(
           new InlineCompletionItem(

@@ -72,11 +72,14 @@ export class AnnotationReader {
     let match
     const annotations: IAnnotation[] = []
     while ((match = regEx.exec(text.toString()))) {
+      if (match[0].length === 0) {
+        continue
+      }
       const annotationString = match[2].trim()
       const annotationName = annotationString.split(' ')[0]
       const annotationValue =
         annotationName === annotationString ? null : annotationString.split(' ').slice(1).join(' ')
-      console.log(`Annotation name: ${annotationName} and value: ${annotationValue}`)
+      console.log(`Found annotation: ${annotationName} with value: ${annotationValue}`)
       annotations.push({
         name: annotationName,
         value: annotationValue,
@@ -116,7 +119,7 @@ export class AnnotationReader {
     }
 
     // Apply all configurable comment start tags
-    this.prefixRegexExpression += `${config.annotationMarkers.prefix()}+(.*)`
+    this.prefixRegexExpression += `${config.eiconfig.prefix}+(.*)`
   }
 
   private setDelimiter(languageExtension: string): void {

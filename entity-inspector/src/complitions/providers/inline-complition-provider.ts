@@ -20,9 +20,9 @@ export class SuggestionProvider implements InlineCompletionItemProvider {
     const textBeforeCursor = document.getText(new Range(position.with(undefined, 0), position))
 
     const suggestionItems: InlineCompletionItem[] = []
-    const prefix = config.annotationMarkers.prefix()
-    const source = config.annotationMarkers.source()
-    const serverUrl = config.serverUrl
+    const prefix = config.eiconfig.prefix
+    const source = config.eiconfig.markers.source
+    const serverUrl = config.eiconfig.server.url
 
     if (
       textBeforeCursor.match(prefix + source + ' ') &&
