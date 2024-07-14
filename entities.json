@@ -1,0 +1,171 @@
+{
+    "entities": [
+        {
+            "name": "Annotation",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/annotation-model.ts",
+                    "identifier": ":Annotation",
+                    "description": null,
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": null
+                        },
+                        {
+                            "name": "value",
+                            "description": null
+                        },
+                        {
+                            "name": "annotationStartPos",
+                            "description": null
+                        },
+                        {
+                            "name": "annotationEndPos",
+                            "description": null
+                        }
+                    ]
+                },
+                {
+                    "from_file": "./backend/models/annotation_model.py",
+                    "identifier": ":Annotation",
+                    "description": null,
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": null
+                        },
+                        {
+                            "name": "value",
+                            "description": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SourceFileAnotations",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/annotation-model.ts",
+                    "identifier": ":SourceFileAnotations",
+                    "description": null,
+                    "properties": [
+                        {
+                            "name": "relativeFilePath",
+                            "description": null
+                        }
+                    ]
+                },
+                {
+                    "from_file": "./backend/models/annotation_model.py",
+                    "identifier": ":SourceFileAnotations",
+                    "description": null,
+                    "properties": [
+                        {
+                            "name": "relativeFilePath",
+                            "description": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AnotationModel",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/instatnce-model.ts",
+                    "identifier": ":Identifiable",
+                    "description": null,
+                    "properties": [
+                        {
+                            "name": "Identifiable",
+                            "description": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Property",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/instatnce-model.ts",
+                    "identifier": ":Property",
+                    "description": "Property.",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Method",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/instatnce-model.ts",
+                    "identifier": ":Method",
+                    "description": "Method.",
+                    "properties": []
+                }
+            ]
+        },
+        {
+            "name": "EntityInstance",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/instatnce-model.ts",
+                    "identifier": ":EntityInstance",
+                    "description": null,
+                    "properties": [
+                        {
+                            "name": "source",
+                            "description": null
+                        },
+                        {
+                            "name": "name",
+                            "description": null
+                        },
+                        {
+                            "name": "description",
+                            "description": null
+                        },
+                        {
+                            "name": "properties",
+                            "description": null
+                        },
+                        {
+                            "name": "properties",
+                            "description": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Entity",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/instatnce-model.ts",
+                    "identifier": ":Entity",
+                    "description": null,
+                    "properties": []
+                }
+            ]
+        },
+        {
+            "name": "InstanceModel",
+            "instances": [
+                {
+                    "from_file": "./entity-inspector/src/model/instatnce-model.ts",
+                    "identifier": ":InstanceModel",
+                    "description": null,
+                    "properties": []
+                }
+            ]
+        }
+    ]
+}

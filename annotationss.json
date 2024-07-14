@@ -1,0 +1,434 @@
+{
+    "filesAnnotations": [
+        {
+            "relativeFilePath": "./entity-inspector/src/model/annotation-model.ts",
+            "annotations": [
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 1
+                },
+                {
+                    "name": "identifier",
+                    "value": ":Annotation",
+                    "lineNumber": 2
+                },
+                {
+                    "name": "name",
+                    "value": "Annotation",
+                    "lineNumber": 3
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 6
+                },
+                {
+                    "name": "name",
+                    "value": "name",
+                    "lineNumber": 7
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 9
+                },
+                {
+                    "name": "name",
+                    "value": "value",
+                    "lineNumber": 10
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 12
+                },
+                {
+                    "name": "name",
+                    "value": "annotationStartPos",
+                    "lineNumber": 13
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 15
+                },
+                {
+                    "name": "name",
+                    "value": "annotationEndPos",
+                    "lineNumber": 16
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 18
+                },
+                {
+                    "name": "name",
+                    "value": "annotationLine",
+                    "lineNumber": 19
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 23
+                },
+                {
+                    "name": "identifier",
+                    "value": ":SourceFileAnotations",
+                    "lineNumber": 24
+                },
+                {
+                    "name": "name",
+                    "value": "SourceFileAnotations",
+                    "lineNumber": 25
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 28
+                },
+                {
+                    "name": "name",
+                    "value": "relativeFilePath",
+                    "lineNumber": 29
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 32
+                },
+                {
+                    "name": "name",
+                    "value": "annotations",
+                    "lineNumber": 33
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 38
+                },
+                {
+                    "name": "identifier",
+                    "value": ":AnotationModel",
+                    "lineNumber": 39
+                },
+                {
+                    "name": "name",
+                    "value": "AnotationModel",
+                    "lineNumber": 40
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 43
+                },
+                {
+                    "name": "name",
+                    "value": "filesAnotations",
+                    "lineNumber": 44
+                }
+            ]
+        },
+        {
+            "relativeFilePath": "./entity-inspector/src/model/instatnce-model.ts",
+            "annotations": [
+                {
+                    "name": "identifier",
+                    "value": ":Identifiable",
+                    "lineNumber": 1
+                },
+                {
+                    "name": "name",
+                    "value": "Identifiable",
+                    "lineNumber": 2
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 5
+                },
+                {
+                    "name": "name",
+                    "value": "identifier",
+                    "lineNumber": 6
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 10
+                },
+                {
+                    "name": "identifier",
+                    "value": ":Property",
+                    "lineNumber": 11
+                },
+                {
+                    "name": "name",
+                    "value": "Property",
+                    "lineNumber": 12
+                },
+                {
+                    "name": "description",
+                    "value": "Property.",
+                    "lineNumber": 13
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 15
+                },
+                {
+                    "name": "name",
+                    "value": "name",
+                    "lineNumber": 16
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 18
+                },
+                {
+                    "name": "name",
+                    "value": "description",
+                    "lineNumber": 19
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 23
+                },
+                {
+                    "name": "identifier",
+                    "value": ":Method",
+                    "lineNumber": 24
+                },
+                {
+                    "name": "name",
+                    "value": "Method",
+                    "lineNumber": 25
+                },
+                {
+                    "name": "description",
+                    "value": "Method.",
+                    "lineNumber": 26
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 29
+                },
+                {
+                    "name": "identifier",
+                    "value": ":EntityInstance",
+                    "lineNumber": 30
+                },
+                {
+                    "name": "name",
+                    "value": "EntityInstance",
+                    "lineNumber": 31
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 34
+                },
+                {
+                    "name": "name",
+                    "value": "source",
+                    "lineNumber": 35
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 37
+                },
+                {
+                    "name": "name",
+                    "value": "name",
+                    "lineNumber": 38
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 40
+                },
+                {
+                    "name": "name",
+                    "value": "description",
+                    "lineNumber": 41
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 43
+                },
+                {
+                    "name": "name",
+                    "value": "properties",
+                    "lineNumber": 44
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 46
+                },
+                {
+                    "name": "name",
+                    "value": "properties",
+                    "lineNumber": 47
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 49
+                },
+                {
+                    "name": "name",
+                    "value": "extends",
+                    "lineNumber": 50
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 54
+                },
+                {
+                    "name": "identifier",
+                    "value": ":Entity",
+                    "lineNumber": 55
+                },
+                {
+                    "name": "name",
+                    "value": "Entity",
+                    "lineNumber": 56
+                },
+                {
+                    "name": "extends",
+                    "value": ":Identifiable",
+                    "lineNumber": 57
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 60
+                },
+                {
+                    "name": "name",
+                    "value": "instances",
+                    "lineNumber": 61
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 65
+                },
+                {
+                    "name": "identifier",
+                    "value": ":InstanceModel",
+                    "lineNumber": 66
+                },
+                {
+                    "name": "name",
+                    "value": "InstanceModel",
+                    "lineNumber": 67
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 70
+                },
+                {
+                    "name": "name",
+                    "value": "entities",
+                    "lineNumber": 71
+                }
+            ]
+        },
+        {
+            "relativeFilePath": "./backend/models/annotation_model.py",
+            "annotations": [
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 5
+                },
+                {
+                    "name": "identifier",
+                    "value": ":Annotation",
+                    "lineNumber": 6
+                },
+                {
+                    "name": "name",
+                    "value": "Annotation",
+                    "lineNumber": 7
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 11
+                },
+                {
+                    "name": "name",
+                    "value": "name",
+                    "lineNumber": 12
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 14
+                },
+                {
+                    "name": "name",
+                    "value": "value",
+                    "lineNumber": 15
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 17
+                },
+                {
+                    "name": "name",
+                    "value": "line",
+                    "lineNumber": 18
+                },
+                {
+                    "name": "entity",
+                    "value": null,
+                    "lineNumber": 22
+                },
+                {
+                    "name": "identifier",
+                    "value": ":SourceFileAnotations",
+                    "lineNumber": 23
+                },
+                {
+                    "name": "name",
+                    "value": "SourceFileAnotations",
+                    "lineNumber": 24
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 28
+                },
+                {
+                    "name": "name",
+                    "value": "relativeFilePath",
+                    "lineNumber": 29
+                },
+                {
+                    "name": "property",
+                    "value": null,
+                    "lineNumber": 32
+                },
+                {
+                    "name": "name",
+                    "value": "annotations",
+                    "lineNumber": 33
+                }
+            ]
+        }
+    ]
+}
