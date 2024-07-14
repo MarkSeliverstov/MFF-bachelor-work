@@ -3,7 +3,7 @@ import AnnotationList from '../components/AnnotationsList.vue'
 </script>
 
 <template>
-  <main>
+  <main class="q-pa-md">
     <AnnotationList />
   </main>
 </template>
