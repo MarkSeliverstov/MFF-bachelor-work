@@ -22,7 +22,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build: {
-    outDir: '../static/'
-  }
+  publicPath: process.env.NODE_ENV === "production" ? "/MFF-bachelor-work/" : "/",
 })
