@@ -3,7 +3,7 @@ import EntityList from '../components/EntityList.vue'
 </script>
 
 <template>
-  <main>
+  <main class="q-pa-md">
     <EntityList />
   </main>
 </template>

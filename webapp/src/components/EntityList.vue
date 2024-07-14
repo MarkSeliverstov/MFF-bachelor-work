@@ -1,18 +1,85 @@
 <template>
-  <div class="q-pa-md">
-    <h4 class="text-subtitle" style="margin: 0 10px 10px 0">Entities</h4>
-    <p>
-      This is a list of all entities from your project. You can filter the list by typing in the
-      input field below.
-    </p>
-    <q-input ref="filterRef" filled v-model="filter" label="Filter">
-      <template v-slot:append>
-        <q-icon v-if="filter !== ''" name="clear" class="cursor-pointer" @click="resetFilter" />
-      </template>
-    </q-input>
+  <h4 class="text-subtitle" style="margin: 0 10px 10px 0">Entities</h4>
+  <p>
+    This is a list of all entities from your project. You can filter the list by typing in the input
+    field below.
+  </p>
 
-    <q-tree :nodes="NodeTree" node-key="label" dense :filter="filter" class="text-h6 q-pa-md" />
+  <q-input ref="filterRef" filled v-model="filter" label="Filter">
+    <template v-slot:append>
+      <q-icon v-if="filter !== ''" name="clear" class="cursor-pointer" @click="resetFilter" />
+      <div v-if="entities.entities" style="font-size: 16px">
+        Found {{ filteredCount() }} entities
+      </div>
+    </template>
+  </q-input>
+
+  <div v-for="entity in entities.entities" :key="entity.name">
+    <q-card
+      flat
+      bordered
+      class="q-ma-md"
+      v-if="entity.name.toLowerCase().includes(filter.toLowerCase())"
+    >
+      <q-item>
+        <q-item-section>
+          <q-expansion-item
+            :label="entity.name"
+            :header-class="`text-h6`"
+            dense
+            switch-toggle-side
+            style="font-size: 16px"
+          >
+            <q-item>
+              <q-item-section>
+                <q-list bordered class="rounded-borders" style="margin: 10px 0" separator>
+                  <q-item v-for="instance in entity.instances" :key="instance.identifier">
+                    <q-item-section>
+                      <div class="q-pa-md example-row-all-breakpoints">
+                        <div class="row" style="font-style: italic">
+                          <div class="col" style="font-weight: bold">{{ instance.identifier }}</div>
+                          {{ instance.from_file }}
+                        </div>
+
+                        <div class="row" v-if="instance.description">
+                          <div class="col">( {{ instance.description }} )</div>
+                        </div>
+
+                        <div class="row" style="margin-top: 10px">
+                          <div class="col">
+                            <q-card flat bordered>
+                              <q-expansion-item
+                                :label="`Properties ( ${instance.properties.length} )`"
+                                dense
+                                switch-toggle-side
+                                style="font-size: 16px"
+                                :content-inset-level="1"
+                              >
+                                <q-separator />
+                                <div v-for="property in instance.properties" :key="property.name">
+                                  <q-item-section>
+                                    {{ property.name }}
+                                    <span v-if="property.description">
+                                      ( {{ property.description }} )
+                                    </span>
+                                  </q-item-section>
+                                </div>
+                              </q-expansion-item>
+                            </q-card>
+                          </div>
+                        </div>
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-item-section>
+            </q-item>
+          </q-expansion-item>
+        </q-item-section>
+      </q-item>
+    </q-card>
   </div>
+
   <q-spinner
     color="primary"
     size="3em"
@@ -29,12 +96,10 @@ export default {
     const $q = useQuasar()
     const filter = ref('')
     const filterRef = ref(null)
-    const NodeTree = ref([])
 
     return {
       filter,
       filterRef,
-      NodeTree,
       resetFilter() {
         filter.value = ''
         filterRef.value.focus()
@@ -45,13 +110,13 @@ export default {
   data() {
     return {
       loading: true,
-      entities: {},
-      tree: [],
+      entities: [],
       id: null
     }
   },
   beforeMount() {
-    this.convertToTree()
+    this.entities = this.fetchData()
+    this.loading = false
   },
   created() {
     let urlParams = new URLSearchParams(window.location.search)
@@ -82,53 +147,13 @@ export default {
         this.entities = await response.json()
         return this.entities
       } catch (error) {
-        this.notify(`Failed to fetch data: ${error}`)
+        this.notify('Failed to fetch data')
       }
     },
-    async convertToTree() {
-      const entities = await this.fetchData()
-      if (!entities) {
-        return
-      }
-      const tree = []
-      for (const i in entities.entities) {
-        const entity = entities.entities[i]
-        const entityNode = {
-          label: entity.name,
-          children: []
-        }
-        for (const j in entity.instances) {
-          const instance = entity.instances[j]
-          entityNode.children.push(
-            { label: 'id: ' + instance.identifier },
-            { label: 'description: ' + instance.description },
-            { label: 'from file: ' + instance.from_file }
-          )
-          for (const k in instance.properties) {
-            const property = instance.properties[k]
-            entityNode.children.push({
-              label: 'properties',
-              children: [
-                {
-                  label: `${property.name}`,
-                  children: [{ label: `description: ${property.description}` }]
-                }
-              ]
-            })
-          }
-
-          // filter by id if id is present in the url
-          if (this.id) {
-            if (instance.identifier === this.id) {
-              tree.push(entityNode)
-            }
-          } else {
-            tree.push(entityNode)
-          }
-        }
-        this.NodeTree = tree
-        this.loading = false
-      }
+    filteredCount() {
+      return this.entities.entities.filter((entity) =>
+        entity.name.toLowerCase().includes(this.filter.toLowerCase())
+      ).length
     }
   }
 }
