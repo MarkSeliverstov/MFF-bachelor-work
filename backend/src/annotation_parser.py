@@ -51,7 +51,6 @@ class AnnotationParser:
                 for dir in dirs:
                     if any(ex == dir for ex in self.parser_exclude):
                         continue
-                    model.extend(self.parse(os.path.join(root, dir)))
             return model
         else:
             raise ValueError(f"Invalid path: {path}")
