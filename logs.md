@@ -137,4 +137,41 @@ Additional: Wrote readme's for the backend, cleaned up the code.
 - [ ] Analyze - what is the problem? Use cases and examples. Who is the user?
   What is the goal? What is the solution? OR Design
 
+## 19.07.2024
 
+- Hints - refactoring
+- Inline hints - fix formatting
+- Inline hints - snippets customization
+- Markers customization in config
+
+Webapp:
+
+- Upload annotations and entities files in home view (if urls are not set in
+  the env)
+- Add checkboxes for annotation names in the search view
+- When there is no filtered data - show label "No data found"
+
+Documentation:
+
+- Fix about page in webapp (write it really like about page)
+- Change logo and page title in webapp
+- Add documentation abot file structure using [json-schema](https://json-schema.org/learn/getting-started-step-by-step) + add version
+
+Backend:
+
+- CLI strict uargument using and help message
+- CLI - more logs
+- CLI - info about stepsa after parse (that you can upload the model to the server)
+- `python cli.py parse ./entity-inspector` = `python cli.py parse ~/git/mff/MFF-bachelor-work/entity-inspector`
+
+Documentation:
+
+- title
+- `Instalation` part instead of `Getting`
+- README per each component and link to in the main README
+- Tutorialek
+- Separate landing page about the project
+
+Text: 
+
+- Update ralated work
