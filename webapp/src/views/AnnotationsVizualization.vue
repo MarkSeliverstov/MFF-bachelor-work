@@ -1,5 +1,5 @@
 <script setup>
-import AnnotationList from '../components/AnnotationsList.vue'
+import AnnotationList from '../components/AnnotationsList/AnnotationsList.vue'
 </script>
 
 <template>

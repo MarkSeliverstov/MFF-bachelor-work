@@ -1,5 +1,5 @@
 <script setup>
-import EntityList from '../components/EntityList.vue'
+import EntityList from '../components/EntityList/EntityList.vue'
 </script>
 
 <template>
