@@ -7,19 +7,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: { title: 'Home' }
     },
     {
       path: '/entities',
       name: 'entities',
+      meta: { title: 'Entities' },
       component: () => import('../views/EntityVisualizationView.vue')
     },
     {
       path: '/annotations',
       name: 'annotations',
+      meta: { title: 'Annotations' },
       component: () => import('../views/AnnotationsVizualization.vue')
     }
   ]
+})
+router.beforeEach((to, _, next) => {
+  const defaultTitle = "EI Vizualization"
+  document.title = to.meta.title ? `${to.meta.title} | ${defaultTitle}` : defaultTitle
+  next()
 })
 
 export default router
