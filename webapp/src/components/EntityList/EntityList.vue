@@ -9,8 +9,10 @@
 
   <div v-if="!entities.entities" class="q-ma-md">
     <p class="text-body1">
-      You can upload a JSON file containing entities. The file should have the following format (
-      <q-btn @click="$router.replace('/entities/schema')">JSON schema</q-btn>):
+      You can upload a JSON file containing entities. The file should have the following format (<a
+        href="/entities/schema"
+        >JSON schema</a
+      >):
     </p>
     <pre>
       {

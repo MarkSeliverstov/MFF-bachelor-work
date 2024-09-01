@@ -9,8 +9,10 @@
 
   <div v-if="!entities.filesAnnotations" class="q-ma-md">
     <p class="text-body1">
-      You can upload a JSON file containing entities. The file should have the following format (
-      <q-btn @click="$router.replace('/annotations/schema')">JSON schema</q-btn>):
+      You can upload a JSON file containing entities. The file should have the following format (<a
+        href="/annotations/schema"
+        >JSON schema</a
+      >):
     </p>
     <pre>
       {
