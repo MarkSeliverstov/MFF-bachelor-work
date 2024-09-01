@@ -1,4 +1,5 @@
 import { useQuasar } from 'quasar'
+import Ajv from 'ajv'
 
 export async function fetchData(url) {
   try {
@@ -24,6 +25,26 @@ export function error_notify(message) {
     message: message,
     position: 'top-right',
     icon: 'error',
+    timeout: 2000
+  })
+}
+
+export function success_notify(message) {
+  const $q = useQuasar()
+  $q.notify({
+    color: 'green',
+    message: message,
+    position: 'top-right',
+    icon: 'check',
     timeout: 1000
   })
+}
+
+export function isValidJsonSchema(data, schema) {
+  const ajv = new Ajv()
+  const valid = ajv.validate(schema, data)
+  if (!valid) {
+    return ajv.errorsText(valid.errors)
+  }
+  return null
 }

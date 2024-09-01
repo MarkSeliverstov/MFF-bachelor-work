@@ -1,5 +1,6 @@
 import { ref } from 'vue'
-import { fetchData } from '../Utils.js'
+import { fetchData, isValidJsonSchema, error_notify, success_notify } from '../Utils.js'
+import annotationsSchema from '../../schemes/annotations.schema.json'
 
 const columns = [
   {
@@ -67,7 +68,7 @@ export default {
   async beforeMount() {
     if (localStorage.getItem('annotations')) {
       this.entities = JSON.parse(localStorage.getItem('annotations'))
-      console.log('Loaded annotations from local storage')
+      this.validateCurrentAnnotations()
     } else {
       // fetchData(import.meta.env.VITE_ENTITIES_URL).then((data) => {
       //   this.entities = data
@@ -100,6 +101,16 @@ export default {
     clearEntities() {
       localStorage.removeItem('annotations')
       window.location.reload()
+    },
+
+    validateCurrentAnnotations() {
+      const error = isValidJsonSchema(this.entities, annotationsSchema)
+      if (error !== null) {
+        error_notify('Annotations are not valid: ' + error)
+        localStorage.removeItem('annotations')
+      } else {
+        success_notify('Annotations are successfully loaded')
+      }
     }
   }
 }

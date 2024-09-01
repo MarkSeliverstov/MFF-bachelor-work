@@ -1,5 +1,6 @@
 import { ref } from 'vue'
-import { fetchData } from '../Utils.js'
+import { fetchData, isValidJsonSchema, error_notify, success_notify } from '../Utils.js'
+import entitiesSchema from '../../schemes/entities.schema.json'
 
 export default {
   setup() {
@@ -43,7 +44,7 @@ export default {
   beforeMount() {
     if (localStorage.getItem('entities')) {
       this.entities = JSON.parse(localStorage.getItem('entities'))
-      console.log('Loaded entities from local storage')
+      this.validateCurrentEntities()
     } else {
       // fetchData(import.meta.env.VITE_ENTITIES_URL).then((data) => {
       //   this.entities = data
@@ -73,5 +74,15 @@ export default {
         entity.name.toLowerCase().includes(this.filter.toLowerCase())
       ).length
     },
+
+    validateCurrentEntities() {
+      const error = isValidJsonSchema(this.entities, entitiesSchema)
+      if (error !== null) {
+        error_notify('Entities are not valid: ' + error)
+        localStorage.removeItem('entities')
+      } else {
+        success_notify('Entities are successfully loaded')
+      }
+    }
   }
 }
