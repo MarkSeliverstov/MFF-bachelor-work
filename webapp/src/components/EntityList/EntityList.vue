@@ -1,15 +1,16 @@
 <template>
   <div class="q-pa-md">
     <h4 class="text-subtitle" style="margin: 0 10px 10px 0">Entities</h4>
-    <p>
+    <p class="text-body1">
       This is a list of all entities from your project. You can filter the list by typing in the
       input field below.
     </p>
   </div>
 
   <div v-if="!entities.entities" class="q-ma-md">
-    <p>
-      You can upload a JSON file containing entities. The file should have the following format:
+    <p class="text-body1">
+      You can upload a JSON file containing entities. The file should have the following format (
+      <q-btn @click="$router.replace('/entities/schema')">JSON schema</q-btn>):
     </p>
     <pre>
       {
@@ -33,7 +34,7 @@
         ]
       }
     </pre>
-    <q-file @update:model-value="updateFile" clearable filled label="Pick files" class="q-ma-md" />
+    <q-file @update:model-value="updateFile" clearable filled label="Upload" class="q-ma-md" />
   </div>
   <div v-else-if="entities.entities.length === 0" class="q-ma-md">
     <p>No entities found</p>

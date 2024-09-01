@@ -1,15 +1,16 @@
 <template>
   <div class="q-pa-md">
     <h4 class="text-subtitle" style="margin: 0 10px 10px 0">Annotations</h4>
-    <p>
+    <p class="text-body1">
       This is a list of all annotations from your project files, displayed line by line. You can
       filter the list by typing in the input field below.
     </p>
   </div>
 
   <div v-if="!entities.filesAnnotations" class="q-ma-md">
-    <p>
-      You can upload a JSON file containing entities. The file should have the following format:
+    <p class="text-body1">
+      You can upload a JSON file containing entities. The file should have the following format (
+      <q-btn @click="$router.replace('/annotations/schema')">JSON schema</q-btn>):
     </p>
     <pre>
       {
@@ -26,7 +27,7 @@
           }
         ]
     </pre>
-    <q-file @update:model-value="updateFile" clearable filled label="Pick files" class="q-ma-md" />
+    <q-file @update:model-value="updateFile" clearable filled label="Upload" class="q-ma-md" />
   </div>
   <div v-else-if="entities.filesAnnotations.length === 0" class="q-ma-md">
     <p>No entities found</p>
@@ -44,7 +45,12 @@
     </q-input>
 
     <div v-for="annotation in entities.filesAnnotations" :key="annotation.identifier">
-      <q-card flat bordered class="q-ma-md" v-if="filtredAnnotations(annotation.annotations).length > 0">
+      <q-card
+        flat
+        bordered
+        class="q-ma-md"
+        v-if="filtredAnnotations(annotation.annotations).length > 0"
+      >
         <q-item>
           <q-item-section>
             <q-expansion-item

@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+import entitiesSchema from '../schemes/entities.schema.json'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: { title: 'Home' }
+      name: 'About',
+      component: () => import('../views/AboutView.vue'),
+      meta: { title: 'About' }
     },
     {
       path: '/entities',
@@ -21,6 +22,18 @@ const router = createRouter({
       name: 'annotations',
       meta: { title: 'Annotations' },
       component: () => import('../views/AnnotationsVizualization.vue')
+    },
+    {
+      path: '/annotations/schema',
+      name: 'annotations-schema',
+      meta: { title: 'Annotations Schema' },
+      component: () => import('../views/AnnotationsSchema.vue')
+    },
+    {
+      path: '/entities/schema',
+      name: 'entities-schema',
+      meta: { title: 'Entities Schema' },
+      component: () => import('../views/EntitiesSchema.vue')
     }
   ]
 })
