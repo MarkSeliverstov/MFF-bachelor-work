@@ -62,6 +62,7 @@ export default {
 
   data() {
     return {
+      isLoadedNewAnnotations: false,
       entities: {}
     }
   },
@@ -108,8 +109,6 @@ export default {
       if (error !== null) {
         error_notify('Annotations are not valid: ' + error)
         localStorage.removeItem('annotations')
-      } else {
-        success_notify('Annotations are successfully loaded')
       }
     }
   }

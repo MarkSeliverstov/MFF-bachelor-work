@@ -44,7 +44,7 @@
     </q-input>
 
     <div v-for="annotation in entities.filesAnnotations" :key="annotation.identifier">
-      <q-card flat bordered class="q-ma-md">
+      <q-card flat bordered class="q-ma-md" v-if="filtredAnnotations(annotation.annotations).length > 0">
         <q-item>
           <q-item-section>
             <q-expansion-item

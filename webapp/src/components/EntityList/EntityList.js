@@ -23,10 +23,7 @@ export default {
       console.log(reader.error)
     }
 
-    return {
-      filter,
-      filterRef,
-      reader,
+    return { filter, filterRef, reader,
       resetFilter() {
         filter.value = ''
         filterRef.value.focus()
@@ -80,8 +77,6 @@ export default {
       if (error !== null) {
         error_notify('Entities are not valid: ' + error)
         localStorage.removeItem('entities')
-      } else {
-        success_notify('Entities are successfully loaded')
       }
     }
   }
