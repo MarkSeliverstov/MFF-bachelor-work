@@ -1,0 +1,3 @@
+[submodule "lsa-cli"]
+	path = lsa-cli
+	url = https://github.com/MarkSeliverstov/lsa-cli
