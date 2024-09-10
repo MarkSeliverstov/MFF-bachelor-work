@@ -1,38 +1,51 @@
 # Entity-Inspector
 
-It is the plugin for VS Code that provides the ability to analyze the structure of the code and extract information about objects and entities used in the project.
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/smdmrr.entity-inspector)
 
-The plugin can scan the source code for the presence of classes, functions, variables, modules, packages and other entities, and then represent the objects found in the form of a hierarchical structure that allows you to quickly find the desired object.
+This plugin for VS Code is a part of the LSA (Linking software artifacts)
+project. The plugin provides a way to help developers write code artifacts to
+define entities and their properties.
 
-Users can use Entity-Inspector to quickly find definitions and uses of objects, as well as to debug code. The plugin makes it easier to work with large projects, where a lot of objects can be confusing and difficult to track.
+## Configuration
 
-## How to install
+Default configuration file is `.lsa-config.json` in the current working directory.
+You can specify the path to the configuration file in the settings.
 
-```bash
-$ git clone git@github.com:MarkSeliverstov/MFF-YearProject.git    # clone the repository
-$ cd MFF-BACHELOR-WORK/entity-inspector                           # go to the extension folder
-$ npm install                                                     # install npm packages
-$ npm run build                                                   # create vsix package in current folder
+If the file is not found, default configuration is used:
+
+```json
+{
+  "markers": {
+    "prefix": "@lc-",
+    "identifier": "identifier",
+    "name": "name",
+    "type": "type",
+    "description": "description",
+    "entity": "entity",
+    "property": "property",
+    "method": "method",
+    "source": "source"
+  }
+}
 ```
 
-After that, you can install the extension in VS Code by opening the command palette `ctrl+shift+p` and typing `Extensions: Install from VSIX...` and selecting the generated vsix file. 
+#### markers
 
-Then you can use it like a normal extension from the marketplace.
+In the `markers` section you can specify the names of the fields that are used
+in the annotations.
 
-- In the `examples folder`, you can find examples of code that can be analyzed by the extension.
+**Example:**
 
-**Enjoy!**
-
-## Release Notes
-
-### 0.0.1
-
-- The extension can **hint to the user** about existing artifacts with IntelliSense `ctrl+space` when your cursor is in the `@lc-`
-    ![Alt text](assets/hints.png)
-- Extension can inline-suggest snippets for `@lc-enity` / `@lc-property` / `@lc-method`.
-    ![Alt text](assets/inline-snippets.png)
-- Extension can inline-suggest user defined source as `@lc-source ...` if exists.
-    ![Alt text](assets/inline-source.png)
-    ![Alt text](assets/setings-source.png)
-- Also you can add your definition of markers (`@lc-`, `entity`, `property`, ...).
-    ![Alt text](assets/settings-example.png)
+```python
+# @lc-entity
+# @lc-identifier :Annotation
+# @lc-name Annotation
+# @lc-description Base class for all annotations.
+class Annotation:
+    # @lc-property
+    # @lc-name name
+    name: str
+    # @lc-property
+    # @lc-name value
+    value: str | None
+```

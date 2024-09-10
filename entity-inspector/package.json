@@ -1,9 +1,10 @@
 {
   "name": "entity-inspector",
+  "publisher": "smdmrr",
   "displayName": "Entity Inspector",
   "repository": "https://github.com/MarkSeliverstov/MFF-bachelor-work",
   "description": "It allows analyzing code structure and extracting information about objects and entities used in the project. The plugin can scan source code for classes, functions, variables, modules, packages, and other.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.77.0"
   },
