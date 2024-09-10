@@ -4,7 +4,7 @@
   "displayName": "LSA Helper",
   "repository": "https://github.com/MarkSeliverstov/MFF-bachelor-work",
   "description": "Linking Software Artifacts (LSA) helper provides a way to help developers write code artifacts to define entities and their properties.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.77.0"
   },
