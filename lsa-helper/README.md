@@ -6,6 +6,22 @@ This plugin for VS Code is a part of the LSA (Linking software artifacts)
 project. The plugin provides a way to help developers write code artifacts to
 define entities and their properties.
 
+The extension is used to provide support for annotating the code. It provides:
+
+- **Hint to the user** about existing artifacts with IntelliSense `ctrl+space`
+  when your cursor is after the `prefix`(default: `@lc-`).
+
+![suggestions](./assets/hints.png)
+
+- Inline-suggest snippets for `@lc-enity` / `@lc-property` / `@lc-method`.
+
+![snippets](./assets/inline-snippets.png)
+
+<!-- - Inline-suggest user defined source as `@lc-source ...` if exists. -->
+<!---->
+<!-- ![setting source](./assets/setings-source.png) -->
+<!-- ![inline source](./assets/inline-source.png) -->
+
 ## Configuration
 
 Default configuration file is `.lsa-config.json` in the current working directory.

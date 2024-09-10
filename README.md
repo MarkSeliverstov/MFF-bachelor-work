@@ -1,109 +1,124 @@
-# Bachelor work repository
-
-## Linking software artifacts
+# Linking Software Artifacts (LSA)
 
 The increasing size and complexity of software systems creates the need for
-easy navigation and detection of related parts. Finding the use of a component
-or a function declaration is now a commonly available functionality. However,
-this functionality can be extended by linking at the data semantic level. The
-new linking would allow linking data models, specifications, source code in
-different languages, documentation, as well as other artifacts of the software
-system. The basic idea is to use annotations placed in comments to indicate
-significant parts of the artifacts. Annotations can, for example, describe
-selected data entities and their properties. This information could then be
-used, for example, for code analysis, domain model construction, or assisting
-programmers. However, support from software tools is essential for the adoption
-of this approach. As part of the thesis, the student will design and implement
-proof-of-concept solutions that demonstrate the use of the approach described
-above. The solution will include an extension for Visual Studio Code to
-facilitate the developer's annotation. Furthermore, the user will be able to
-annotate data entities with the solution and then visualize their relationships
-across the software system.
+easy navigation and detection of **related parts**. Finding the use of a
+component or a function declaration is now a commonly available functionality.
+However, this functionality can be extended by linking at the data semantic
+level. The new linking would allow linking **data models, specifications,
+source code** in different languages, documentation, as well as other artifacts
+of the software system. The basic idea is to **use annotations placed in
+comments to indicate significant parts of the artifacts**. Annotations can, for
+example, describe selected data entities and their properties. This information
+could then be used, for example, for **code analysis, domain model construction,
+or assisting programmers**.
 
-## Get started
+## Software parts
 
-### Annotations
+- [![Version](https://img.shields.io/pypi/v/lsa-cli?logo=pypi&label=version)](https://pypi.org/project/lsa-cli)
+  [lsa-cli](./lsa-cli) - Python CLI for parsing and converting the code to entities model.
+- [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/lsa.lsa-helper?logo=vscodium)](https://marketplace.visualstudio.com/items?itemName=lsa.lsa-helper)
+  [lsa-helper](./lsa-helper) - VSCode extension for annotating code.
+- [![webpage](https://img.shields.io/badge/markseliverstov.github.io%2FMFF-bachelor-work?label=GH%20pages)](https://markseliverstov.github.io/MFF-bachelor-work/)
+  [lsa-vizualizer](./lsa-vizualizer) - Web application for visualizing the
+  entities model.
 
-```typescript
-// @lc-entity
-// @lc-identifier :Annotation
-// @lc-name Annotation
-// @lc-description Base class for all annotations.
-export interface IAnnotation {
-  // @lc-property
-  // @lc-name name
-  name: string
-  // @lc-property
-  // @lc-name value
-  value: string | null
-  // @lc-property
-  // @lc-name annotationStartPos
-  startPos: number
-  // @lc-property
-  // @lc-name annotationEndPos
-  endPos: number
-  // @lc-property
-  // @lc-name annotationLine
-  lineNumber: number
-}
-```
+### How you can use it
 
-By adding annotations to your code, you can define entities and their
-properties, which can be later used for visualization and analysis. The
-annotations are defined by the `@lc-` prefix, followed by the annotation name.
-The annotation name is followed by the annotation value.
+1. Write your code and annotate it using the [lsa-helper](./lsa-helper/README.md)
+   extension.
 
-> **Note:** You can redefine the prefix and annotation markers in the
-> `ei-config.json` file.
+    <details>
+    <summary>Example</summary>
 
-### Entity Inspector VScode extension
+    ```typescript
+    // @lc-entity
+    // @lc-identifier :Annotation
+    // @lc-name Annotation
+    // @lc-description Base class for all annotations.
+    export interface IAnnotation {
+      // @lc-property
+      // @lc-name name
+      name: string
+      // @lc-property
+      // @lc-name value
+      value: string | null
+      // @lc-property
+      // @lc-name annotationStartPos
+      startPos: number
+      // @lc-property
+      // @lc-name annotationEndPos
+      endPos: number
+      // @lc-property
+      // @lc-name annotationLine
+      lineNumber: number
+    }
+    ```
 
-The extension is used to provide support for annotating the code. It provides:
+    By adding annotations to your code, you can define entities and their
+    properties, which can be later used for visualization and analysis. The
+    annotations are defined by the `@lc-` prefix, followed by the **annotation
+    name**. The **annotation name** is followed by the **annotation value**.
 
-- **Hint to the user** about existing artifacts with IntelliSense `ctrl+space`
-  when your cursor is in the `@lc-`
+    > **Note:** You can redefine the prefix and annotation markers in the
+    > `lsa-config.json` file.
 
-![suggestions](./entity-inspector/assets/hints.png)
+    </details>
 
-- Inline-suggest snippets for `@lc-enity` / `@lc-property` / `@lc-method`.
+2. Use the [lsa-cli](./lsa-cli/README.md) to parse and convert the code to the
+   entities (generates JSON files with the entities (and annotations) model).
 
-![snippets](./entity-inspector/assets/inline-snippets.png)
+   <details>
+   <summary>Example</summary>
 
-- Inline-suggest user defined source as `@lc-source ...` if exists.
+   ```json
+    {
+      "entities": [
+        {
+          "name": "Annotation",
+          "instances": [
+            {
+              "from_file": "source-file.ts",
+              "identifier": ":Annotation",
+              "description": "Base class for all annotations.",
+              "properties": [
+                {
+                  "name": "name",
+                  "description": null
+                },
+                {
+                  "name": "value",
+                  "description": null
+                },
+                {
+                  "name": "annotationstartpos",
+                  "description": null
+                },
+                {
+                  "name": "annotationendpos",
+                  "description": null
+                },
+                {
+                  "name": "annotationline",
+                  "description": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    ```
 
-![setting source](./entity-inspector/assets/setings-source.png)
-![inline source](./entity-inspector/assets/inline-source.png)
+3. Use the [lsa-vizualizer](./lsa-vizualizer/README.md) to visualize the
+   entities model.
 
-### CLI
+## Configuration
 
-The CLI tool is used to parse the code and create an annotations model. The
-model is then used to create an entities model, which is used for visualization
-and analysis.
-
-```bash
-./cli.py parse <path>    # Parse the given path and creates annotations model
-./cli.py convert <path>  # Convert the given path to the entities model
-./cli.py                # Parses root and converts to entities model
-```
-
-### Web application
-
-The web application is used to visualize the entities model. It provides a
-hierarchical view of the entities and their properties.
-
-```bash
-cd ./webapp
-npm install
-npm run dev
-```
-
-![webapp](./assets/webapp.png)
-
-### ei-config.json
-
-The configuration file is used to configure the CLI and extension. You can
-redefine the prefix and annotation markers, as well as the server URL and
-parser settings.
+The configuration (default `.lsa-config.json`) file is used to configure the
+[lsa-cli](./lsa-cli/README.md) and [lsa-helper](./lsa-helper/README.md)
+extension. You can redefine the prefix and annotation markers, as well as the
+server URL and parser settings. If the configuration file is not found, the
+default values are used:
 
 ```json
 {
@@ -118,20 +133,16 @@ parser settings.
     "method": "method",
     "source": "source"
   },
-  "output": {
-    "entities": "entities.json",
-    "annotations": "annotations.json"
-  },
   "server": {
     "url": "http://localhost:5000"
   },
   "parser": {
-    "exclude": ["node_modules", ".git", ".venv"],
-    "extend": {
-      "cjs": "application/javascript",
-      "mjs": "application/javascript",
-      "jsx": "application/javascript"
-    }
+    "output": {
+      "entities": "entities.json",
+      "annotations": "annotations.json"
+    },
+    "exclude": [],
+    "extend": {}
   }
 }
 ```
@@ -139,98 +150,24 @@ parser settings.
 - `<prefix><marker>` - Defines the annotations, where
   - `prefix` - Prefix for the annotations.
   - `markers` - Annotation markers (for example, `<prefix>entity`).
-- `output` - Output files for the CLI.
-- `server` - Server URL for the extension.
+- `server` - Server URL for the extension. The server is used for hinting and
+  completion.
 - `parser` - Parser settings for the CLI.
+  - `output` - Output files for the CLI.
   - `exclude` - Paths to exclude from parsing.
+
+    ```json
+    "exclude": ["node_modules", ".git", ".venv"]
+    ```
+
   - `extend` - File extensions to extend the parser. Where the key is the
     extension and the value is the MIME type ( you can see the list of supported
     MIME types [here](https://github.com/jeanralphaviles/comment_parser)).
 
-## Development
-
-<details close>
-<summary> Details </summary>
-
-## Entity Inspector VScode extension
-
-### Extension installation
-
-```bash
-cd ./entity-inspector                     # go to the extension folder
-npm install                               # install npm packages
-npm run build                             # create vsix package in current folder
-```
-
-## Backend for the project (server and CLI)
-
-### Instalation
-
-```bash
-python3 -m venv .venv           # create virtual env.
-.venv/bin/activate              # Activate venv for Unix
-.venv\Scripts\activate          # Activate venv for Windows
-pip install -r requirements.txt # install dependencies
-```
-
-### Flask sever for Entity Extension
-
-```bash
-python3 run.py                            # runs on `http://127.0.0.1:5000`
-```
-
-### CLI for Entity Extension
-
-| Command | Description |
-| --- | --- |
-| `./cli.py --help` | Display help message |
-| `./cli.py parse <path>` | Parse the given path and creates annotations model |
-| `./cli.py convert <path>` | Convert the given path to the entities model |
-| `./cli.py` | parses root and converts to entities model` |
-
-## Configuration
-
-- `ei-config.json` file is used to configure the CLI and extension:
-
     ```json
-    {
-        "prefixName": "@lc",
-        "identifierMarker": "identifier",
-        "nameMarker": "name",
-        "typeMarker": "type",
-        "descriptionMarker": "description",
-        "entityMarker": "entity",
-        "propertyMarker": "property",
-        "methodMarker": "method",
-        "sourceMarker": "source",
-        "serverUrl": "http://localhost:5000",
-        "annotationsModel": "annotations.json",
-        "entitiesModel": "entities.json",
-        "parserExclude": ["node_modules", ".git", ".venv"],
-        "parserInclude": ["entity-inspector"]
+    "extend": {
+      "cjs": "application/javascript",
+      "mjs": "application/javascript",
+      "jsx": "application/javascript"
     }
     ```
-
-## Web application
-
-Application for ei-models vizualzation. **All commands are executed in the `webapp` folder**
-
-### Project Setup
-
-```sh
-npm install
-```
-
-#### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-#### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-</details>
