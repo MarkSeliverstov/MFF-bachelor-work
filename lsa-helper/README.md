@@ -1,6 +1,6 @@
-# Entity-Inspector
+# LSA Helper
 
-![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/smdmrr.entity-inspector)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/lsa.lsa-helper)
 
 This plugin for VS Code is a part of the LSA (Linking software artifacts)
 project. The plugin provides a way to help developers write code artifacts to
