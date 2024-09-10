@@ -15,17 +15,16 @@ or assisting programmers**.
 ## Software parts
 
 - [![Version](https://img.shields.io/pypi/v/lsa-cli?logo=pypi&label=version)](https://pypi.org/project/lsa-cli)
-  [lsa-cli](./lsa-cli) - Python CLI for parsing and converting the code to entities model.
+  [lsa-cli](https://github.com/MarkSeliverstov/lsa-cli/tree/main) - Python CLI for parsing and converting the code to entities model.
 - [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/lsa.lsa-helper?logo=vscodium)](https://marketplace.visualstudio.com/items?itemName=lsa.lsa-helper)
   [lsa-helper](./lsa-helper) - VSCode extension for annotating code.
 - [![webpage](https://img.shields.io/badge/markseliverstov.github.io%2FMFF-bachelor-work?label=GH%20pages)](https://markseliverstov.github.io/MFF-bachelor-work/)
-  [lsa-vizualizer](./lsa-vizualizer) - Web application for visualizing the
+  [lsa-vizualizer](./lsa-visualizer) - Web application for visualizing the
   entities model.
 
 ### How you can use it
 
-1. Write your code and annotate it using the [lsa-helper](./lsa-helper/README.md)
-   extension.
+1. Write your code and annotate it using the `lsa-helper` extension.
 
     <details>
     <summary>Example</summary>
@@ -64,7 +63,7 @@ or assisting programmers**.
 
     </details>
 
-2. Use the [lsa-cli](./lsa-cli/README.md) to parse and convert the code to the
+2. Use the `lsa-cli` to parse and convert the code to the
    entities (generates JSON files with the entities (and annotations) model).
 
    <details>
@@ -109,16 +108,15 @@ or assisting programmers**.
     }
     ```
 
-3. Use the [lsa-vizualizer](./lsa-vizualizer/README.md) to visualize the
-   entities model.
+3. Use the `lsa-vizualizer` to visualize the entities model.
 
 ## Configuration
 
 The configuration (default `.lsa-config.json`) file is used to configure the
-[lsa-cli](./lsa-cli/README.md) and [lsa-helper](./lsa-helper/README.md)
-extension. You can redefine the prefix and annotation markers, as well as the
-server URL and parser settings. If the configuration file is not found, the
-default values are used:
+[lsa-cli](https://github.com/MarkSeliverstov/lsa-cli/tree/main)
+and [lsa-helper](./lsa-helper) extension. You can redefine the prefix
+and annotation markers, as well as the server URL and parser settings. If the
+configuration file is not found, the default values are used:
 
 ```json
 {
