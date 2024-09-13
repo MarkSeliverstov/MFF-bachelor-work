@@ -1,7 +1,7 @@
 import { config } from '../../extension'
 import { getCurrentFileLanguageId } from '../../utils/vscode-api'
 
-export function getSnippets(): Snippets {
+export function getSnippets(spacesBeforeTextCount: number): Record<string, string> {
   const langId = getCurrentFileLanguageId()
   const commentConfig = langId
     ? config.commentsConfiguration.getCommentConfigurationByLangId(langId)
@@ -11,13 +11,14 @@ export function getSnippets(): Snippets {
     return {}
   }
 
+  const space = ' '.repeat(spacesBeforeTextCount)
   const commentLine = commentConfig.lineComment
   const prefix = config.eiconfig.markers.prefix
-  const base = `${commentLine} ${prefix}name
-${commentLine} ${prefix}description`
+  const base = `${space}${commentLine} ${prefix}name
+${space}${commentLine} ${prefix}description`
 
   const entitySnippet = `
-${commentLine} ${prefix}identifier
+${space}${commentLine} ${prefix}identifier
 ${base}`
 
   return {

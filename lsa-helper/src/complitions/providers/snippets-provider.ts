@@ -19,8 +19,10 @@ export class SnippetsProvider implements InlineCompletionItemProvider {
     position: Position,
   ): ProviderResult<InlineCompletionItem[]> {
     const textBeforeCursor = document.getText(new Range(position.with(undefined, 0), position))
+    const spacesBeforeTextCount =
+      textBeforeCursor.search(/\S/) === -1 ? 0 : textBeforeCursor.search(/\S/)
 
-    const snippets = getSnippets()
+    const snippets = getSnippets(spacesBeforeTextCount)
     const suggestionItems: InlineCompletionItem[] = []
 
     for (const key in snippets) {
