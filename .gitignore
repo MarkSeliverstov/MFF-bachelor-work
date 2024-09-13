@@ -17,4 +17,5 @@ examples
 *model.json
 *annotations.json
 *entities.json
+.lsa-config.json
 .env
