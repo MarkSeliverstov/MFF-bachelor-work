@@ -2,11 +2,11 @@
 
 ## 3.11.2023
 
-New Use Case for NKOD: https://data.gov.cz/datové-sady
+New Use Case for NKOD: <https://data.gov.cz/datové-sady>
 
 Feature to enhance your experience with NKOD or with smthing like that.
 
-**For Analysts:** You can now easily create models and APIs by utilizing 
+**For Analysts:** You can now easily create models and APIs by utilizing
 our *first* extension. This tool is designed to assist you in writing efficient
 code, simplifying your work and increasing productivity.
 
@@ -16,8 +16,7 @@ This extension provides valuable suggestions directly in your code, making the
 process of creating public models and APIs a breeze.
 
 Furthermore, our extension is highly configurable, allowing users to tailor it
-to their specific needs and preferences, thus enhancing the overall user
-experience.
+to their specific needs and preferences, thus enhancing the overall user experience.
 
 ## Need to do
 
@@ -50,7 +49,7 @@ Issues:
 - It make sense LSP instead of VScode extension? Could be used in any
 editors with LSP support.
 - Problem with coplitions - complitions are synchronized, that is, they cannot
-  be used correctly with asynchronous functions (fetch) 
+  be used correctly with asynchronous functions (fetch)
 
 ## 7.02.2024
 
@@ -87,7 +86,7 @@ user template (generates class by entity model)
 - [x] Extracting the annotations from the code by python script
 - [x] Using filepath to model instead of server url in webapp
 - [ ] Command for reloading the model from server instead of auto reload by save
-    - [ ] User setting switch for auto reload
+  - [ ] User setting switch for auto reload
 
 NOTE: Writing about usecases and (?) tutorials - for example, how to extend the
 tool.
@@ -124,7 +123,7 @@ can see locations of the entities and fix it.
 - [?] Add some abstract entities defined by user - how we want to convert and
   use it? (additional prfixes in config file? - [`@lc-issue`] for example)
 - [1/2] Using config file instead of vscode settings - using the same config
-  file for the server and the extension (currently only for the server, for 
+  file for the server and the extension (currently only for the server, for
   extension it is more difficult) - `ei-config.json`
 - [x] Cnnect extractor and server - it is backend no where is server and cli app
 
@@ -172,6 +171,27 @@ Documentation:
 - Tutorialek
 - Separate landing page about the project
 
-Text: 
+Text:
 
 - Update ralated work
+
+### What is DONE
+
+- Upload annotations and entities files (if urls are not set in the env - do we
+  really need local/server files now?)
+- Json schema for the entities, annotations and validation based on it.
+- Divided vue templates to logical js parts
+- Added logo and title to the webapp
+- Viewing schemes in the webapp
+- Fixed about page in the webapp
+- Renaming EI(Entity Inspector) to LSA(Linking Software Artifacts) - is it fine?
+- Making new repository for the project and divide it? Need to create repo for
+  python library. - [new repo](https://github.com/MarkSeliverstov/lsa-cli)
+- Added more logs to the CLI
+- Support custom markers names in the config and cli parser
+- Simplify the CLI usage
+- Added README for all parts of application
+- Rename to LSA (Linking Software Artifacts) project
+- Renamed extension to LSA-Helper and published it
+- Updated Documentation for each part of the project
+- Fixed hinst alignment in the extension
