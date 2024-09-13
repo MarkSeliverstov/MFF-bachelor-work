@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import { Commands, Config } from './configuration'
+import { Config } from './configuration'
 import { initComplitions } from './complitions'
 import { getModel, saveModel, saveAnnotations } from './server'
 import { mockInstanceModel } from './model/mocker'
@@ -53,9 +53,6 @@ function registerCommands(context: vscode.ExtensionContext, reader: AnnotationRe
       },
     )
   }
-  context.subscriptions.push(
-    vscode.commands.registerCommand(Commands.runParserCmd(), runParserHandler),
-  )
 }
 
 // This method is called when your extension is deactivated

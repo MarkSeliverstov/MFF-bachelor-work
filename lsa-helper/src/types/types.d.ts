@@ -11,9 +11,9 @@ type command = string
 type Snippets = Record<string, string>
 
 type AnnotationMarkers = {
+  prefix: string
   identifier: string
   name: string
-  type: string
   description: string
   entity: string
   property: string
@@ -22,16 +22,15 @@ type AnnotationMarkers = {
 }
 
 type EIConfigType = {
-  prefix: string
-  markers: AnnotationMarkers,
-  output: {
-    entities: string
-    annotations: string
-  }
+  markers: AnnotationMarkers
   server: {
     url: string
   }
   parser: {
+    output: {
+      entities: string
+      annotations: string
+    }
     exclude: string[]
     extend: Map<string, string>
   }

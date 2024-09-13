@@ -12,16 +12,17 @@ export function getSnippets(): Snippets {
   }
 
   const commentLine = commentConfig.lineComment
-  const prefix = config.eiconfig.prefix
-  const base = `
-${commentLine} ${prefix}name
+  const prefix = config.eiconfig.markers.prefix
+  const base = `${commentLine} ${prefix}name
 ${commentLine} ${prefix}description`
 
-  return {
-    [config.eiconfig.markers.entity]: `
+  const entitySnippet = `
 ${commentLine} ${prefix}identifier
-${base}`,
+${base}`
+
+  return {
+    [config.eiconfig.markers.entity]: entitySnippet,
     [config.eiconfig.markers.property]: base,
-    [config.eiconfig.markers.property]: base,
+    [config.eiconfig.markers.method]: base,
   }
 }

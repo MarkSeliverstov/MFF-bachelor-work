@@ -4,29 +4,29 @@ import * as path from 'path'
 import { TextDecoder } from 'util'
 
 const DEFAULT_CONFIG: EIConfigType = {
-  prefix: '@lc-',
   markers: {
+    prefix: '@lc-',
     identifier: 'identifier',
     name: 'name',
-    type: 'type',
     description: 'description',
     entity: 'entity',
     property: 'property',
     method: 'method',
     source: 'source',
   },
-  output: {
-    entities: 'entities.json',
-    annotations: 'annotations.json',
-  },
   server: {
     url: 'http://localhost:5000',
   },
   parser: {
+    output: {
+      entities: 'entities.json',
+      annotations: 'annotations.json',
+    },
     exclude: [],
     extend: new Map<string, string>(),
   },
 }
+const EXTENSION_NAME: string = 'lsa-helper'
 
 async function getConfig(relativeFilePath: string): Promise<EIConfigType> {
   const configPath: string = path.join(vscode.workspace.rootPath || '', relativeFilePath)
@@ -34,33 +34,38 @@ async function getConfig(relativeFilePath: string): Promise<EIConfigType> {
   try {
     const rawContent: Uint8Array = await vscode.workspace.fs.readFile(file)
     const content: string = new TextDecoder().decode(rawContent)
-    const user_config: EIConfigType = JSON.parse(content)
+    const userConfig: EIConfigType = JSON.parse(content)
+
+    const markers = userConfig.markers || {}
+    const server = userConfig.server || {}
+    const parser = userConfig.parser || {}
+    const output = parser.output || {}
+
     return {
-      prefix: user_config.prefix || DEFAULT_CONFIG.prefix,
       markers: {
-        identifier: user_config.markers.identifier || DEFAULT_CONFIG.markers.identifier,
-        name: user_config.markers.name || DEFAULT_CONFIG.markers.name,
-        type: user_config.markers.type || DEFAULT_CONFIG.markers.type,
-        description: user_config.markers.description || DEFAULT_CONFIG.markers.description,
-        entity: user_config.markers.entity || DEFAULT_CONFIG.markers.entity,
-        property: user_config.markers.property || DEFAULT_CONFIG.markers.property,
-        method: user_config.markers.method || DEFAULT_CONFIG.markers.method,
-        source: user_config.markers.source || DEFAULT_CONFIG.markers.source,
-      },
-      output: {
-        entities: user_config.output.entities || DEFAULT_CONFIG.output.entities,
-        annotations: user_config.output.annotations || DEFAULT_CONFIG.output.annotations,
+        prefix: markers.prefix || DEFAULT_CONFIG.markers.prefix,
+        identifier: markers.identifier || DEFAULT_CONFIG.markers.identifier,
+        name: markers.name || DEFAULT_CONFIG.markers.name,
+        description: markers.description || DEFAULT_CONFIG.markers.description,
+        entity: markers.entity || DEFAULT_CONFIG.markers.entity,
+        property: markers.property || DEFAULT_CONFIG.markers.property,
+        method: markers.method || DEFAULT_CONFIG.markers.method,
+        source: markers.source || DEFAULT_CONFIG.markers.source,
       },
       server: {
-        url: user_config.server.url || DEFAULT_CONFIG.server.url,
+        url: server.url || DEFAULT_CONFIG.server.url,
       },
       parser: {
-        exclude: user_config.parser.exclude || DEFAULT_CONFIG.parser.exclude,
-        extend: user_config.parser.extend || DEFAULT_CONFIG.parser.extend,
+        output: {
+          entities: output.entities || DEFAULT_CONFIG.parser.output.entities,
+          annotations: output.annotations || DEFAULT_CONFIG.parser.output.annotations,
+        },
+        exclude: parser.exclude || DEFAULT_CONFIG.parser.exclude,
+        extend: parser.extend || DEFAULT_CONFIG.parser.extend,
       },
     }
   } catch (error) {
-    console.log('EI configuration file not found, using default configuration')
+    console.log('Error reading configuration file:', error)
     return DEFAULT_CONFIG
   }
 }
@@ -154,8 +159,11 @@ export class Config {
   private _eiconfig: EIConfigType | null = null
   private _commentsConfiguration: CommentsConfiguration | null = null
 
-  async init(relativeFilePath: string = 'ei-config.json'): Promise<void> {
-    this._eiconfig = await getConfig(relativeFilePath)
+  async init(): Promise<void> {
+    const configFileName = vscode.workspace
+      .getConfiguration(EXTENSION_NAME)
+      .get('configFileName', '.lsa-config.json')
+    this._eiconfig = await getConfig(configFileName)
     this._commentsConfiguration = new CommentsConfiguration()
     this._commentsConfiguration.updateLanguagesDefinitions()
     this._commentsConfiguration.initAllLanguages()
@@ -178,13 +186,4 @@ export class Config {
   get allAnnotationMarkersNames(): string[] {
     return Object.values(this.eiconfig.markers)
   }
-}
-
-/**
- * Configurates EI extension commands.
- */
-const EXTENSION_NAME = 'entity-inspector'
-export class Commands {
-  static readonly exportModelCmd = () => `${EXTENSION_NAME}.exportModel`
-  static readonly runParserCmd = () => `${EXTENSION_NAME}.runParser`
 }

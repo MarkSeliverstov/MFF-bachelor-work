@@ -119,7 +119,7 @@ export class AnnotationReader {
     }
 
     // Apply all configurable comment start tags
-    this.prefixRegexExpression += `${config.eiconfig.prefix}+(.*)`
+    this.prefixRegexExpression += `${config.eiconfig.markers.prefix}+(.*)`
   }
 
   private setDelimiter(languageExtension: string): void {

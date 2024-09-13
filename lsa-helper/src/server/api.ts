@@ -35,7 +35,7 @@ export function saveModel(model: any): void {
   fetch(modelUrl(), {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', // eslint-disable-line @typescript-eslint/naming-convention
     },
     body: JSON.stringify(reqEntity),
   })
@@ -54,7 +54,7 @@ export function getCmpFromServer(currLine: string): string[] {
   fetch(cmpItemsUrl(), {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', // eslint-disable-line @typescript-eslint/naming-convention
     },
     body: JSON.stringify(currLine),
   })
@@ -79,7 +79,7 @@ export async function getCmpFromServerAsync(currLine: string): Promise<string[]>
     const res = await fetch(cmpItemsUrl(), {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', // eslint-disable-line @typescript-eslint/naming-convention
       },
       body: JSON.stringify(currLine),
     })
@@ -124,7 +124,7 @@ export function saveAnnotations(annotations: any): void {
   fetch(annotationsUrl(), {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', // eslint-disable-line @typescript-eslint/naming-convention
     },
     body: JSON.stringify(reqEntity),
   })
