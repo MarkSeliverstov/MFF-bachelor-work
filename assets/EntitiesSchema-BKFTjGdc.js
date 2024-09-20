@@ -1,1 +1,0 @@
-import{s}from"./entities.schema-BIvvBduX.js";import{o as t,a,g as e,t as o,x as n}from"./index-1jJAH675.js";const c={class:"q-pa-md"},r=e("h4",null,"Entities Schema",-1),h={__name:"EntitiesSchema",setup(i){return(m,_)=>(t(),a("main",c,[r,e("pre",null,o(n(s)),1)]))}};export{h as default};

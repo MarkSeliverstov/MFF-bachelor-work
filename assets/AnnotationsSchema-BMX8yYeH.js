@@ -1,1 +1,0 @@
-import{s as e}from"./annotations.schema-B16H-bTF.js";import{o as s,a as t,g as a,t as o,x as n}from"./index-1jJAH675.js";const c={class:"q-pa-md"},r=a("h4",null,"Annotations Schema",-1),h={__name:"AnnotationsSchema",setup(m){return(_,i)=>(s(),t("main",c,[r,a("pre",null,o(n(e)),1)]))}};export{h as default};
