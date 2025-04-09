@@ -23,7 +23,10 @@ export default {
       console.log(reader.error)
     }
 
-    return { filter, filterRef, reader,
+    return {
+      filter,
+      filterRef,
+      reader,
       resetFilter() {
         filter.value = ''
         filterRef.value.focus()
@@ -42,6 +45,21 @@ export default {
     if (localStorage.getItem('entities')) {
       this.entities = JSON.parse(localStorage.getItem('entities'))
       this.validateCurrentEntities()
+
+      if (this.id) {
+        this.entities.entities = this.entities.entities.filter((entity) => {
+          const filteredInstances = entity.instances.filter(
+            (instance) => instance.identifier === this.id
+          )
+
+          if (filteredInstances.length > 0) {
+            entity.instances = filteredInstances
+            return true
+          }
+
+          return false
+        })
+      }
     } else {
       // fetchData(import.meta.env.VITE_ENTITIES_URL).then((data) => {
       //   this.entities = data
