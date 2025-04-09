@@ -195,3 +195,68 @@ Text:
 - Renamed extension to LSA-Helper and published it
 - Updated Documentation for each part of the project
 - Fixed hinst alignment in the extension
+
+## Text
+
+- Problem definition | Co/proc a pro koho
+- Analysis na zaklade problemu (detailnejsi, funkcni/nefunkcni poziadavky/ use
+  cases)
+
+- Related work
+
+- Designn ( jak udelat to co chceme )
+
+----
+
+- Documentace
+  - Programatorska
+  - Uzivatelska
+  - Adminestratorska (How to install - README)
+
+- Testovani
+- Evaluation ( Feedback from users (3-5) | case of study (diff between 2
+  entities files) )
+- Conclusion
+
+### What is DONE
+
+- Analysis, related work
+- Tests for lsa-cli
+
+Markdown example of usage????
+
+ <!-- @lc-entity -->
+ <!-- @lc-name Car -->
+class Car:
+    <!-- @lc-property -->
+    <!-- @lc-name model -->
+    model: str
+    <!-- @lc-property -->
+    <!-- @lc-name year -->
+    year: int
+    <!-- @lc-property -->
+    <!-- @lc-name color -->
+    color: str
+
+SQL example of usage
+
+```sql
+-- @lc-entity
+-- @lc-identifier :Car
+-- @lc-name Carj
+-- @lc-description Car entity
+CREATE TABLE Car (
+
+    -- @lc-property
+    -- @lc-name model
+    model VARCHAR(255),
+
+    -- @lc-property
+    -- @lc-name year
+    year INT,
+
+    -- @lc-property
+    -- @lc-name color
+    color VARCHAR(255)
+);
+```
