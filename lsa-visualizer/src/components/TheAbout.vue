@@ -27,13 +27,11 @@
   <h5 class="q-px-md">How to Use</h5>
   <ul>
     <li class="text-body1">
-      <strong>Step 1:</strong> Install the LSA-CLI tool by running the following command:<br />
+      <strong>Step 1:</strong> Install the LSA-CLI tool by running the following command:
       <code>pip install lsa-cli</code>
     </li>
     <li class="text-body1">
-      <strong>Step 2:</strong> Generate a JSON files (entities.json and annotations.json) by running
-      the following command in your project directory:<br />
-      <code>lsa-cli generate</code>
+      <strong>Step 2:</strong> Generate a JSON files (entities.json and annotations.json)
     </li>
     <li class="text-body1">
       <strong>Step 3:</strong> Upload the generated JSON file to the LSA Visualizer by clicking the
