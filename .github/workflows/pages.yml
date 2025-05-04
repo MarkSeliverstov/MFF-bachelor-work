@@ -37,12 +37,12 @@ jobs:
         run: |
           npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: github-pages
-          path: lsa-visualizer/dist
-
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: github-pages
+      #     path: lsa-visualizer/dist
+      #
   deploy:
     needs: build
     permissions:
