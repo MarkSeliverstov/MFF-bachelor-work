@@ -53,6 +53,9 @@ function registerCommands(context: vscode.ExtensionContext, reader: AnnotationRe
       },
     )
   }
+  // context.subscriptions.push(
+  //   vscode.commands.registerCommand(Commands.runParserCmd(), runParserHandler),
+  // )
 }
 
 // This method is called when your extension is deactivated

@@ -21,7 +21,7 @@ type AnnotationMarkers = {
   source: string
 }
 
-type EIConfigType = {
+type LSAConfigType = {
   markers: AnnotationMarkers
   server: {
     url: string

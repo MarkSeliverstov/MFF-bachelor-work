@@ -3,7 +3,7 @@ import * as path from 'path'
 
 import { TextDecoder } from 'util'
 
-const DEFAULT_CONFIG: EIConfigType = {
+const DEFAULT_CONFIG: LSAConfigType = {
   markers: {
     prefix: '@lc-',
     identifier: 'identifier',
@@ -28,13 +28,13 @@ const DEFAULT_CONFIG: EIConfigType = {
 }
 const EXTENSION_NAME: string = 'lsa-helper'
 
-async function getConfig(relativeFilePath: string): Promise<EIConfigType> {
+async function getConfig(relativeFilePath: string): Promise<LSAConfigType> {
   const configPath: string = path.join(vscode.workspace.rootPath || '', relativeFilePath)
   const file: vscode.Uri = vscode.Uri.file(configPath)
   try {
     const rawContent: Uint8Array = await vscode.workspace.fs.readFile(file)
     const content: string = new TextDecoder().decode(rawContent)
-    const userConfig: EIConfigType = JSON.parse(content)
+    const userConfig: LSAConfigType = JSON.parse(content)
 
     const markers = userConfig.markers || {}
     const server = userConfig.server || {}
@@ -156,24 +156,24 @@ export class CommentsConfiguration {
  * Configurates EI extension.
  */
 export class Config {
-  private _eiconfig: EIConfigType | null = null
+  private _lsaConfig: LSAConfigType | null = null
   private _commentsConfiguration: CommentsConfiguration | null = null
 
   async init(): Promise<void> {
     const configFileName = vscode.workspace
       .getConfiguration(EXTENSION_NAME)
       .get('configFileName', '.lsa-config.json')
-    this._eiconfig = await getConfig(configFileName)
+    this._lsaConfig = await getConfig(configFileName)
     this._commentsConfiguration = new CommentsConfiguration()
     this._commentsConfiguration.updateLanguagesDefinitions()
     this._commentsConfiguration.initAllLanguages()
   }
 
-  get eiconfig(): EIConfigType {
-    if (!this._eiconfig) {
+  get lsaConfig(): LSAConfigType {
+    if (!this._lsaConfig) {
       throw new Error('Configuration not initialized')
     }
-    return this._eiconfig
+    return this._lsaConfig
   }
 
   get commentsConfiguration(): CommentsConfiguration {
@@ -184,6 +184,6 @@ export class Config {
   }
 
   get allAnnotationMarkersNames(): string[] {
-    return Object.values(this.eiconfig.markers)
+    return Object.values(this.lsaConfig.markers)
   }
 }

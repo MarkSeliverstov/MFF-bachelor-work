@@ -2,9 +2,9 @@ import fetch from 'node-fetch'
 import { config } from '../extension'
 import { InstanceModel } from '../model'
 
-const modelUrl = () => config.eiconfig.server.url + '/model'
-const annotationsUrl = () => config.eiconfig.server.url + '/annotations'
-const cmpItemsUrl = () => config.eiconfig.server.url + '/complition-items'
+const modelUrl = () => config.lsaConfig.server.url + '/model'
+const annotationsUrl = () => config.lsaConfig.server.url + '/annotations'
+const cmpItemsUrl = () => config.lsaConfig.server.url + '/complition-items'
 const goodKey = '123456789'
 // const wrong_key = '1234567890'
 

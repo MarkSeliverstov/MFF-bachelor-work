@@ -24,8 +24,8 @@ export class MarkerProvider implements vscode.CompletionItemProvider {
     const line = document.lineAt(position).text.substring(0, position.character)
     const completionItems: vscode.CompletionItem[] = []
 
-    const prefix = config.eiconfig.markers.prefix
-    const id = config.eiconfig.markers.identifier
+    const prefix = config.lsaConfig.markers.prefix
+    const id = config.lsaConfig.markers.identifier
 
     if (line.endsWith(prefix)) {
       config.allAnnotationMarkersNames.forEach((prefixVal) => {
