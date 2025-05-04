@@ -9,7 +9,7 @@ export class EntitiesDocumentLinkProvider implements vscode.DocumentLinkProvider
     const links: vscode.DocumentLink[] = []
     const text = document.getText()
     const findingPrefix = config.eiconfig.markers.prefix + config.eiconfig.markers.identifier
-    const lcIdentifier = new RegExp(`(${findingPrefix}\\s+)([:\\w]+)`, 'g')
+    const lcIdentifier = new RegExp(`(${findingPrefix}\\s+)([:\\w-]+)`, 'g')
 
     let match
     while ((match = lcIdentifier.exec(text))) {

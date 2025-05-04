@@ -14,7 +14,8 @@ export function getSnippets(spacesBeforeTextCount: number): Record<string, strin
   const space = ' '.repeat(spacesBeforeTextCount)
   const commentLine = commentConfig.lineComment
   const prefix = config.eiconfig.markers.prefix
-  const base = `${space}${commentLine} ${prefix}name
+  const base = `
+${space}${commentLine} ${prefix}name
 ${space}${commentLine} ${prefix}description`
 
   const entitySnippet = `
