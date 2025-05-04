@@ -4,7 +4,6 @@ on:
   push:
     branches: ["main"]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -15,18 +14,42 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          path: './webapp'
-      - name: Deploy to GitHub Pages
-        id: deployment
+          node-version: 18
+
+      - name: Clean and install dependencies
+        working-directory: ./lsa-visualizer
         run: |
-          ./deploy.sh
+          rm -rf node_modules package-lock.json
+          npm install
+
+      - name: Build project
+        working-directory: ./lsa-visualizer
+        run: |
+          npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: github-pages
+          path: lsa-visualizer/dist
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
